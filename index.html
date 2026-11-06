@@ -266,6 +266,7 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;max-width:1000px;margi
   <button data-view="funders" aria-selected="false" title="Funders"><svg class="i"><use href="#ic-building"/></svg></button>
   <button data-view="arch" aria-selected="false" title="Architecture"><svg class="i"><use href="#ic-layers"/></svg></button>
   <div class="sp"></div>
+  <button data-view="about" aria-selected="false" title="About"><svg class="i"><use href="#ic-check"/></svg></button>
   <button data-view="signup" aria-selected="false" title="Sign in"><svg class="i"><use href="#ic-user"/></svg></button>
 </aside>
 
@@ -438,7 +439,40 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;max-width:1000px;margi
   </div>
 </section>
 
-<footer>Prototype data: 11 Master's and PhD scholarships from a public November 2026 compilation, with official pages linked. Deadlines not yet re-verified on official pages. University rankings indicative (QS 2026). Ratings, reviews, course enrolments, events and funder numbers are illustrative.</footer>
+
+<!-- ABOUT -->
+<section id="view-about" hidden>
+  <div class="greet" style="padding-bottom:12px"><svg class="mascot" width="96" height="64" viewBox="0 0 120 80"><use href="#mascot"/></svg><h1 style="font-size:clamp(28px,5vw,40px)">About OpenAward</h1><div class="tag">Every scholarship, within reach.</div></div>
+  <div class="lead" style="margin:0 auto 28px;text-align:center"><p>OpenAward is an independent, global index of Master's and PhD funding. We exist because the information that decides whether a talented student can afford to study is scattered across hundreds of university pages, embassy notices and LinkedIn posts, and most of it goes stale the week it is written.</p></div>
+  <div class="tiles" style="grid-template-columns:repeat(3,1fr)">
+    <div class="tile" style="cursor:default;min-height:0"><span class="nm">Mission</span><span class="u" style="font-size:14px;color:var(--fg)">Make every scholarship in the world findable, comparable and winnable by any qualified student, wherever they were born.</span></div>
+    <div class="tile" style="cursor:default;min-height:0"><span class="nm">What we are</span><span class="u" style="font-size:14px;color:var(--fg)">A verified listing index, a fit engine that scores your profile, an academy that closes the gaps, and a community of applicants who tell the truth about each award.</span></div>
+    <div class="tile" style="cursor:default;min-height:0"><span class="nm">What we are not</span><span class="u" style="font-size:14px;color:var(--fg)">Not an agent, not a consultancy, not an application portal. You always apply on the funder's own site. We never charge seekers to search.</span></div>
+  </div>
+  <div class="grid2" style="margin-bottom:16px">
+    <div class="card"><div class="mono" style="margin-bottom:10px">How we work</div>
+      <div class="steps">
+        <div class="step"><b>Verify, then publish</b><span>Every listing is checked against its official page, stamped with a date, and re-checked every 30 days. If we cannot verify it, it does not go live.</span></div>
+        <div class="step"><b>One template for everything</b><span>Level, fields, deadline, funding, English test, admission-first, who may apply. Same shape for a government award and a university fellowship, so you can compare.</span></div>
+        <div class="step"><b>Honest reviews only</b><span>Only people who marked "applied" or "awarded" can rate a scholarship. No funder can edit or remove a review.</span></div>
+        <div class="step"><b>Your data stays yours</b><span>The fit score runs in your browser first. Sharing your profile with a funder is always opt-in, and you can export or delete everything.</span></div>
+      </div></div>
+    <div class="card"><div class="mono" style="margin-bottom:10px">Why it started</div>
+      <p style="margin:0 0 10px;font-size:14px">OpenAward began in Kathmandu in late 2026 as a side project by <b>Niraj Bhusal</b>, a civil servant working on digital public infrastructure, who studied abroad on a scholarship himself and watched friends miss deadlines they never knew existed.</p>
+      <p style="margin:0 0 10px;font-size:14px">The first version was a spreadsheet of nine bilateral scholarships. The second was a LinkedIn list with 269 likes and a comment nobody could answer: "which of these don't need IELTS?" OpenAward is the answer to that comment, built for every student, not just one country.</p>
+      <p style="margin:0;font-size:14px">It is a sibling of <a href="https://nirajbhusal.github.io/nearby/" target="_blank" rel="noopener">Nearby</a>, and shares its design language and its mascot's eyes.</p></div>
+  </div>
+  <div class="grid2">
+    <div class="card white"><div class="mono" style="margin-bottom:10px">How we stay free for seekers</div>
+      <p style="margin:0;font-size:14px;color:var(--muted)">Search, fit score, alerts and fundamentals are free forever. Revenue comes from paid Academy intensives, funder plans (featured listings, analytics, sponsored courses) and qualified referrals to partner universities. Funders never buy a better rating or a higher position in search.</p></div>
+    <div class="card white"><div class="mono" style="margin-bottom:10px">Contact</div>
+      <p style="margin:0 0 8px;font-size:14px">Listings, corrections and partnerships: <span style="font-weight:600;user-select:all">hello@openaward.org</span> (placeholder until launch)</p>
+      <p style="margin:0 0 8px;font-size:14px">Founder: <a href="https://nirajbhusal.com.np" target="_blank" rel="noopener">nirajbhusal.com.np</a> · <a href="https://x.com/nirajbhusal" target="_blank" rel="noopener">@nirajbhusal</a></p>
+      <p style="margin:0;font-size:14px">Source: <a href="https://github.com/nirajbhusal/openaward" target="_blank" rel="noopener">github.com/nirajbhusal/openaward</a></p></div>
+  </div>
+</section>
+
+<footer><a href="#about" data-view="about" style="color:inherit">About OpenAward</a> · Prototype data: 11 Master's and PhD scholarships from a public November 2026 compilation, with official pages linked. Deadlines not yet re-verified on official pages. University rankings indicative (QS 2026). Ratings, reviews, course enrolments, events and funder numbers are illustrative.</footer>
 </div></main>
 </div>
 
@@ -664,7 +698,7 @@ function renderEvents(){
 }
 
 /* views */
-const VIEWS=["discover","countries","rank","assess","academy","events","funders","arch","signup"];
+const VIEWS=["discover","countries","rank","assess","academy","events","funders","arch","signup","about"];
 function switchView(v){
   document.querySelectorAll(".rail button[data-view],.tabbar button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===v)));
   VIEWS.forEach(x=>$("#view-"+x).hidden=(x!==v));
