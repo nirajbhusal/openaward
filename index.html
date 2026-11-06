@@ -374,6 +374,18 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .qset .q{margin-bottom:10px} .qset .q b{display:block;font-size:14px;margin-bottom:4px} .qset label{display:block;font-size:13px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;margin-bottom:4px;cursor:pointer} .qset label.correct{background:var(--mint-soft);border-color:var(--mint)} .qset label.wrong{background:var(--rose-soft);border-color:var(--rose)} .qset input{width:auto;margin-right:6px}
 @media print{body *{visibility:hidden} #cvpaper,#cvpaper *{visibility:visible} #cvpaper{position:absolute;left:0;top:0;width:100%;border:0;box-shadow:none;border-radius:0;padding:0} @page{margin:16mm}}
 @media (max-width:920px){.cvwrap,.plan{grid-template-columns:1fr} .cvpaper{padding:24px}}
+
+/* wizard */
+.wizard{position:sticky}
+.wprog .bar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden;margin-top:6px} .wprog .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .3s}
+.wq{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:6px 0 4px} .whint{font-size:13px;color:var(--muted);margin-bottom:12px}
+.wopts{display:grid;gap:8px} .wopt{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer;display:flex;gap:10px;align-items:center;font-size:14px;font-weight:500}
+.wopt:hover{border-color:var(--accent)} .wopt[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+.wopt .k{width:26px;height:26px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--muted);flex:none} .wopt[aria-pressed="true"] .k{background:var(--accent);color:#fff}
+.wnum{display:flex;align-items:center;gap:12px} .wnum input[type=range]{flex:1;padding:0} .wnum output{font-size:28px;font-weight:800;letter-spacing:-.03em;min-width:64px;text-align:right;font-variant-numeric:tabular-nums}
+.wnav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+#wresults.pending{opacity:.35;pointer-events:none;filter:grayscale(1)}
+.wdone{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
 footer{border-top:1px solid var(--line);padding-block:18px calc(18px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:13px}
 footer .wrap{display:flex;gap:14px;flex-wrap:wrap;align-items:center} footer .wrap>span:first-of-type{flex:1;min-width:260px}
 footer .links{display:flex;gap:12px;margin-left:auto}
@@ -561,22 +573,27 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 
 <!-- ASSESS -->
 <section id="view-assess" hidden>
-  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-target"/></svg>Profile assessment</div><h2>How <em>competitive</em> are you, and what should you fix first?</h2><p>Five dimensions, scored against the real requirements of the open listings. Your inputs stay in this browser only; nothing is sent anywhere.</p></div>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-target"/></svg>Profile assessment</div><h2>How <em>competitive</em> are you, and what should you fix first?</h2><p>Nine quick questions, then a score across five dimensions, what to fix first, and your match against every award. Answers stay in this browser only.</p></div>
   <div class="check">
-    <form class="form card" id="profile" onsubmit="return false">
-      <div><label class="l" for="p-want">Target</label><select id="p-want"><option selected>Master's</option><option>PhD</option></select></div>
-      <div><label class="l" for="p-degree">Highest degree</label><select id="p-degree"><option value="bach" selected>Bachelor's</option><option value="mast">Master's</option></select></div>
-      <div><label class="l" for="p-gpa">GPA (4.0 scale)</label><input id="p-gpa" type="number" min="0" max="4" step="0.1" value="3.4"></div>
-      <div><label class="l" for="p-field">Field</label><select id="p-field"><option>Engineering & Tech</option><option>Science</option><option>AI & Computing</option><option>Humanities & Social</option><option>Business & Economics</option></select></div>
-      <div><label class="l" for="p-pubs">Publications or conference papers</label><input id="p-pubs" type="number" min="0" max="20" value="0"></div>
-      <div><label class="l" for="p-exp">Years of relevant work or research</label><input id="p-exp" type="number" min="0" max="30" value="2"></div>
-      <div><label class="l" for="p-ielts">English score</label><select id="p-ielts"><option value="0">None yet</option><option value="6">IELTS 6.0 / TOEFL 80</option><option value="6.5" selected>IELTS 6.5 / TOEFL 90</option><option value="7">IELTS 7.0 / TOEFL 100</option><option value="7.5">IELTS 7.5+ / TOEFL 110+</option></select></div>
-      <div><label class="l" for="p-docs">Documents ready</label><select id="p-docs"><option value="0">Nothing yet</option><option value="1" selected>CV only</option><option value="2">CV + statement draft</option><option value="3">CV, statement, 2 referees confirmed</option></select></div>
-      <label style="display:flex;gap:10px;align-items:center;font-size:14px"><input id="p-offer" type="checkbox" style="width:auto"> I have a supervisor or admission offer</label>
+    <form class="form card wizard" id="profile" onsubmit="return false">
+      <div class="wprog"><div class="mono" id="wcount">Question 1 of 9</div><div class="bar"><i id="wbar"></i></div></div>
+      <div id="wstep"></div>
+      <div class="wnav"><button class="btn" type="button" id="wback"><svg class="i s"><use href="#ic-back"/></svg>Back</button><button class="btn primary" type="button" id="wnext">Next<svg class="i s"><use href="#ic-arrow"/></svg></button></div>
+      <div hidden>
+        <select id="p-want"><option selected>Master's</option><option>PhD</option></select>
+        <select id="p-degree"><option value="bach" selected>Bachelor's</option><option value="mast">Master's</option></select>
+        <input id="p-gpa" type="number" min="0" max="4" step="0.1" value="3.4">
+        <select id="p-field"><option>Engineering & Tech</option><option>Science</option><option>AI & Computing</option><option>Humanities & Social</option><option>Business & Economics</option></select>
+        <input id="p-pubs" type="number" min="0" max="20" value="0">
+        <input id="p-exp" type="number" min="0" max="30" value="2">
+        <select id="p-ielts"><option value="0">None yet</option><option value="6">IELTS 6.0 / TOEFL 80</option><option value="6.5" selected>IELTS 6.5 / TOEFL 90</option><option value="7">IELTS 7.0 / TOEFL 100</option><option value="7.5">IELTS 7.5+ / TOEFL 110+</option></select>
+        <select id="p-docs"><option value="0">Nothing yet</option><option value="1" selected>CV only</option><option value="2">CV + statement draft</option><option value="3">CV, statement, 2 referees confirmed</option></select>
+        <input id="p-offer" type="checkbox">
+      </div>
     </form>
-    <div style="display:grid;gap:16px">
+    <div style="display:grid;gap:16px" id="wresults">
       <div class="card scorecard"><div class="ring" id="ring"><div><b id="score">0</b><small>fit score</small></div></div>
-        <div><div class="mono" id="tier"></div><h3 id="tier-h" style="font-size:26px;margin:4px 0 6px"></h3><p id="tier-p" style="margin:0 0 14px;color:var(--muted);font-size:14px"></p><div class="dims" id="dims"></div></div></div>
+        <div><div class="wdone"><div class="mono" id="tier"></div><button class="btn sm" type="button" id="wretake">Retake</button></div><h3 id="tier-h" style="font-size:26px;margin:4px 0 6px"></h3><p id="tier-p" style="margin:0 0 14px;color:var(--muted);font-size:14px"></p><div class="dims" id="dims"></div></div></div>
       <div class="card"><div class="mono" style="margin-bottom:6px">What to do first</div><div class="sugg" id="sugg"></div></div>
       <div><div class="mono" style="margin-bottom:8px">Your match across open listings</div><div class="list" id="results"></div></div>
     </div>
@@ -1354,6 +1371,40 @@ function icsFor(d){const dt=d.deadline.replace(/-/g,"");const uid=d.id+"@scholio
 function downloadICS(d){const blob=new Blob([icsFor(d)],{type:"text/calendar"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=d.id+"-deadline.ics";document.body.appendChild(a);a.click();a.remove()}
 function renderSaved(){const ids=store.get("sc_saved",[]);const el=$("#mysaved");if(!el)return;el.innerHTML=ids.length?ids.map(id=>DATA.find(d=>d.id===id)).filter(Boolean).map(d=>`<div class="c"><svg class="i" style="color:var(--amber)"><use href="#ic-star"/></svg><div><b>${d.name}</b><br><span style="color:var(--muted)">${d.country} · ${d.deadline?fmtDate(d.deadline)+" · "+dlLabel(d)+" left":d.window}</span></div><button class="btn sm" data-open="${d.id}">Open</button></div>`).join(""):`<p class="note">Nothing saved yet. Open any award and press Save.</p>`}
 
+
+/* ---------- assessment wizard ---------- */
+const WSTEPS=[
+ {id:"p-want",q:"What are you applying for?",h:"We score Master's and PhD awards differently.",opts:[["Master's","Master's"],["PhD","PhD"]]},
+ {id:"p-degree",q:"Your highest completed degree",h:"Or the one you are finishing this year.",opts:[["bach","Bachelor's"],["mast","Master's"]]},
+ {id:"p-gpa",q:"Your GPA on a 4.0 scale",h:"Convert from percentage or first-class if needed; an estimate is fine.",range:[2,4,0.1]},
+ {id:"p-field",q:"Your field",h:"Pick the closest; many awards accept any field.",opts:[["Engineering & Tech","Engineering & Tech"],["Science","Science"],["AI & Computing","AI & Computing"],["Humanities & Social","Humanities & Social"],["Business & Economics","Business & Economics"]]},
+ {id:"p-pubs",q:"Publications or conference papers",h:"Preprints and posters count. Zero is a normal answer for Master's.",range:[0,10,1]},
+ {id:"p-exp",q:"Years of relevant work or research",h:"Internships and research assistant roles included.",range:[0,15,1]},
+ {id:"p-ielts",q:"Your English test status",h:"If you have not taken one yet, we will point you to the right test.",opts:[["0","None yet"],["6","IELTS 6.0 / TOEFL 80"],["6.5","IELTS 6.5 / TOEFL 90"],["7","IELTS 7.0 / TOEFL 100"],["7.5","IELTS 7.5+ / TOEFL 110+"]]},
+ {id:"p-docs",q:"How ready are your documents?",h:"Be honest; this changes what we suggest first.",opts:[["0","Nothing yet"],["1","CV only"],["2","CV and a statement draft"],["3","CV, statement, two referees confirmed"]]},
+ {id:"p-offer",q:"Do you already have a supervisor or an admission offer?",h:"Some awards need one before you can apply.",opts:[["no","Not yet"],["yes","Yes, I have one"]]}
+];
+let wi=0,wdone=store.get("sc_profile",null)?true:false;
+function wval(id){const el=$("#"+id);return id==="p-offer"?(el.checked?"yes":"no"):el.value}
+function wset(id,v){const el=$("#"+id);if(id==="p-offer")el.checked=(v==="yes");else el.value=v;renderAssess();saveProfile()}
+function renderWizard(){
+  const st=WSTEPS[wi];const v=wval(st.id);
+  $("#wcount").textContent=wdone?`Your answers · ${wi+1} of ${WSTEPS.length}`:`Question ${wi+1} of ${WSTEPS.length}`;$("#wbar").style.width=((wi+(wdone?1:0))/WSTEPS.length*100)+"%";
+  let body=`<div class="wq">${st.q}</div><div class="whint">${st.h}</div>`;
+  if(st.opts)body+=`<div class="wopts">${st.opts.map(([k,l],i)=>`<button class="wopt" type="button" data-wv="${k}" aria-pressed="${String(v)===String(k)}"><span class="k">${i+1}</span>${l}</button>`).join("")}</div>`;
+  else{const [mn,mx,sp]=st.range;body+=`<div class="wnum"><input type="range" id="wrange" min="${mn}" max="${mx}" step="${sp}" value="${v}"><output id="wout">${v}</output></div>`}
+  $("#wstep").innerHTML=body;$("#wback").disabled=wi===0;
+  $("#wnext").innerHTML=wi===WSTEPS.length-1?`See my results<svg class="i s"><use href="#ic-target"/></svg>`:`Next<svg class="i s"><use href="#ic-arrow"/></svg>`;
+  $("#wresults").classList.toggle("pending",!wdone);
+}
+document.addEventListener("click",e=>{
+  const o=e.target.closest("[data-wv]");if(o){wset(WSTEPS[wi].id,o.dataset.wv);renderWizard();if(wi<WSTEPS.length-1)setTimeout(()=>{wi++;renderWizard()},180);return}
+  if(e.target.closest("#wnext")){if(wi<WSTEPS.length-1){wi++;renderWizard()}else{wdone=true;renderWizard();$("#wresults").scrollIntoView({behavior:"smooth",block:"start"})}return}
+  if(e.target.closest("#wback")){wi=Math.max(0,wi-1);renderWizard();return}
+  if(e.target.closest("#wretake")){wi=0;wdone=false;renderWizard();window.scrollTo({top:0,behavior:"smooth"});return}
+});
+document.addEventListener("input",e=>{if(e.target.id==="wrange"){$("#wout").textContent=e.target.value;wset(WSTEPS[wi].id,e.target.value)}});
+
 /* ---------- events ---------- */
 function renderEvents(){const dated=DATA.filter(d=>d.deadline&&daysLeft(d)>=0).sort((a,b)=>daysLeft(a)-daysLeft(b));const win=DATA.filter(d=>!d.deadline);$("#events").innerHTML=dated.map(d=>{const dt=new Date(d.deadline+"T00:00:00");return `<div class="ev"><div class="d"><b>${dt.getDate()}</b><span>${dt.toLocaleDateString("en-GB",{month:"short"})}</span></div><div><h4>${d.name}</h4><p>${d.host}, ${d.country} · ${d.deadlineNote}</p></div><div class="act" style="display:flex;gap:8px;align-items:center"><span class="tag ${dlClass(d)}">${dlLabel(d)} left</span><button class="btn sm" type="button" data-ics="${d.id}" title="Add to calendar"><svg class="i s"><use href="#ic-cal"/></svg></button><button class="btn sm" type="button" data-open="${d.id}">Open</button></div></div>`}).join("")+`<div class="mono" style="margin:18px 0 8px">Annual windows (exact dates set each cycle)</div>`+win.map(d=>`<div class="ev"><div class="d"><b style="font-size:14px">${d.window.match(/January|February|March|April|May|June|July|August|September|October|November|December/)?.[0]?.slice(0,3)||"–"}</b><span>opens</span></div><div><h4>${d.name}</h4><p>${d.host}, ${d.country} · ${d.window}</p></div><div class="act"><button class="btn sm" type="button" data-open="${d.id}">Open</button></div></div>`).join("")}
 
@@ -1363,7 +1414,7 @@ function switchView(v){
   const navV=v==="course"||v==="cert"?"academy":v;
   document.querySelectorAll("nav button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===navV)));
   VIEWS.forEach(x=>{const el=$("#view-"+x);if(el)el.hidden=(x!==v)});
-  if(v==="assess"){loadProfile();renderAssess()}if(v==="rank")renderRank();if(v==="map"){setTimeout(()=>{initMap();if(map)map.invalidateSize();renderMapList()},30)}if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();if(v==="resources")renderCV();
+  if(v==="assess"){loadProfile();renderAssess();renderWizard()}if(v==="rank")renderRank();if(v==="map"){setTimeout(()=>{initMap();if(map)map.invalidateSize();renderMapList()},30)}if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();if(v==="resources")renderCV();
   window.scrollTo({top:0});
   if(location.hash.replace("#","")!==v)history.replaceState(null,"","#"+v);
 }
@@ -1397,7 +1448,7 @@ $("#q").addEventListener("keydown",e=>{if(e.key==="ArrowDown"){suggIdx=Math.min(
 ["field","region","fund","sort"].forEach(k=>$("#f-"+k).addEventListener("change",e=>{state[k]=e.target.value;renderChips();renderGrid()}));
 $("#sheet-back").onclick=closeDetail;$("#sheet-close").onclick=closeDetail;
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDetail()});
-$("#profile").addEventListener("input",()=>{renderAssess();saveProfile()});
+
 // suggestion hooks inside assessment link to courses
 $("#sugg").addEventListener("click",e=>{const b=e.target.closest("[data-course]");if(b){const c=COURSES.find(x=>x.t===b.dataset.course);if(c&&c.lessons)openCourse(c.id);else switchView("academy")}});
 window.addEventListener("hashchange",()=>{const h=location.hash.replace("#","");if(VIEWS.includes(h))switchView(h)});
