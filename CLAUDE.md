@@ -2,7 +2,7 @@
 
 Global index of Master's and PhD scholarships. Live site: https://nirajbhusal.github.io/scholio/ (GitHub Pages, deploy from branch `main`, folder `/`).
 
-Owner: Niraj Bhusal (NB). Brand: **Scholio** (domain still to be registered; "OpenAward" was dropped because its domain was taken). Renaming is a find-and-replace across `index.html`, `README.md`, `manifest.webmanifest`, `og.png`.
+Owner: Niraj Bhusal (NB). Brand: **Scholio** (domain still to be registered). If the name ever changes, it is a find-and-replace across `index.html`, `README.md`, `manifest.webmanifest`, `og.png`.
 
 ## Non-negotiables (from the owner)
 - Live product, not a prototype: **no invented numbers, reviews, events or stats**. Anything shown must be real data, computed from real data, or clearly an empty state.
