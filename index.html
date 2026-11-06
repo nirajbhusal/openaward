@@ -14,6 +14,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@nirajbhusal">
 <meta name="theme-color" content="#2563eb">
+<script>try{var t=JSON.parse(localStorage.getItem("sc_theme"));if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -31,9 +32,10 @@
   --r:16px; --shadow:0 1px 2px rgba(15,23,42,.04),0 14px 40px rgba(15,23,42,.07);
   color-scheme:light;
 }
+:root{--theme-set:1}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55;margin:0;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#fff}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
 button,input,select,textarea{font:inherit;color:inherit}
 h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-.025em;line-height:1.1;text-wrap:balance}
 a{color:var(--accent)}
@@ -44,7 +46,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
 svg.i.s{width:16px;height:16px}
 
 /* intro */
-#intro{position:fixed;inset:0;z-index:50;background:#fff;display:grid;place-items:center;animation:intro-fade .5s ease 2.2s forwards}
+#intro{position:fixed;inset:0;z-index:50;background:var(--surface);display:grid;place-items:center;animation:intro-fade .5s ease 2.2s forwards}
 #intro .m{animation:intro-pop .7s cubic-bezier(.2,1.4,.4,1) both}
 #intro .w{margin-top:16px;font-weight:800;font-size:26px;letter-spacing:-.03em;opacity:0;animation:fade-up .5s ease .6s forwards;text-align:center}
 #intro .w em{font-style:normal;color:var(--accent)}
@@ -70,7 +72,7 @@ nav{display:flex;gap:2px;flex-wrap:nowrap}
 nav button{border:0;background:transparent;padding:7px 9px;border-radius:10px;cursor:pointer;font-weight:500;color:var(--muted);font-size:13px;display:inline-flex;align-items:center;gap:5px}
 nav button svg{width:16px;height:16px}
 nav button[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
-.signin{border:1px solid var(--line);background:#fff;padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:14px;display:inline-flex;gap:8px;align-items:center}
+.signin{border:1px solid var(--line);background:var(--surface);padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:14px;display:inline-flex;gap:8px;align-items:center}
 nav{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;justify-content:flex-start;mask-image:linear-gradient(90deg,#000 calc(100% - 16px),transparent)} nav::-webkit-scrollbar{display:none} nav button{white-space:nowrap;flex:none}
 .brand span,.signin span{display:inline}
 @media (max-width:1100px){nav{justify-content:flex-start} nav button{padding:7px 9px;font-size:13px}}
@@ -89,11 +91,11 @@ section[hidden]{display:none}
 .hero .lead{margin:0}
 .hero .art svg{width:100%;height:auto;max-width:100%;display:block}
 .search{position:relative;margin-top:22px}
-.search .box{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:6px 6px 6px 16px;box-shadow:var(--shadow)}
+.search .box{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:6px 6px 6px 16px;box-shadow:var(--shadow)}
 .search input{border:0;padding:10px 0;background:transparent;flex:1;font-size:16px;min-width:0}
 .search input:focus{outline:none}
 .search .go{background:var(--accent);color:#fff;border:0;border-radius:11px;padding:10px 16px;font-weight:600;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
-.sugg-box{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);z-index:8;overflow:hidden;display:none;max-height:380px;overflow-y:auto}
+.sugg-box{position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);z-index:8;overflow:hidden;display:none;max-height:380px;overflow-y:auto}
 .sugg-box.open{display:block}
 .sugg-box .grp{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:10px 14px 4px}
 .sugg-box button{width:100%;border:0;background:transparent;text-align:left;padding:9px 14px;display:flex;gap:10px;align-items:center;cursor:pointer;font-size:14px}
@@ -122,25 +124,25 @@ section[hidden]{display:none}
 .stat span{font-size:12px;color:var(--muted)}
 .tag{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted);white-space:nowrap;font-weight:600}
 .tag.ok{background:var(--mint-soft);color:#047857} .tag.warn{background:var(--amber-soft);color:#b45309} .tag.no{background:var(--rose-soft);color:#b91c1c} .tag.acc{background:var(--accent-soft);color:var(--accent)}
-.btn{border:1px solid var(--line);background:#fff;padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:600;text-decoration:none;color:inherit;display:inline-flex;gap:8px;align-items:center;font-size:14px}
+.btn{border:1px solid var(--line);background:var(--surface);padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:600;text-decoration:none;color:inherit;display:inline-flex;gap:8px;align-items:center;font-size:14px}
 .btn.primary{background:var(--accent);color:#fff;border-color:transparent} .btn.sm{padding:6px 11px;font-size:13px;border-radius:9px} .btn:disabled{opacity:.55;cursor:default}
 .note{background:var(--surface-2);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--muted)}
 .mono{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 label.l{display:block;font-size:13px;color:var(--muted);margin-bottom:5px;font-weight:500}
-input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:#fff}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}
 .stars{color:var(--amber);letter-spacing:1px;font-size:13px}
 .sp{height:36px}
 
 /* path cards */
 .paths{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 28px}
-.path{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;text-align:left;cursor:pointer;display:grid;gap:8px;align-content:start;transition:transform .15s,box-shadow .15s,border-color .15s}
+.path{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;text-align:left;cursor:pointer;display:grid;gap:8px;align-content:start;transition:transform .15s,box-shadow .15s,border-color .15s}
 .path:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--accent)}
 .path svg.il{width:100%;height:64px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .path h4{font-size:16px} .path p{margin:0;font-size:13px;color:var(--muted)} .path .n{font-size:13px;color:var(--accent);font-weight:600}
 
 /* for you */
 .foryou{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.fy{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:6px;cursor:pointer;text-align:left}
+.fy{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:6px;cursor:pointer;text-align:left}
 .fy:hover{border-color:var(--accent)}
 .fy .top{display:flex;justify-content:space-between;align-items:center} .fy .fit{font-weight:800;font-size:22px;letter-spacing:-.03em;color:var(--accent)}
 .fy h4{font-size:15px} .fy small{color:var(--muted);font-size:12px}
@@ -148,21 +150,21 @@ input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);
 /* catalogue */
 .cat-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .cat-head h2{font-size:24px}
-.filters{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:12px;margin-bottom:14px}
+.filters{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:12px;margin-bottom:14px}
 .frow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .seg{display:inline-flex;background:var(--surface-2);border-radius:12px;padding:3px;gap:2px}
 .seg button{border:0;background:transparent;padding:7px 12px;border-radius:9px;cursor:pointer;font-weight:500;color:var(--muted);font-size:13px;display:inline-flex;gap:6px;align-items:center}
-.seg button[aria-pressed="true"]{background:#fff;color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.08);font-weight:600}
-.fsel{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:0 10px 0 12px;background:#fff;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.08);font-weight:600}
+.fsel{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:0 10px 0 12px;background:var(--surface);color:var(--muted)}
 .fsel select{border:0;padding:8px 4px;width:auto;background:transparent;color:var(--fg);font-weight:500}
 .fsel select:focus{outline:none}
 .toggles{display:flex;gap:8px;flex-wrap:wrap}
-.tgl{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:12px;font-size:13px;cursor:pointer;color:var(--muted);font-weight:500;display:inline-flex;gap:7px;align-items:center}
+.tgl{border:1px solid var(--line);background:var(--surface);padding:7px 12px;border-radius:12px;font-size:13px;cursor:pointer;color:var(--muted);font-weight:500;display:inline-flex;gap:7px;align-items:center}
 .tgl svg{width:16px;height:16px}
 .tgl[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
 .count{color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
 .list{display:grid;gap:10px}
-.item{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;grid-template-columns:52px 1fr auto;gap:6px 16px;cursor:pointer;text-align:left;min-width:0;transition:border-color .15s,box-shadow .15s}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;grid-template-columns:52px 1fr auto;gap:6px 16px;cursor:pointer;text-align:left;min-width:0;transition:border-color .15s,box-shadow .15s}
 .item:hover{border-color:var(--accent);box-shadow:var(--shadow)}
 .flagic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:-.02em;color:#fff}
 .item h3{font-size:18px} .item .host{font-size:13px;color:var(--muted)}
@@ -174,7 +176,7 @@ input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);
 
 /* countries, rankings */
 .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
-.cc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;cursor:pointer;text-align:left;transition:border-color .15s;display:grid;gap:8px}
+.cc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;cursor:pointer;text-align:left;transition:border-color .15s;display:grid;gap:8px}
 .cc:hover{border-color:var(--accent)}
 .cc .hd{display:flex;gap:10px;align-items:center} .cc h3{font-size:18px} .cc .n{font-size:12px;color:var(--muted)}
 .cc ul{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:13px}
@@ -182,7 +184,7 @@ input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);
 .infobar{display:grid;grid-template-columns:150px 1fr 60px;gap:10px;align-items:center;font-size:13px}
 .infobar .bar{height:10px;background:var(--surface-2);border-radius:5px;overflow:hidden} .infobar .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
 .infobar b{text-align:right;font-variant-numeric:tabular-nums}
-.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:#fff}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
 table{width:100%;border-collapse:collapse;font-size:14px;min-width:720px}
 th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
 th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em;background:var(--surface-2)}
@@ -190,14 +192,14 @@ tr:last-child td{border-bottom:0}
 td b{font-variant-numeric:tabular-nums} td .rk{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-weight:800}
 .score{display:inline-flex;align-items:center;gap:8px} .score .bar{width:90px;height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden} .score .bar i{display:block;height:100%;background:var(--accent)}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{border:1px solid var(--line);background:#fff;padding:5px 11px;border-radius:999px;font-size:13px;cursor:pointer;color:var(--muted);font-weight:500}
+.chip{border:1px solid var(--line);background:var(--surface);padding:5px 11px;border-radius:999px;font-size:13px;cursor:pointer;color:var(--muted);font-weight:500}
 .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
 
 /* sheet */
 .sheet{position:fixed;inset:0;z-index:20;display:none} .sheet.open{display:block}
 .sheet .back{position:absolute;inset:0;background:rgba(15,23,42,.4)}
-.panel{position:absolute;top:0;right:0;bottom:0;width:min(600px,100%);background:#fff;overflow:auto;padding-block:20px calc(24px + env(safe-area-inset-bottom,0px));padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));box-shadow:var(--shadow)}
-.panel .close{position:sticky;top:0;float:right;border:1px solid var(--line);background:#fff;border-radius:999px;width:34px;height:34px;cursor:pointer}
+.panel{position:absolute;top:0;right:0;bottom:0;width:min(600px,100%);background:var(--surface);overflow:auto;padding-block:20px calc(24px + env(safe-area-inset-bottom,0px));padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));box-shadow:var(--shadow)}
+.panel .close{position:sticky;top:0;float:right;border:1px solid var(--line);background:var(--surface);border-radius:999px;width:34px;height:34px;cursor:pointer}
 .panel h2{font-size:28px;margin:30px 0 4px} .panel .sub{color:var(--muted);margin-bottom:16px}
 dl{display:grid;grid-template-columns:140px 1fr;gap:10px 14px;margin:0;font-size:14px}
 dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:0;min-width:0;overflow-wrap:anywhere}
@@ -214,7 +216,7 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .form{display:grid;gap:14px;position:sticky;top:calc(112px + env(safe-area-inset-top,0px))}
 .scorecard{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
 .ring{width:150px;height:150px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--surface-2) 0)}
-.ring div{width:116px;height:116px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center}
+.ring div{width:116px;height:116px;border-radius:50%;background:var(--surface);display:grid;place-items:center;text-align:center}
 .ring b{font-size:42px;line-height:1;font-weight:800;letter-spacing:-.04em} .ring small{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 .dims{display:grid;gap:8px}
 .dim{display:grid;grid-template-columns:110px 1fr 36px;gap:10px;align-items:center;font-size:13px}
@@ -223,18 +225,18 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .sugg .s{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:start;padding:12px 0;border-top:1px solid var(--line);font-size:14px}
 .sugg .s .ic{width:36px;height:36px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
 .sugg .s small{color:var(--muted);display:block}
-.res{background:#fff;border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:var(--r);padding:12px 16px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;font-size:14px}
+.res{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:var(--r);padding:12px 16px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;font-size:14px}
 .res.ok{border-left-color:var(--mint)} .res.warn{border-left-color:var(--amber)} .res.no{border-left-color:var(--rose)}
 .res ul{margin:4px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
 .res .fit{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1;text-align:right} .res .fit small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2px;font-weight:400}
 
 /* academy */
 .tests{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
-.test{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:8px;align-content:start}
+.test{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:8px;align-content:start}
 .test .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}
 .test b{font-size:15px} .test span{font-size:13px;color:var(--muted)} .test a{font-size:13px;font-weight:600}
 .courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.course{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;align-content:start}
+.course{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;align-content:start}
 .course .cover{height:110px;display:grid;place-items:center;color:#fff;position:relative} .course .cover svg{width:40px;height:40px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .course .cover .pill{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.9);color:var(--fg);font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px}
 .course .bd{padding:16px;display:grid;gap:10px}
@@ -247,7 +249,7 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 
 /* course player */
 .player{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start}
-.lessons{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:4px;position:sticky;top:calc(112px + env(safe-area-inset-top,0px))}
+.lessons{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:4px;position:sticky;top:calc(112px + env(safe-area-inset-top,0px))}
 .lessons .hd{padding:6px 10px 10px;border-bottom:1px solid var(--line);margin-bottom:6px}
 .lessons .hd b{display:block;font-size:15px} .lessons .hd small{color:var(--muted)}
 .lessons button{border:0;background:transparent;text-align:left;padding:9px 10px;border-radius:10px;cursor:pointer;display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:center;font-size:14px}
@@ -255,7 +257,7 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .lessons button:disabled{opacity:.5;cursor:default}
 .lessons .st{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--muted)}
 .lessons .st.done{background:var(--mint);border-color:var(--mint);color:#fff}
-.lesson{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.lesson{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px}
 .lesson .kicker{margin-bottom:8px}
 .lesson h2{font-size:28px;margin-bottom:8px} .lesson .body{font-size:15px;max-width:68ch}
 .lesson .body h4{font-size:16px;margin:22px 0 8px} .lesson .body p{margin:0 0 12px} .lesson .body ul{margin:0 0 12px;padding-left:20px}
@@ -272,7 +274,7 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 
 /* certificate */
 .certwrap{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
-.certificate{background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.certificate{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:36px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
 .certificate::before{content:"";position:absolute;inset:12px;border:2px solid var(--accent-soft);border-radius:14px;pointer-events:none}
 .certificate .hd{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px}
 .certificate .title{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
@@ -286,7 +288,7 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 
 /* events, funders, arch, signup, about */
 .events{display:grid;gap:10px}
-.ev{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 18px}
+.ev{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px}
 .ev .d{text-align:center;background:var(--accent-soft);border-radius:12px;padding:8px 0;color:var(--accent)} .ev .d b{display:block;font-size:24px;line-height:1;font-weight:800} .ev .d span{font-size:11px;text-transform:uppercase;letter-spacing:.08em}
 .ev h4{font-size:15px} .ev p{margin:2px 0 0;font-size:13px;color:var(--muted)}
 .kpi{background:var(--surface-2);border-radius:12px;padding:12px} .kpi b{display:block;font-size:24px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums} .kpi span{font-size:12px;color:var(--muted)}
@@ -298,19 +300,19 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .layer{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:start}
 .layer .nm{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:12px}
 .layer .boxes{display:flex;gap:8px;flex-wrap:wrap}
-.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;min-width:0}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;min-width:0}
 .box b{display:block;font-size:13px} .box span{color:var(--muted);font-size:12px}
 .box.core{border-color:var(--accent);background:var(--accent-soft)}
 .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.ph{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px} .ph .mono{margin-bottom:6px} .ph b{display:block;margin-bottom:6px} .ph ul{margin:0;padding-left:16px;font-size:13px;color:var(--muted)}
+.ph{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px} .ph .mono{margin-bottom:6px} .ph b{display:block;margin-bottom:6px} .ph ul{margin:0;padding-left:16px;font-size:13px;color:var(--muted)}
 .signup{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
-.authcard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;display:grid;gap:12px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.authcard{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:grid;gap:12px;box-shadow:var(--shadow);position:relative;overflow:hidden}
 .authcard .soon{position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--amber);color:#1f1300;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 48px}
 .authcard .or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px} .authcard .or::before,.authcard .or::after{content:"";flex:1;height:1px;background:var(--line)}
 .perks{display:grid;gap:12px} .perk{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start} .perk .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)} .perk b{display:block} .perk span{color:var(--muted);font-size:13px}
 .about-hero{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;background:linear-gradient(135deg,#eef3ff,#f6f1ff);border:1px solid var(--line);border-radius:28px;padding:36px 40px;margin-bottom:20px}
 .values{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-.val{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:8px}
+.val{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:8px}
 .val .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center}
 .val b{font-size:15px} .val p{margin:0;font-size:13px;color:var(--muted)}
 .timeline{display:grid;gap:0;position:relative;padding-left:26px}
@@ -323,14 +325,14 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 /* map */
 .mapwrap{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
 #map{height:560px;border-radius:var(--r);border:1px solid var(--line);background:#dfe8f4;overflow:hidden;position:relative}
-.maplist{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:6px;max-height:560px;overflow:auto}
+.maplist{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:6px;max-height:560px;overflow:auto}
 .maplist .hd{padding:4px 8px 10px;border-bottom:1px solid var(--line);margin-bottom:4px;font-size:13px;color:var(--muted)}
 .maplist button{border:0;background:transparent;text-align:left;padding:9px 10px;border-radius:10px;cursor:pointer;display:grid;grid-template-columns:10px 1fr auto;gap:10px;align-items:center;font-size:14px}
 .maplist button:hover,.maplist button.on{background:var(--accent-soft)}
 .maplist .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)} .maplist .dot.phd{background:var(--accent-2)}
 .maplist small{color:var(--muted)}
 .mapctl{position:absolute;top:10px;left:10px;z-index:1000;display:flex;gap:6px;flex-wrap:wrap}
-.mapctl button{border:1px solid var(--line);background:#fff;padding:6px 10px;border-radius:999px;font-size:13px;cursor:pointer;font-weight:600;color:var(--muted)}
+.mapctl button{border:1px solid var(--line);background:var(--surface);padding:6px 10px;border-radius:999px;font-size:13px;cursor:pointer;font-weight:600;color:var(--muted)}
 .mapctl button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
 .mapattr{position:absolute;right:6px;bottom:4px;z-index:1000;font-size:10px;color:#475569;background:rgba(255,255,255,.75);padding:2px 6px;border-radius:6px}
 .mapattr a{color:#475569}
@@ -346,7 +348,7 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .leaflet-zoom-animated{transform-origin:0 0}
 .leaflet-interactive{cursor:pointer} .leaflet-grab{cursor:grab} .leaflet-dragging .leaflet-grab{cursor:grabbing}
 .leaflet-control-container .leaflet-control{display:none}
-.leaflet-tooltip{position:absolute;padding:6px 9px;background:#fff;border:1px solid var(--line);border-radius:8px;color:var(--fg);white-space:nowrap;pointer-events:none;box-shadow:0 2px 8px rgba(15,23,42,.15);font-weight:600}
+.leaflet-tooltip{position:absolute;padding:6px 9px;background:var(--surface);border:1px solid var(--line);border-radius:8px;color:var(--fg);white-space:nowrap;pointer-events:none;box-shadow:0 2px 8px rgba(15,23,42,.15);font-weight:600}
 .leaflet-tooltip-top:before{display:none}
 @media (max-width:920px){.mapwrap{grid-template-columns:1fr} #map{height:420px} .maplist{max-height:300px}}
 
@@ -363,7 +365,7 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .cvrow{display:grid;gap:6px;background:var(--surface-2);border-radius:10px;padding:10px;margin-bottom:8px;position:relative}
 .cvrow .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px} .cvrow .rm{position:absolute;top:6px;right:6px;border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:16px}
 .cvrow input,.cvrow textarea{padding:7px 9px;font-size:13px;border-radius:8px}
-.cvpaper{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:6px;padding:40px 44px;min-height:700px;font-size:12.5px;line-height:1.45;color:#111;--acc:#2563eb}
+.cvpaper{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:6px;padding:40px 44px;min-height:700px;font-size:12.5px;line-height:1.45;color:#111;--acc:#2563eb}
 .cvpaper h1{font-size:26px;letter-spacing:-.02em;margin:0} .cvpaper .hd{font-size:13px;color:#444;margin:2px 0 4px} .cvpaper .ct{font-size:11.5px;color:#555;display:flex;gap:10px;flex-wrap:wrap}
 .cvpaper h2{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:16px 0 6px;padding-bottom:3px;border-bottom:1px solid #e5e7eb}
 .cvpaper .it{display:grid;grid-template-columns:1fr auto;gap:2px 12px;margin-bottom:7px} .cvpaper .it b{font-size:13px} .cvpaper .it .d{color:#666;font-size:11.5px;white-space:nowrap} .cvpaper .it .s{grid-column:1/-1;color:#333}
@@ -379,13 +381,35 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .wizard{position:sticky}
 .wprog .bar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden;margin-top:6px} .wprog .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .3s}
 .wq{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:6px 0 4px} .whint{font-size:13px;color:var(--muted);margin-bottom:12px}
-.wopts{display:grid;gap:8px} .wopt{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer;display:flex;gap:10px;align-items:center;font-size:14px;font-weight:500}
+.wopts{display:grid;gap:8px} .wopt{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;text-align:left;cursor:pointer;display:flex;gap:10px;align-items:center;font-size:14px;font-weight:500}
 .wopt:hover{border-color:var(--accent)} .wopt[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
 .wopt .k{width:26px;height:26px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--muted);flex:none} .wopt[aria-pressed="true"] .k{background:var(--accent);color:#fff}
 .wnum{display:flex;align-items:center;gap:12px} .wnum input[type=range]{flex:1;padding:0} .wnum output{font-size:28px;font-weight:800;letter-spacing:-.03em;min-width:64px;text-align:right;font-variant-numeric:tabular-nums}
 .wnav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
 #wresults.pending{opacity:.35;pointer-events:none;filter:grayscale(1)}
 .wdone{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+
+/* brand blocks */
+.brandhero{text-align:center;padding:14px 0 26px;display:grid;justify-items:center;gap:6px}
+.brandhero .wm,.brandfoot .wm{font-size:clamp(34px,5vw,48px);font-weight:800;letter-spacing:-.04em;line-height:1} .brandhero .wm em,.brandfoot .wm em{font-style:normal;color:var(--accent)}
+.brandhero .tgl,.brandfoot .tgl{font-size:clamp(17px,2.2vw,22px);color:var(--muted);font-weight:500}
+.brandhero .sub{font-size:14px;color:var(--muted);max-width:52ch}
+.brandfoot{display:grid;justify-items:center;gap:6px;text-align:center;padding-bottom:18px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.brandfoot .links{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.theme{border:1px solid var(--line);background:var(--surface);width:36px;height:36px;border-radius:999px;cursor:pointer;display:grid;place-items:center;color:var(--muted)}
+/* dark theme */
+:root[data-theme="dark"]{--bg:#0b1220;--surface:#111a2b;--surface-2:#182338;--fg:#e6ecf5;--muted:#94a3b8;--line:#243049;--accent:#60a5fa;--accent-fg:#06112a;--accent-soft:#1b2a47;--accent-2:#a78bfa;--mint-soft:#0f2f25;--amber-soft:#33250c;--rose-soft:#3a1a1a;--shadow:0 1px 2px rgba(0,0,0,.5),0 14px 40px rgba(0,0,0,.45);color-scheme:dark}
+:root[data-theme="dark"] body::before,:root[data-theme="dark"] header{background:rgba(11,18,32,.86)}
+:root[data-theme="dark"] .hero{background:linear-gradient(135deg,#131d33 0%,#1a1733 50%,#0f2a24 100%)}
+:root[data-theme="dark"] .about-hero{background:linear-gradient(135deg,#131d33,#1a1733)}
+:root[data-theme="dark"] .tag.ok{color:#6ee7b7} :root[data-theme="dark"] .tag.warn{color:#fcd34d} :root[data-theme="dark"] .tag.no{color:#fca5a5}
+:root[data-theme="dark"] .due.ok b{color:#6ee7b7} :root[data-theme="dark"] .due.warn b{color:#fcd34d}
+:root[data-theme="dark"] .cvpaper{background:var(--surface);color:#111}
+:root[data-theme="dark"] .certificate{background:var(--surface);color:#0f172a}
+:root[data-theme="dark"] .hint-chips button{background:rgba(17,26,43,.7)}
+:root[data-theme="dark"] .strip{background:#000}
+:root[data-theme="dark"] .letter,:root[data-theme="dark"] .note,:root[data-theme="dark"] .kpi{background:var(--surface-2)}
+:root[data-theme="dark"] .wopt .k{background:var(--surface-2)}
 footer{border-top:1px solid var(--line);padding-block:18px calc(18px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:13px}
 footer .wrap{display:flex;gap:14px;flex-wrap:wrap;align-items:center} footer .wrap>span:first-of-type{flex:1;min-width:260px}
 footer .links{display:flex;gap:12px;margin-left:auto}
@@ -414,6 +438,8 @@ footer .links{display:flex;gap:12px;margin-left:auto}
     <g class="cap"><path d="M18 34 50 20l32 14-32 14z" fill="#0f172a"/><path d="M32 39v8c0 4 8 7 18 7s18-3 18-7v-8" fill="none" stroke="#0f172a" stroke-width="3.5"/><path d="M82 34v13" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/><circle cx="82" cy="49" r="3" fill="#fbbf24"/></g>
   </symbol>
   <symbol id="ic-map" viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></symbol>
+  <symbol id="ic-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
   <symbol id="ic-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></symbol>
   <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
   <symbol id="ic-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></symbol>
@@ -465,13 +491,14 @@ footer .links{display:flex;gap:12px;margin-left:auto}
     <button role="tab" aria-selected="false" data-view="map"><svg class="i"><use href="#ic-map"/></svg><span>Map</span></button>
     <button role="tab" aria-selected="false" data-view="countries"><svg class="i"><use href="#ic-globe"/></svg><span>Countries</span></button>
     <button role="tab" aria-selected="false" data-view="rank"><svg class="i"><use href="#ic-chart"/></svg><span>Rankings</span></button>
-    <button role="tab" aria-selected="false" data-view="assess"><svg class="i"><use href="#ic-target"/></svg><span>My fit</span></button>
+    <button role="tab" aria-selected="false" data-view="assess"><svg class="i"><use href="#ic-target"/></svg><span>Scholio Score</span></button>
     <button role="tab" aria-selected="false" data-view="academy"><svg class="i"><use href="#ic-book"/></svg><span>Academy</span></button>
     <button role="tab" aria-selected="false" data-view="resources"><svg class="i"><use href="#ic-doc"/></svg><span>Resources</span></button>
     <button role="tab" aria-selected="false" data-view="events"><svg class="i"><use href="#ic-cal"/></svg><span>Events</span></button>
     <button role="tab" aria-selected="false" data-view="funders"><svg class="i"><use href="#ic-building"/></svg><span>Funders</span></button>
     <button role="tab" aria-selected="false" data-view="about"><svg class="i"><use href="#ic-info"/></svg><span>About</span></button>
   </nav>
+  <button class="theme" id="theme" type="button" title="Switch theme" aria-label="Switch theme"><svg class="i s" id="theme-ic"><use href="#ic-moon"/></svg></button>
   <button class="signin" data-view="signup"><svg class="i s"><use href="#ic-user"/></svg>Sign in</button>
 </div>
 <div class="wrap"><div class="strip"><div class="lbl"><i></i>Closing soon</div><div class="track" id="strip"></div><button type="button" id="strip-next">Next ›</button></div></div></header>
@@ -480,6 +507,7 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 
 <!-- HOME -->
 <section id="view-home">
+  <div class="brandhero"><svg class="mascot" width="88" height="88" viewBox="0 0 100 100"><use href="#logo"/></svg><div class="wm">Schol<em>io</em></div><div class="tgl">Every scholarship, within reach.</div><div class="sub">Verified Master's and PhD funding worldwide, a readiness score you can trust, and the tools to win it.</div></div>
   <div class="hero">
     <div class="lead">
       <div class="kicker"><svg class="i s"><use href="#ic-sparkle"/></svg><span id="greet">Master's and PhD funding, worldwide</span></div>
@@ -517,7 +545,7 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 
   <div class="paths">
     <button class="path" data-scroll="catalogue"><svg class="il"><use href="#il-find"/></svg><h4>Find an award</h4><p>Filter by level, field, region, funding and English rules.</p><span class="n">Browse the catalogue →</span></button>
-    <button class="path" data-view="assess"><svg class="il"><use href="#il-fit"/></svg><h4>Check your fit</h4><p>A score across five dimensions and what to fix first.</p><span class="n">Run the assessment →</span></button>
+    <button class="path" data-view="assess"><svg class="il"><use href="#il-fit"/></svg><h4>Get your Scholio Score</h4><p>Fourteen questions, a readiness score with public weights, and eligibility per award.</p><span class="n">Start →</span></button>
     <button class="path" data-view="academy"><svg class="il"><use href="#il-learn"/></svg><h4>Prepare and get certified</h4><p>Crash courses with quizzes and an Scholio certificate.</p><span class="n">Open the Academy →</span></button>
     <button class="path" data-view="map"><svg class="il"><use href="#il-map"/></svg><h4>Explore the map</h4><p>Every award pinned to its campus. Zoom into a region and start there.</p><span class="n">Open the research map →</span></button>
   </div>
@@ -573,10 +601,10 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 
 <!-- ASSESS -->
 <section id="view-assess" hidden>
-  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-target"/></svg>Profile assessment</div><h2>How <em>competitive</em> are you, and what should you fix first?</h2><p>Nine quick questions, then a score across five dimensions, what to fix first, and your match against every award. Answers stay in this browser only.</p></div>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-target"/></svg>Profile assessment</div><h2>How <em>competitive</em> are you, and what should you fix first?</h2><p>Fourteen quick questions. You get your Scholio Score, eligibility by nationality and age for every award, what to fix first, and your match list. Answers stay in this browser only.</p></div>
   <div class="check">
     <form class="form card wizard" id="profile" onsubmit="return false">
-      <div class="wprog"><div class="mono" id="wcount">Question 1 of 9</div><div class="bar"><i id="wbar"></i></div></div>
+      <div class="wprog"><div class="mono" id="wcount">Question 1 of 14</div><div class="bar"><i id="wbar"></i></div></div>
       <div id="wstep"></div>
       <div class="wnav"><button class="btn" type="button" id="wback"><svg class="i s"><use href="#ic-back"/></svg>Back</button><button class="btn primary" type="button" id="wnext">Next<svg class="i s"><use href="#ic-arrow"/></svg></button></div>
       <div hidden>
@@ -589,15 +617,32 @@ footer .links{display:flex;gap:12px;margin-left:auto}
         <select id="p-ielts"><option value="0">None yet</option><option value="6">IELTS 6.0 / TOEFL 80</option><option value="6.5" selected>IELTS 6.5 / TOEFL 90</option><option value="7">IELTS 7.0 / TOEFL 100</option><option value="7.5">IELTS 7.5+ / TOEFL 110+</option></select>
         <select id="p-docs"><option value="0">Nothing yet</option><option value="1" selected>CV only</option><option value="2">CV + statement draft</option><option value="3">CV, statement, 2 referees confirmed</option></select>
         <input id="p-offer" type="checkbox">
+        <select id="p-nat"><option value="NP" selected>Nepal</option><option value="IN">India</option><option value="PK">Pakistan</option><option value="BD">Bangladesh</option><option value="LK">Sri Lanka</option><option value="BT">Bhutan</option><option value="AF">Afghanistan</option><option value="MM">Myanmar</option><option value="ID">Indonesia</option><option value="PH">Philippines</option><option value="VN">Vietnam</option><option value="TH">Thailand</option><option value="MY">Malaysia</option><option value="KH">Cambodia</option><option value="MN">Mongolia</option><option value="UZ">Uzbekistan</option><option value="KZ">Kazakhstan</option><option value="CN">China</option><option value="NG">Nigeria</option><option value="KE">Kenya</option><option value="GH">Ghana</option><option value="ZA">South Africa</option><option value="UG">Uganda</option><option value="TZ">Tanzania</option><option value="RW">Rwanda</option><option value="ET">Ethiopia</option><option value="EG">Egypt</option><option value="MA">Morocco</option><option value="JO">Jordan</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="TR">Türkiye</option><option value="BR">Brazil</option><option value="MX">Mexico</option><option value="CO">Colombia</option><option value="PE">Peru</option><option value="AR">Argentina</option><option value="US">United States</option><option value="GB">United Kingdom</option><option value="CA">Canada</option><option value="AU">Australia</option><option value="NZ">New Zealand</option><option value="DE">Germany</option><option value="FR">France</option><option value="IT">Italy</option><option value="ES">Spain</option><option value="NL">Netherlands</option><option value="CH">Switzerland</option><option value="JP">Japan</option><option value="KR">South Korea</option><option value="SG">Singapore</option><option value="AE">United Arab Emirates</option><option value="SA">Saudi Arabia</option><option value="XX">Other (not listed)</option></select><input id="p-age" type="number" value="25"><select id="p-lead"><option value="0">None</option><option value="1" selected>Some</option><option value="2">Significant</option></select><select id="p-fund"><option value="">Full or partial</option><option value="Full">Full funding only</option></select><select id="p-dest"><option value="">Anywhere</option><option>Europe</option><option>Asia</option><option>North America</option><option>Oceania</option><option>Middle East</option></select>
       </div>
     </form>
     <div style="display:grid;gap:16px" id="wresults">
-      <div class="card scorecard"><div class="ring" id="ring"><div><b id="score">0</b><small>fit score</small></div></div>
+      <div class="card scorecard"><div class="ring" id="ring"><div><b id="score">0</b><small>Scholio Score</small></div></div>
         <div><div class="wdone"><div class="mono" id="tier"></div><button class="btn sm" type="button" id="wretake">Retake</button></div><h3 id="tier-h" style="font-size:26px;margin:4px 0 6px"></h3><p id="tier-p" style="margin:0 0 14px;color:var(--muted);font-size:14px"></p><div class="dims" id="dims"></div></div></div>
       <div class="card"><div class="mono" style="margin-bottom:6px">What to do first</div><div class="sugg" id="sugg"></div></div>
       <div><div class="mono" style="margin-bottom:8px">Your match across open listings</div><div class="list" id="results"></div></div>
     </div>
   </div>
+</section>
+
+
+<!-- SCHOLIO SCORE -->
+<section id="view-score" hidden>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-target"/></svg>Scholio Score</div><h2>One number a student can <em>improve</em> and a university can <em>trust</em></h2><p>The Scholio Score is a 0 to 100 measure of scholarship readiness for Master's and PhD applicants. It is deterministic, its weights are public, and every score carries an ID that reproduces it. Nothing about it is hidden.</p></div>
+  <div class="grid3" style="margin-bottom:16px">
+    <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-layers"/></svg>Six components</div><div class="tablewrap" style="border:0"><table style="min-width:0"><thead><tr><th>Component</th><th>Master's</th><th>PhD</th></tr></thead><tbody><tr><td>Academics</td><td>30%</td><td>25%</td></tr><tr><td>Research</td><td>10%</td><td>30%</td></tr><tr><td>Experience</td><td>15%</td><td>10%</td></tr><tr><td>English</td><td>20%</td><td>15%</td></tr><tr><td>Readiness</td><td>15%</td><td>10%</td></tr><tr><td>Leadership</td><td>10%</td><td>10%</td></tr></tbody></table></div></div>
+    <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-chart"/></svg>Four bands</div><div class="perks"><div class="perk"><div class="ic" style="background:var(--mint-soft);color:#047857"><b>85+</b></div><div><b>Distinguished</b><span>Competitive for the most selective awards.</span></div></div><div class="perk"><div class="ic"><b>70</b></div><div><b>Strong</b><span>Competitive for most awards.</span></div></div><div class="perk"><div class="ic" style="background:var(--amber-soft);color:#b45309"><b>55</b></div><div><b>Ready</b><span>Eligible for many; one component to fix.</span></div></div><div class="perk"><div class="ic" style="background:var(--surface-2);color:var(--muted)"><b>&lt;55</b></div><div><b>Emerging</b><span>Build the basics first.</span></div></div></div></div>
+    <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-lock"/></svg>Why it can be trusted</div><div class="steps"><div class="step"><b>Deterministic</b><span>Same inputs, same score, any device, any day. Version 1.0 is frozen; changes get a new version number.</span></div><div class="step"><b>Reproducible by ID</b><span>Each score ID (for example SS-1K7Q3ZP) is derived from the answers. Anyone with the answers can recompute it.</span></div><div class="step"><b>Separate from eligibility</b><span>The score measures readiness. Eligibility (nationality, age) is checked per award and never inflates the number.</span></div><div class="step"><b>Verified tier (planned)</b><span>With accounts, students will upload transcripts and test reports; a verified score will carry a checkmark universities and funders can query by ID.</span></div></div></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><div class="mono" style="margin-bottom:10px">How each component is computed (v1.0)</div><ul style="margin:0;padding-left:18px;font-size:14px;color:var(--muted)"><li><b>Academics</b>: GPA on a 4.0 scale, linear from 2.5 (0) to 4.0 (100).</li><li><b>Research</b>: publications or conference papers; Master's starts at 20 with +40 per paper, PhD starts at 0 with +30 per paper, capped at 100.</li><li><b>Experience</b>: 20 points per year of relevant work or research, capped at 5 years.</li><li><b>English</b>: 0 with no test; linear from IELTS 5.5 (0) to 7.5 (100). TOEFL and PTE map to IELTS bands.</li><li><b>Readiness</b>: 25 points per document stage (CV, statement, referees) plus 25 for a supervisor or offer.</li><li><b>Leadership</b>: 15 (none), 55 (led something), 90 (led with measurable results).</li></ul></div>
+    <div class="card"><div class="mono" style="margin-bottom:10px">For universities and funders</div><p style="margin:0 0 10px;font-size:14px">A Scholio Score tells you in one glance whether an applicant has the academic record, language, research base and readiness your award expects, before you open the file. Because the method is public you can audit it, and because it is separate from eligibility it does not overstate anyone.</p><p style="margin:0;font-size:14px">Interested in piloting verified scores or score-based shortlisting? <a href="https://github.com/nirajbhusal/scholio/issues/new?title=Scholio%20Score%20pilot&labels=funder" target="_blank" rel="noopener">Start a conversation ↗</a></p></div>
+  </div>
+  <div class="cta" style="margin-top:18px"><button class="btn primary" data-view="assess"><svg class="i s"><use href="#ic-target"/></svg>Get my Scholio Score</button></div>
 </section>
 
 <!-- ACADEMY -->
@@ -866,7 +911,7 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 
 </main>
 
-<footer><div class="wrap"><svg class="mascot" width="22" height="22" viewBox="0 0 100 100"><use href="#logo"/></svg><span>Scholio is an independent index. Every listing links to its official page; "Verified" means we checked the deadline and terms there on the date shown. Found an error? <a href="https://github.com/nirajbhusal/scholio/issues" target="_blank" rel="noopener">Report it</a>.</span><span class="links"><a href="#about" data-view="about">About</a><a href="#funders" data-view="funders">Funders</a><a href="https://github.com/nirajbhusal/scholio" target="_blank" rel="noopener">GitHub</a></span></div></footer>
+<footer><div class="wrap brandfoot"><svg class="mascot" width="64" height="64" viewBox="0 0 100 100"><use href="#logo"/></svg><div class="wm">Schol<em>io</em></div><div class="tgl">Every scholarship, within reach.</div><div class="links"><a href="#about" data-view="about">About</a><a href="#score" data-view="score">Scholio Score</a><a href="#funders" data-view="funders">Funders</a><a href="https://github.com/nirajbhusal/scholio" target="_blank" rel="noopener">GitHub</a></div></div><div class="wrap"><span>Scholio is an independent index. Every listing links to its official page; "Verified" means we checked the deadline and terms there on the date shown. Found an error? <a href="https://github.com/nirajbhusal/scholio/issues" target="_blank" rel="noopener">Report it</a>.</span></div></footer>
 
 <div class="sheet" id="sheet" aria-hidden="true"><div class="back" id="sheet-back"></div>
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="d-title"><button class="close" id="sheet-close" aria-label="Close">×</button><div id="detail"></div></div></div>
@@ -892,37 +937,37 @@ const UNI = {
  "University of Groningen":{rank:139,country:"Netherlands",intl:"28%",fund:"Erasmus Mundus, Eric Bleumink Fund",code:"RUG",col:"#be123c"}
 };
 const DATA = [
- {id:"oist",lat:26.465,lng:127.831,checked:"2026-11-06",country:"Japan",region:"Asia",name:"OIST PhD Scholarship",host:"Okinawa Institute of Science and Technology",levels:["PhD"],fields:["Science","Engineering & Tech","AI & Computing"],deadline:"2026-11-15",deadlineNote:"Admissions Workshop 2027 round; interviews 18 Jan to 7 Feb 2027; enrol May 2027, Sept 2027 or Jan 2028. Application fee JPY 5,000",funding:"Full",who:"All nationalities",value:"Tuition waived, stipend about JPY 2.4M/yr, relocation, housing support",english:"TOEFL iBT or IELTS only if your degree was not taught in English; no minimum score",minEng:0,offerFirst:false,minGpa:3.3,research:2,apply:"https://admissions.oist.jp/",note:"Rotation-based first year, no supervisor needed before applying."},
- {id:"yca",lat:39.992,lng:116.306,checked:null,country:"China",region:"Asia",name:"Yenching Academy Scholarship",host:"Peking University",levels:["Master's"],fields:["Humanities & Social","Business & Economics"],deadline:"2026-11-30",deadlineNote:"International applicants",funding:"Full",who:"All nationalities",value:"Tuition, accommodation, stipend, one return airfare, 2-year China Studies MA",english:"TOEFL/IELTS unless degree was in English",minEng:7,offerFirst:false,minGpa:3.5,research:0,apply:"https://yenchingacademy.pku.edu.cn/",note:"Interdisciplinary China Studies; strong fit for policy backgrounds."},
- {id:"esop",lat:47.376,lng:8.548,checked:null,country:"Switzerland",region:"Europe",name:"Excellence Scholarship (ESOP)",host:"ETH Zurich",levels:["Master's"],fields:["Engineering & Tech","Science","AI & Computing"],deadline:"2026-11-30",deadlineNote:"Same deadline as the Master's application",funding:"Full",who:"All nationalities",value:"CHF 12,000 per semester plus tuition waiver",english:"C1 proof (IELTS 7.0) for English-taught programmes",minEng:7,offerFirst:false,minGpa:3.7,research:1,apply:"https://ethz.ch/en/studies/financial/scholarships/excellencescholarship.html",note:"Top 10% of class; apply with the Master's application."},
- {id:"hkpfs",lat:22.283,lng:114.137,checked:"2026-11-06",country:"Hong Kong",region:"Asia",name:"Hong Kong PhD Fellowship Scheme",host:"University of Hong Kong",levels:["PhD"],fields:["Any field"],deadline:"2026-12-01",deadlineNote:"Initial application to RGC by 12:00 noon HKT; full application to your chosen university the same day",funding:"Full",who:"All nationalities",value:"HKD 344,400/yr stipend plus HKD 14,400/yr conference grant, up to 3 years; universities add tuition support",english:"Per university (IELTS 6.5 typical)",minEng:6.5,offerFirst:false,minGpa:3.5,research:2,apply:"https://cerg1.ugc.edu.hk/hkpfs/index.html",note:"Apply to RGC first, then to up to two universities (HKU, HKUST, CUHK and others)."},
- {id:"gates",lat:52.205,lng:0.117,checked:"2026-11-06",country:"United Kingdom",region:"Europe",name:"Gates Cambridge Scholarship",host:"University of Cambridge",levels:["Master's","PhD"],fields:["Any field"],deadline:"2026-12-08",deadlineNote:"8 Dec 2026 or 6 Jan 2027 depending on course (see the Cambridge course directory); applications opened 11 Sep 2026; US citizens in the US had a 14 Oct 2026 deadline",funding:"Full",who:"Any nationality other than UK; US citizens resident in the US apply in the October round",value:"Full tuition, stipend about GBP 21,000/yr, airfare, visa, family allowance",english:"Per course (IELTS 7.5 typical)",minEng:7.5,offerFirst:false,minGpa:3.8,research:2,apply:"https://www.gatescambridge.org/",note:"Tick the Gates box on the Cambridge application; one form does both."},
- {id:"mbzuai",lat:24.432,lng:54.616,checked:null,country:"UAE",region:"Middle East",name:"MBZUAI Graduate Scholarship",host:"MBZUAI",levels:["Master's","PhD"],fields:["AI & Computing"],deadline:"2026-12-15",deadlineNote:"Most programmes; check yours",funding:"Full",who:"All nationalities",value:"Full tuition, monthly stipend, housing, health insurance",english:"IELTS 6.5 or TOEFL 90 unless exempt",minEng:6.5,offerFirst:false,minGpa:3.2,research:1,apply:"https://mbzuai.ac.ae/admissions/",note:"Every admitted student is funded; CS, ML, CV, NLP, robotics."},
- {id:"usyd",lat:-33.888,lng:151.187,checked:null,country:"Australia",region:"Oceania",name:"Research Training Program (RTP)",host:"University of Sydney",levels:["Master's","PhD"],fields:["Any field"],deadline:"2026-12-18",deadlineNote:"2027 round; research degrees only",funding:"Full",who:"Domestic and international",value:"Tuition offset plus stipend about AUD 41,000/yr",english:"IELTS 6.5 to 7.0 depending on faculty",minEng:6.5,offerFirst:true,minGpa:3.5,research:1,apply:"https://www.sydney.edu.au/scholarships/",note:"Supervisor and proposal needed before the scholarship round."},
- {id:"npgs",lat:1.348,lng:103.683,checked:null,country:"Singapore",region:"Asia",name:"Nanyang President's Graduate Scholarship",host:"Nanyang Technological University",levels:["PhD"],fields:["Any field"],deadline:"2026-12-31",deadlineNote:"August 2027 intake",funding:"Full",who:"All nationalities",value:"Full tuition, stipend about SGD 3,100 to 3,300/month, travel, IT allowance",english:"Per school; GRE often required",minEng:6.5,offerFirst:false,minGpa:3.8,research:2,apply:"https://www.ntu.edu.sg/admissions/graduate/scholarships",note:"First-class honours or equivalent expected."},
- {id:"kaust",lat:22.309,lng:39.104,checked:null,country:"Saudi Arabia",region:"Middle East",name:"KAUST Fellowship",host:"KAUST",levels:["Master's","PhD"],fields:["Science","Engineering & Tech","AI & Computing"],deadline:"2027-01-03",deadlineNote:"Fall 2027 intake",funding:"Full",who:"All nationalities",value:"Full tuition, stipend USD 20,000 to 30,000/yr, housing, medical, relocation",english:"TOEFL 79 or IELTS 6.0",minEng:6,offerFirst:false,minGpa:3.3,research:1,apply:"https://admissions.kaust.edu.sa/",note:"All admitted students receive the fellowship; GRE recommended."},
- {id:"eiffel",lat:48.853,lng:2.349,checked:null,country:"France",region:"Europe",name:"Eiffel Excellence Scholarship",host:"Campus France",levels:["Master's","PhD"],fields:["Engineering & Tech","Science","Business & Economics","Humanities & Social"],deadline:"2027-01-06",deadlineNote:"Institutional deadline; your French university nominates you earlier",funding:"Partial",who:"Non-French nationals under 25 (Master's) or 30 (PhD)",value:"EUR 1,181/month (Master's) or 1,700/month (PhD), travel, insurance; tuition not covered",english:"Per programme; many taught in English",minEng:6.5,offerFirst:true,minGpa:3.5,research:1,apply:"https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence",note:"The French institution must nominate you; contact them in November."},
- {id:"euroculture",lat:53.219,lng:6.563,checked:null,country:"Netherlands",region:"Europe",name:"Erasmus Mundus Euroculture",host:"University of Groningen",levels:["Master's"],fields:["Humanities & Social"],deadline:"2027-01-15",deadlineNote:"Scholarship applicants",funding:"Full",who:"All nationalities, EU and non-EU quotas",value:"Tuition, EUR 1,400/month, travel and installation, 2 years in two EU countries",english:"IELTS 6.5 or TOEFL 90",minEng:6.5,offerFirst:false,minGpa:3.3,research:0,apply:"https://www.euroculturemaster.eu/",note:"Studies in two of eight partner universities."},
- {id:"chevening",lat:51.5,lng:-0.12,checked:null,country:"United Kingdom",region:"Europe",name:"Chevening Scholarships",host:"UK Foreign, Commonwealth and Development Office",levels:["Master's"],fields:["Any field"],deadline:null,window:"Opens early August, closes early November each year",funding:"Full",who:"Citizens of Chevening-eligible countries with 2+ years' work experience; must return home for 2 years",value:"Full tuition, monthly stipend, travel, visa, arrival allowance for a one-year UK Master's",english:"Per university; Chevening itself no longer sets a test requirement",minEng:6.5,offerFirst:false,minGpa:3.0,research:0,apply:"https://www.chevening.org/scholarships/",note:"Apply to Chevening first, then secure an unconditional offer from a UK university by the following July."},
- {id:"daad-epos",lat:50.73,lng:7.1,checked:null,country:"Germany",region:"Europe",name:"DAAD EPOS Development-Related Postgraduate Courses",host:"DAAD",levels:["Master's","PhD"],fields:["Engineering & Tech","Science","Business & Economics","Humanities & Social"],deadline:null,window:"Varies by course; most close between August and October for the following year",funding:"Full",who:"Graduates from developing and emerging countries with at least 2 years' professional experience",value:"EUR 992/month (Master's) or 1,300/month (PhD), travel, insurance, German course, tuition where charged",english:"IELTS 6.0 or TOEFL 80 typical; some courses German",minEng:6,offerFirst:false,minGpa:3.0,research:0,apply:"https://www.daad.de/en/study-and-research-in-germany/scholarships/development-related-postgraduate-courses/",note:"Apply to the course directly; each course has its own deadline and portal."},
- {id:"fulbright",lat:38.9,lng:-77.04,checked:null,country:"United States",region:"North America",name:"Fulbright Foreign Student Program",host:"US Department of State",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Set by each country's Fulbright commission or US embassy; most close between February and October",funding:"Full",who:"Citizens of participating countries; apply from your home country",value:"Tuition, living stipend, airfare, health insurance; duration varies by country and degree",english:"TOEFL/IELTS required for most countries",minEng:6.5,offerFirst:false,minGpa:3.3,research:1,apply:"https://foreign.fulbrightonline.org/",note:"Placement at US universities is handled for you after selection."},
- {id:"swiss",lat:46.95,lng:7.45,checked:null,country:"Switzerland",region:"Europe",name:"Swiss Government Excellence Scholarships",host:"Federal Commission for Scholarships (FCS)",levels:["PhD"],fields:["Any field"],deadline:null,window:"Opens August, closes between September and December depending on your country's embassy",funding:"Full",who:"Researchers from about 180 countries; PhD, postdoc and research fellowships (Master's only for arts)",value:"CHF 1,920/month, tuition waiver at most universities, insurance, housing allowance",english:"Per host; a Swiss professor's support letter is required",minEng:6.5,offerFirst:true,minGpa:3.5,research:1,apply:"https://www.sbfi.admin.ch/sbfi/en/home/education/scholarships-and-grants/swiss-government-excellence-scholarships.html",note:"Supervisor's letter before applying; apply through the Swiss embassy in your country."},
- {id:"mext",lat:35.68,lng:139.69,checked:null,country:"Japan",region:"Asia",name:"MEXT Research Student Scholarship (Embassy)",host:"Ministry of Education, Japan",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Embassy recommendation: opens April, closes May or June in most countries",funding:"Full",who:"Under 35, nationals of countries with diplomatic relations with Japan",value:"JPY 143,000 to 145,000/month, tuition waived, airfare",english:"Not required; Japanese or English per programme",minEng:0,offerFirst:false,minGpa:3.3,research:0,apply:"https://www.studyinjapan.go.jp/en/smart/scholarships/mext/",note:"Letter of acceptance from a Japanese professor needed after the first screening."},
- {id:"commonwealth",lat:51.5,lng:-0.1,checked:null,country:"United Kingdom",region:"Europe",name:"Commonwealth Master's Scholarships",host:"Commonwealth Scholarship Commission",levels:["Master's"],fields:["Any field"],deadline:null,window:"Opens September, closes mid-October each year",funding:"Full",who:"Citizens of eligible low and middle income Commonwealth countries",value:"Tuition, GBP 1,347+/month stipend, airfare, thesis and study-travel grants",english:"Per university",minEng:6.5,offerFirst:false,minGpa:3.3,research:0,apply:"https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/",note:"Apply via the CSC portal and also through a nominating agency in your country."},
- {id:"rhodes",lat:51.75,lng:-1.25,checked:null,country:"United Kingdom",region:"Europe",name:"Rhodes Scholarships",host:"University of Oxford",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Opens June or July, closes between August and October depending on constituency",funding:"Full",who:"Ages 18 to 28 (some constituencies vary); 20+ constituencies plus Global Rhodes",value:"All fees, GBP 19,000+/yr stipend, airfare, for 2 to 3 years",english:"Per course (IELTS 7.5 typical)",minEng:7.5,offerFirst:false,minGpa:3.8,research:1,apply:"https://www.rhodeshouse.ox.ac.uk/scholarships/",note:"Eligibility differs by constituency; check yours first."},
- {id:"clarendon",lat:51.754,lng:-1.254,checked:null,country:"United Kingdom",region:"Europe",name:"Clarendon Fund Scholarships",host:"University of Oxford",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Automatic with your Oxford application; December and January course deadlines",funding:"Full",who:"All nationalities; around 130 awarded a year",value:"Full course fees plus GBP 19,000+/yr grant",english:"Per course (IELTS 7.0 to 7.5)",minEng:7,offerFirst:false,minGpa:3.8,research:1,apply:"https://www.ox.ac.uk/clarendon",note:"No separate application; meet the course's December or January deadline."},
- {id:"schwarzman",lat:40.0,lng:116.33,checked:null,country:"China",region:"Asia",name:"Schwarzman Scholars",host:"Tsinghua University",levels:["Master's"],fields:["Business & Economics","Humanities & Social"],deadline:null,window:"Opens April, closes September (global) or May (China/Hong Kong/Macau/Taiwan applicants)",funding:"Full",who:"Ages 18 to 29, any nationality",value:"Tuition, room, board, travel, stipend for a one-year Master's in Global Affairs",english:"TOEFL 100 / IELTS 7 unless degree in English",minEng:7,offerFirst:false,minGpa:3.6,research:0,apply:"https://www.schwarzmanscholars.org/",note:"Leadership record weighs as much as grades."},
- {id:"knight",lat:37.43,lng:-122.17,checked:null,country:"United States",region:"North America",name:"Knight-Hennessy Scholars",host:"Stanford University",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Opens June, closes early October; then apply to a Stanford graduate programme by its own deadline",funding:"Full",who:"Any nationality, within 7 years of first degree",value:"Full funding for up to 3 years of any Stanford graduate degree, plus leadership programme",english:"Per programme (TOEFL 100 typical)",minEng:7,offerFirst:false,minGpa:3.8,research:1,apply:"https://knight-hennessy.stanford.edu/",note:"Two applications: Knight-Hennessy and the Stanford programme."},
- {id:"vanier",lat:45.42,lng:-75.7,checked:null,country:"Canada",region:"North America",name:"Vanier Canada Graduate Scholarships",host:"Government of Canada",levels:["PhD"],fields:["Any field"],deadline:null,window:"Nominated by a Canadian university; internal deadlines September to October, agency deadline early November",funding:"Full",who:"Any nationality, nominated by the Canadian institution where you will study",value:"CAD 50,000/yr for 3 years",english:"Per university",minEng:6.5,offerFirst:true,minGpa:3.8,research:2,apply:"https://vanier.gc.ca/",note:"You cannot apply directly; contact the university's graduate office early."},
- {id:"ausawards",lat:-35.28,lng:149.13,checked:null,country:"Australia",region:"Oceania",name:"Australia Awards Scholarships",host:"Department of Foreign Affairs and Trade",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Opens February, closes late April or May in most participating countries",funding:"Full",who:"Citizens of participating countries in Asia, the Pacific, Africa and the Middle East",value:"Tuition, return air travel, establishment allowance, living stipend, health cover",english:"IELTS 6.5 typical, varies by country",minEng:6.5,offerFirst:false,minGpa:3.0,research:0,apply:"https://www.dfat.gov.au/people-to-people/australia-awards/australia-awards-scholarships",note:"Priority fields differ by country; check your country profile."},
- {id:"gks",lat:37.57,lng:126.98,checked:null,country:"South Korea",region:"Asia",name:"Global Korea Scholarship (GKS)",host:"NIIED",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Embassy track: February to March; university track: September to October",funding:"Full",who:"Under 40, nationals of invited countries",value:"KRW 1,000,000+/month, tuition, airfare, one year of Korean language, insurance",english:"Not required; TOPIK or English scores earn extra points",minEng:0,offerFirst:false,minGpa:3.2,research:0,apply:"https://www.studyinkorea.go.kr/",note:"Choose embassy or university track; you cannot apply through both."},
- {id:"turkiye",lat:39.93,lng:32.86,checked:null,country:"Türkiye",region:"Middle East",name:"Türkiye Bursları",host:"Presidency for Turks Abroad and Related Communities",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Opens January, closes February each year",funding:"Full",who:"Under 30 for Master's, 35 for PhD; most nationalities",value:"Tuition, monthly stipend, accommodation, insurance, airfare, one year of Turkish",english:"Not required for most; Turkish course included",minEng:0,offerFirst:false,minGpa:3.0,research:0,apply:"https://www.turkiyeburslari.gov.tr/",note:"Application places you in a university; you do not apply separately."},
- {id:"si",lat:59.33,lng:18.07,checked:null,country:"Sweden",region:"Europe",name:"Swedish Institute Scholarships for Global Professionals",host:"Swedish Institute",levels:["Master's"],fields:["Any field"],deadline:null,window:"Opens early February, closes late February; apply to universities by mid-January first",funding:"Full",who:"Citizens of about 40 listed countries with 3,000+ hours of work experience",value:"Tuition, SEK 12,000/month, travel grant, insurance",english:"Per programme (IELTS 6.5)",minEng:6.5,offerFirst:true,minGpa:3.0,research:0,apply:"https://si.se/en/apply/scholarships/",note:"University admission first via universityadmissions.se, then the SI application."},
- {id:"csc",lat:39.9,lng:116.4,checked:null,country:"China",region:"Asia",name:"Chinese Government Scholarship (CSC)",host:"China Scholarship Council",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Embassy and university tracks open December to January, close between February and April",funding:"Full",who:"Under 35 for Master's, 40 for PhD; most nationalities",value:"Tuition, dormitory, CNY 3,000 (Master's) or 3,500 (PhD) per month, insurance",english:"Not required for Chinese-taught; per programme for English-taught",minEng:0,offerFirst:false,minGpa:3.0,research:0,apply:"https://www.campuschina.org/",note:"A pre-admission letter from a Chinese professor strengthens the application."},
- {id:"stipendium",lat:47.5,lng:19.04,checked:null,country:"Hungary",region:"Europe",name:"Stipendium Hungaricum",host:"Tempus Public Foundation",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Opens mid-November, closes mid-January",funding:"Full",who:"Citizens of 80+ partner countries, nominated by their home sending partner",value:"Tuition, monthly stipend, housing contribution, insurance",english:"Per programme; many English-taught",minEng:6,offerFirst:false,minGpa:3.0,research:0,apply:"https://stipendiumhungaricum.hu/",note:"Your home country's sending partner must nominate you."},
- {id:"nl",lat:52.37,lng:4.9,checked:null,country:"Netherlands",region:"Europe",name:"NL Scholarship (Holland Scholarship)",host:"Dutch universities and Ministry of Education",levels:["Master's"],fields:["Any field"],deadline:null,window:"Opens around February, closes between February and May depending on university",funding:"Partial",who:"Non-EEA nationals applying to a participating Dutch university",value:"EUR 5,000 in the first year only",english:"Per programme (IELTS 6.5)",minEng:6.5,offerFirst:true,minGpa:3.3,research:0,apply:"https://www.studyinnl.org/finances/nl-scholarship",note:"Apply through the university's own scholarship page."},
- {id:"emjm",lat:50.85,lng:4.35,checked:null,country:"Europe (EU)",region:"Europe",name:"Erasmus Mundus Joint Masters (all programmes)",host:"European Commission",levels:["Master's"],fields:["Any field"],deadline:null,window:"Most consortia open October, close between December and February",funding:"Full",who:"Any nationality; quotas for non-EU applicants",value:"Tuition, EUR 1,400/month, travel and installation, study in 2 or 3 countries",english:"IELTS 6.5 / TOEFL 90 typical",minEng:6.5,offerFirst:false,minGpa:3.3,research:0,apply:"https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en",note:"Browse the catalogue, then apply to up to three consortia."},
- {id:"adb",lat:35.69,lng:139.76,checked:null,country:"Japan",region:"Asia",name:"ADB-Japan Scholarship Program",host:"Asian Development Bank",levels:["Master's"],fields:["Business & Economics","Science","Engineering & Tech","Humanities & Social"],deadline:null,window:"Apply to a participating university at least 6 months before the intake; deadlines vary",funding:"Full",who:"Citizens of ADB borrowing member countries with 2+ years' work experience, under 35",value:"Tuition, monthly allowance, housing, books, insurance, travel",english:"Per university",minEng:6.5,offerFirst:true,minGpa:3.3,research:0,apply:"https://www.adb.org/work-with-us/careers/japan-scholarship-program",note:"Universities in Japan, Singapore, Hong Kong, Australia, NZ, India, Pakistan, Philippines, Thailand and the US."}
+ {id:"oist",elig:{cit:"any",route:"direct"},lat:26.465,lng:127.831,checked:"2026-11-06",country:"Japan",region:"Asia",name:"OIST PhD Scholarship",host:"Okinawa Institute of Science and Technology",levels:["PhD"],fields:["Science","Engineering & Tech","AI & Computing"],deadline:"2026-11-15",deadlineNote:"Admissions Workshop 2027 round; interviews 18 Jan to 7 Feb 2027; enrol May 2027, Sept 2027 or Jan 2028. Application fee JPY 5,000",funding:"Full",who:"All nationalities",value:"Tuition waived, stipend about JPY 2.4M/yr, relocation, housing support",english:"TOEFL iBT or IELTS only if your degree was not taught in English; no minimum score",minEng:0,offerFirst:false,minGpa:3.3,research:2,apply:"https://admissions.oist.jp/",note:"Rotation-based first year, no supervisor needed before applying."},
+ {id:"yca",elig:{cit:"any",route:"direct"},lat:39.992,lng:116.306,checked:null,country:"China",region:"Asia",name:"Yenching Academy Scholarship",host:"Peking University",levels:["Master's"],fields:["Humanities & Social","Business & Economics"],deadline:"2026-11-30",deadlineNote:"International applicants",funding:"Full",who:"All nationalities",value:"Tuition, accommodation, stipend, one return airfare, 2-year China Studies MA",english:"TOEFL/IELTS unless degree was in English",minEng:7,offerFirst:false,minGpa:3.5,research:0,apply:"https://yenchingacademy.pku.edu.cn/",note:"Interdisciplinary China Studies; strong fit for policy backgrounds."},
+ {id:"esop",elig:{cit:"any",route:"automatic"},lat:47.376,lng:8.548,checked:null,country:"Switzerland",region:"Europe",name:"Excellence Scholarship (ESOP)",host:"ETH Zurich",levels:["Master's"],fields:["Engineering & Tech","Science","AI & Computing"],deadline:"2026-11-30",deadlineNote:"Same deadline as the Master's application",funding:"Full",who:"All nationalities",value:"CHF 12,000 per semester plus tuition waiver",english:"C1 proof (IELTS 7.0) for English-taught programmes",minEng:7,offerFirst:false,minGpa:3.7,research:1,apply:"https://ethz.ch/en/studies/financial/scholarships/excellencescholarship.html",note:"Top 10% of class; apply with the Master's application."},
+ {id:"hkpfs",elig:{cit:"any",route:"direct"},lat:22.283,lng:114.137,checked:"2026-11-06",country:"Hong Kong",region:"Asia",name:"Hong Kong PhD Fellowship Scheme",host:"University of Hong Kong",levels:["PhD"],fields:["Any field"],deadline:"2026-12-01",deadlineNote:"Initial application to RGC by 12:00 noon HKT; full application to your chosen university the same day",funding:"Full",who:"All nationalities",value:"HKD 344,400/yr stipend plus HKD 14,400/yr conference grant, up to 3 years; universities add tuition support",english:"Per university (IELTS 6.5 typical)",minEng:6.5,offerFirst:false,minGpa:3.5,research:2,apply:"https://cerg1.ugc.edu.hk/hkpfs/index.html",note:"Apply to RGC first, then to up to two universities (HKU, HKUST, CUHK and others)."},
+ {id:"gates",elig:{cit:"any",excl:["GB"],route:"automatic"},lat:52.205,lng:0.117,checked:"2026-11-06",country:"United Kingdom",region:"Europe",name:"Gates Cambridge Scholarship",host:"University of Cambridge",levels:["Master's","PhD"],fields:["Any field"],deadline:"2026-12-08",deadlineNote:"8 Dec 2026 or 6 Jan 2027 depending on course (see the Cambridge course directory); applications opened 11 Sep 2026; US citizens in the US had a 14 Oct 2026 deadline",funding:"Full",who:"Any nationality other than UK; US citizens resident in the US apply in the October round",value:"Full tuition, stipend about GBP 21,000/yr, airfare, visa, family allowance",english:"Per course (IELTS 7.5 typical)",minEng:7.5,offerFirst:false,minGpa:3.8,research:2,apply:"https://www.gatescambridge.org/",note:"Tick the Gates box on the Cambridge application; one form does both."},
+ {id:"mbzuai",elig:{cit:"any",route:"university"},lat:24.432,lng:54.616,checked:null,country:"UAE",region:"Middle East",name:"MBZUAI Graduate Scholarship",host:"MBZUAI",levels:["Master's","PhD"],fields:["AI & Computing"],deadline:"2026-12-15",deadlineNote:"Most programmes; check yours",funding:"Full",who:"All nationalities",value:"Full tuition, monthly stipend, housing, health insurance",english:"IELTS 6.5 or TOEFL 90 unless exempt",minEng:6.5,offerFirst:false,minGpa:3.2,research:1,apply:"https://mbzuai.ac.ae/admissions/",note:"Every admitted student is funded; CS, ML, CV, NLP, robotics."},
+ {id:"usyd",elig:{cit:"any",route:"university"},lat:-33.888,lng:151.187,checked:null,country:"Australia",region:"Oceania",name:"Research Training Program (RTP)",host:"University of Sydney",levels:["Master's","PhD"],fields:["Any field"],deadline:"2026-12-18",deadlineNote:"2027 round; research degrees only",funding:"Full",who:"Domestic and international",value:"Tuition offset plus stipend about AUD 41,000/yr",english:"IELTS 6.5 to 7.0 depending on faculty",minEng:6.5,offerFirst:true,minGpa:3.5,research:1,apply:"https://www.sydney.edu.au/scholarships/",note:"Supervisor and proposal needed before the scholarship round."},
+ {id:"npgs",elig:{cit:"any",route:"university"},lat:1.348,lng:103.683,checked:null,country:"Singapore",region:"Asia",name:"Nanyang President's Graduate Scholarship",host:"Nanyang Technological University",levels:["PhD"],fields:["Any field"],deadline:"2026-12-31",deadlineNote:"August 2027 intake",funding:"Full",who:"All nationalities",value:"Full tuition, stipend about SGD 3,100 to 3,300/month, travel, IT allowance",english:"Per school; GRE often required",minEng:6.5,offerFirst:false,minGpa:3.8,research:2,apply:"https://www.ntu.edu.sg/admissions/graduate/scholarships",note:"First-class honours or equivalent expected."},
+ {id:"kaust",elig:{cit:"any",route:"university"},lat:22.309,lng:39.104,checked:null,country:"Saudi Arabia",region:"Middle East",name:"KAUST Fellowship",host:"KAUST",levels:["Master's","PhD"],fields:["Science","Engineering & Tech","AI & Computing"],deadline:"2027-01-03",deadlineNote:"Fall 2027 intake",funding:"Full",who:"All nationalities",value:"Full tuition, stipend USD 20,000 to 30,000/yr, housing, medical, relocation",english:"TOEFL 79 or IELTS 6.0",minEng:6,offerFirst:false,minGpa:3.3,research:1,apply:"https://admissions.kaust.edu.sa/",note:"All admitted students receive the fellowship; GRE recommended."},
+ {id:"eiffel",elig:{cit:"any",excl:["FR"],route:"nomination",age:{"Master's":25,PhD:30}},lat:48.853,lng:2.349,checked:null,country:"France",region:"Europe",name:"Eiffel Excellence Scholarship",host:"Campus France",levels:["Master's","PhD"],fields:["Engineering & Tech","Science","Business & Economics","Humanities & Social"],deadline:"2027-01-06",deadlineNote:"Institutional deadline; your French university nominates you earlier",funding:"Partial",who:"Non-French nationals under 25 (Master's) or 30 (PhD)",value:"EUR 1,181/month (Master's) or 1,700/month (PhD), travel, insurance; tuition not covered",english:"Per programme; many taught in English",minEng:6.5,offerFirst:true,minGpa:3.5,research:1,apply:"https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence",note:"The French institution must nominate you; contact them in November."},
+ {id:"euroculture",elig:{cit:"any",route:"direct"},lat:53.219,lng:6.563,checked:null,country:"Netherlands",region:"Europe",name:"Erasmus Mundus Euroculture",host:"University of Groningen",levels:["Master's"],fields:["Humanities & Social"],deadline:"2027-01-15",deadlineNote:"Scholarship applicants",funding:"Full",who:"All nationalities, EU and non-EU quotas",value:"Tuition, EUR 1,400/month, travel and installation, 2 years in two EU countries",english:"IELTS 6.5 or TOEFL 90",minEng:6.5,offerFirst:false,minGpa:3.3,research:0,apply:"https://www.euroculturemaster.eu/",note:"Studies in two of eight partner universities."},
+ {id:"chevening",elig:{cit:"participating",excl:["GB","US","CA","AU","NZ","DE","FR","IT","ES","NL","JP","KR","SG","AE","SA"],route:"direct",bond:true},lat:51.5,lng:-0.12,checked:null,country:"United Kingdom",region:"Europe",name:"Chevening Scholarships",host:"UK Foreign, Commonwealth and Development Office",levels:["Master's"],fields:["Any field"],deadline:null,window:"Opens early August, closes early November each year",funding:"Full",who:"Citizens of Chevening-eligible countries with 2+ years' work experience; must return home for 2 years",value:"Full tuition, monthly stipend, travel, visa, arrival allowance for a one-year UK Master's",english:"Per university; Chevening itself no longer sets a test requirement",minEng:6.5,offerFirst:false,minGpa:3.0,research:0,apply:"https://www.chevening.org/scholarships/",note:"Apply to Chevening first, then secure an unconditional offer from a UK university by the following July."},
+ {id:"daad-epos",elig:{cit:"oda",route:"direct"},lat:50.73,lng:7.1,checked:null,country:"Germany",region:"Europe",name:"DAAD EPOS Development-Related Postgraduate Courses",host:"DAAD",levels:["Master's","PhD"],fields:["Engineering & Tech","Science","Business & Economics","Humanities & Social"],deadline:null,window:"Varies by course; most close between August and October for the following year",funding:"Full",who:"Graduates from developing and emerging countries with at least 2 years' professional experience",value:"EUR 992/month (Master's) or 1,300/month (PhD), travel, insurance, German course, tuition where charged",english:"IELTS 6.0 or TOEFL 80 typical; some courses German",minEng:6,offerFirst:false,minGpa:3.0,research:0,apply:"https://www.daad.de/en/study-and-research-in-germany/scholarships/development-related-postgraduate-courses/",note:"Apply to the course directly; each course has its own deadline and portal."},
+ {id:"fulbright",elig:{cit:"participating",excl:["US"],route:"embassy"},lat:38.9,lng:-77.04,checked:null,country:"United States",region:"North America",name:"Fulbright Foreign Student Program",host:"US Department of State",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Set by each country's Fulbright commission or US embassy; most close between February and October",funding:"Full",who:"Citizens of participating countries; apply from your home country",value:"Tuition, living stipend, airfare, health insurance; duration varies by country and degree",english:"TOEFL/IELTS required for most countries",minEng:6.5,offerFirst:false,minGpa:3.3,research:1,apply:"https://foreign.fulbrightonline.org/",note:"Placement at US universities is handled for you after selection."},
+ {id:"swiss",elig:{cit:"any",excl:["CH"],route:"embassy"},lat:46.95,lng:7.45,checked:null,country:"Switzerland",region:"Europe",name:"Swiss Government Excellence Scholarships",host:"Federal Commission for Scholarships (FCS)",levels:["PhD"],fields:["Any field"],deadline:null,window:"Opens August, closes between September and December depending on your country's embassy",funding:"Full",who:"Researchers from about 180 countries; PhD, postdoc and research fellowships (Master's only for arts)",value:"CHF 1,920/month, tuition waiver at most universities, insurance, housing allowance",english:"Per host; a Swiss professor's support letter is required",minEng:6.5,offerFirst:true,minGpa:3.5,research:1,apply:"https://www.sbfi.admin.ch/sbfi/en/home/education/scholarships-and-grants/swiss-government-excellence-scholarships.html",note:"Supervisor's letter before applying; apply through the Swiss embassy in your country."},
+ {id:"mext",elig:{cit:"any",excl:["JP"],route:"embassy",age:{"Master's":35,PhD:35}},lat:35.68,lng:139.69,checked:null,country:"Japan",region:"Asia",name:"MEXT Research Student Scholarship (Embassy)",host:"Ministry of Education, Japan",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Embassy recommendation: opens April, closes May or June in most countries",funding:"Full",who:"Under 35, nationals of countries with diplomatic relations with Japan",value:"JPY 143,000 to 145,000/month, tuition waived, airfare",english:"Not required; Japanese or English per programme",minEng:0,offerFirst:false,minGpa:3.3,research:0,apply:"https://www.studyinjapan.go.jp/en/smart/scholarships/mext/",note:"Letter of acceptance from a Japanese professor needed after the first screening."},
+ {id:"commonwealth",elig:{cit:"cw-lmic",route:"nomination",bond:true},lat:51.5,lng:-0.1,checked:null,country:"United Kingdom",region:"Europe",name:"Commonwealth Master's Scholarships",host:"Commonwealth Scholarship Commission",levels:["Master's"],fields:["Any field"],deadline:null,window:"Opens September, closes mid-October each year",funding:"Full",who:"Citizens of eligible low and middle income Commonwealth countries",value:"Tuition, GBP 1,347+/month stipend, airfare, thesis and study-travel grants",english:"Per university",minEng:6.5,offerFirst:false,minGpa:3.3,research:0,apply:"https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/",note:"Apply via the CSC portal and also through a nominating agency in your country."},
+ {id:"rhodes",elig:{cit:"participating",route:"direct",age:{"Master's":28,PhD:28}},lat:51.75,lng:-1.25,checked:null,country:"United Kingdom",region:"Europe",name:"Rhodes Scholarships",host:"University of Oxford",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Opens June or July, closes between August and October depending on constituency",funding:"Full",who:"Ages 18 to 28 (some constituencies vary); 20+ constituencies plus Global Rhodes",value:"All fees, GBP 19,000+/yr stipend, airfare, for 2 to 3 years",english:"Per course (IELTS 7.5 typical)",minEng:7.5,offerFirst:false,minGpa:3.8,research:1,apply:"https://www.rhodeshouse.ox.ac.uk/scholarships/",note:"Eligibility differs by constituency; check yours first."},
+ {id:"clarendon",elig:{cit:"any",route:"automatic"},lat:51.754,lng:-1.254,checked:null,country:"United Kingdom",region:"Europe",name:"Clarendon Fund Scholarships",host:"University of Oxford",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Automatic with your Oxford application; December and January course deadlines",funding:"Full",who:"All nationalities; around 130 awarded a year",value:"Full course fees plus GBP 19,000+/yr grant",english:"Per course (IELTS 7.0 to 7.5)",minEng:7,offerFirst:false,minGpa:3.8,research:1,apply:"https://www.ox.ac.uk/clarendon",note:"No separate application; meet the course's December or January deadline."},
+ {id:"schwarzman",elig:{cit:"any",route:"direct",age:{"Master's":29}},lat:40.0,lng:116.33,checked:null,country:"China",region:"Asia",name:"Schwarzman Scholars",host:"Tsinghua University",levels:["Master's"],fields:["Business & Economics","Humanities & Social"],deadline:null,window:"Opens April, closes September (global) or May (China/Hong Kong/Macau/Taiwan applicants)",funding:"Full",who:"Ages 18 to 29, any nationality",value:"Tuition, room, board, travel, stipend for a one-year Master's in Global Affairs",english:"TOEFL 100 / IELTS 7 unless degree in English",minEng:7,offerFirst:false,minGpa:3.6,research:0,apply:"https://www.schwarzmanscholars.org/",note:"Leadership record weighs as much as grades."},
+ {id:"knight",elig:{cit:"any",route:"direct"},lat:37.43,lng:-122.17,checked:null,country:"United States",region:"North America",name:"Knight-Hennessy Scholars",host:"Stanford University",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Opens June, closes early October; then apply to a Stanford graduate programme by its own deadline",funding:"Full",who:"Any nationality, within 7 years of first degree",value:"Full funding for up to 3 years of any Stanford graduate degree, plus leadership programme",english:"Per programme (TOEFL 100 typical)",minEng:7,offerFirst:false,minGpa:3.8,research:1,apply:"https://knight-hennessy.stanford.edu/",note:"Two applications: Knight-Hennessy and the Stanford programme."},
+ {id:"vanier",elig:{cit:"any",route:"nomination"},lat:45.42,lng:-75.7,checked:null,country:"Canada",region:"North America",name:"Vanier Canada Graduate Scholarships",host:"Government of Canada",levels:["PhD"],fields:["Any field"],deadline:null,window:"Nominated by a Canadian university; internal deadlines September to October, agency deadline early November",funding:"Full",who:"Any nationality, nominated by the Canadian institution where you will study",value:"CAD 50,000/yr for 3 years",english:"Per university",minEng:6.5,offerFirst:true,minGpa:3.8,research:2,apply:"https://vanier.gc.ca/",note:"You cannot apply directly; contact the university's graduate office early."},
+ {id:"ausawards",elig:{cit:"oda",route:"embassy",bond:true},lat:-35.28,lng:149.13,checked:null,country:"Australia",region:"Oceania",name:"Australia Awards Scholarships",host:"Department of Foreign Affairs and Trade",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Opens February, closes late April or May in most participating countries",funding:"Full",who:"Citizens of participating countries in Asia, the Pacific, Africa and the Middle East",value:"Tuition, return air travel, establishment allowance, living stipend, health cover",english:"IELTS 6.5 typical, varies by country",minEng:6.5,offerFirst:false,minGpa:3.0,research:0,apply:"https://www.dfat.gov.au/people-to-people/australia-awards/australia-awards-scholarships",note:"Priority fields differ by country; check your country profile."},
+ {id:"gks",elig:{cit:"participating",excl:["KR"],route:"embassy",age:{"Master's":40,PhD:40}},lat:37.57,lng:126.98,checked:null,country:"South Korea",region:"Asia",name:"Global Korea Scholarship (GKS)",host:"NIIED",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Embassy track: February to March; university track: September to October",funding:"Full",who:"Under 40, nationals of invited countries",value:"KRW 1,000,000+/month, tuition, airfare, one year of Korean language, insurance",english:"Not required; TOPIK or English scores earn extra points",minEng:0,offerFirst:false,minGpa:3.2,research:0,apply:"https://www.studyinkorea.go.kr/",note:"Choose embassy or university track; you cannot apply through both."},
+ {id:"turkiye",elig:{cit:"any",excl:["TR"],route:"direct",age:{"Master's":30,PhD:35}},lat:39.93,lng:32.86,checked:null,country:"Türkiye",region:"Middle East",name:"Türkiye Bursları",host:"Presidency for Turks Abroad and Related Communities",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Opens January, closes February each year",funding:"Full",who:"Under 30 for Master's, 35 for PhD; most nationalities",value:"Tuition, monthly stipend, accommodation, insurance, airfare, one year of Turkish",english:"Not required for most; Turkish course included",minEng:0,offerFirst:false,minGpa:3.0,research:0,apply:"https://www.turkiyeburslari.gov.tr/",note:"Application places you in a university; you do not apply separately."},
+ {id:"si",elig:{cit:"oda",route:"direct"},lat:59.33,lng:18.07,checked:null,country:"Sweden",region:"Europe",name:"Swedish Institute Scholarships for Global Professionals",host:"Swedish Institute",levels:["Master's"],fields:["Any field"],deadline:null,window:"Opens early February, closes late February; apply to universities by mid-January first",funding:"Full",who:"Citizens of about 40 listed countries with 3,000+ hours of work experience",value:"Tuition, SEK 12,000/month, travel grant, insurance",english:"Per programme (IELTS 6.5)",minEng:6.5,offerFirst:true,minGpa:3.0,research:0,apply:"https://si.se/en/apply/scholarships/",note:"University admission first via universityadmissions.se, then the SI application."},
+ {id:"csc",elig:{cit:"any",excl:["CN"],route:"embassy",age:{"Master's":35,PhD:40}},lat:39.9,lng:116.4,checked:null,country:"China",region:"Asia",name:"Chinese Government Scholarship (CSC)",host:"China Scholarship Council",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Embassy and university tracks open December to January, close between February and April",funding:"Full",who:"Under 35 for Master's, 40 for PhD; most nationalities",value:"Tuition, dormitory, CNY 3,000 (Master's) or 3,500 (PhD) per month, insurance",english:"Not required for Chinese-taught; per programme for English-taught",minEng:0,offerFirst:false,minGpa:3.0,research:0,apply:"https://www.campuschina.org/",note:"A pre-admission letter from a Chinese professor strengthens the application."},
+ {id:"stipendium",elig:{cit:"participating",route:"nomination"},lat:47.5,lng:19.04,checked:null,country:"Hungary",region:"Europe",name:"Stipendium Hungaricum",host:"Tempus Public Foundation",levels:["Master's","PhD"],fields:["Any field"],deadline:null,window:"Opens mid-November, closes mid-January",funding:"Full",who:"Citizens of 80+ partner countries, nominated by their home sending partner",value:"Tuition, monthly stipend, housing contribution, insurance",english:"Per programme; many English-taught",minEng:6,offerFirst:false,minGpa:3.0,research:0,apply:"https://stipendiumhungaricum.hu/",note:"Your home country's sending partner must nominate you."},
+ {id:"nl",elig:{cit:"any",excl:["EEA"],route:"university"},lat:52.37,lng:4.9,checked:null,country:"Netherlands",region:"Europe",name:"NL Scholarship (Holland Scholarship)",host:"Dutch universities and Ministry of Education",levels:["Master's"],fields:["Any field"],deadline:null,window:"Opens around February, closes between February and May depending on university",funding:"Partial",who:"Non-EEA nationals applying to a participating Dutch university",value:"EUR 5,000 in the first year only",english:"Per programme (IELTS 6.5)",minEng:6.5,offerFirst:true,minGpa:3.3,research:0,apply:"https://www.studyinnl.org/finances/nl-scholarship",note:"Apply through the university's own scholarship page."},
+ {id:"emjm",elig:{cit:"any",route:"direct"},lat:50.85,lng:4.35,checked:null,country:"Europe (EU)",region:"Europe",name:"Erasmus Mundus Joint Masters (all programmes)",host:"European Commission",levels:["Master's"],fields:["Any field"],deadline:null,window:"Most consortia open October, close between December and February",funding:"Full",who:"Any nationality; quotas for non-EU applicants",value:"Tuition, EUR 1,400/month, travel and installation, study in 2 or 3 countries",english:"IELTS 6.5 / TOEFL 90 typical",minEng:6.5,offerFirst:false,minGpa:3.3,research:0,apply:"https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en",note:"Browse the catalogue, then apply to up to three consortia."},
+ {id:"adb",elig:{cit:"adb",route:"university",age:{"Master's":35}},lat:35.69,lng:139.76,checked:null,country:"Japan",region:"Asia",name:"ADB-Japan Scholarship Program",host:"Asian Development Bank",levels:["Master's"],fields:["Business & Economics","Science","Engineering & Tech","Humanities & Social"],deadline:null,window:"Apply to a participating university at least 6 months before the intake; deadlines vary",funding:"Full",who:"Citizens of ADB borrowing member countries with 2+ years' work experience, under 35",value:"Tuition, monthly allowance, housing, books, insurance, travel",english:"Per university",minEng:6.5,offerFirst:true,minGpa:3.3,research:0,apply:"https://www.adb.org/work-with-us/careers/japan-scholarship-program",note:"Universities in Japan, Singapore, Hong Kong, Australia, NZ, India, Pakistan, Philippines, Thailand and the US."}
 ];
 const COUNTRIES = [
  {c:"United Kingdom",u:[["Cambridge","Gates, Cambridge Trust"],["Oxford","Rhodes, Clarendon"],["Imperial","President's PhD"],["Edinburgh","Global Research"]]},
@@ -1026,41 +1071,44 @@ function renderRank(){
 
 /* assessment */
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
-function profile(){return{want:$("#p-want").value,degree:$("#p-degree").value,gpa:+$("#p-gpa").value||0,field:$("#p-field").value,pubs:+$("#p-pubs").value||0,exp:+$("#p-exp").value||0,eng:+$("#p-ielts").value,docs:+$("#p-docs").value,offer:$("#p-offer").checked}}
+function profile(){return{nat:$("#p-nat").value,age:+$("#p-age").value||0,lead:+$("#p-lead").value||0,fund:$("#p-fund").value,dest:$("#p-dest").value,want:$("#p-want").value,degree:$("#p-degree").value,gpa:+$("#p-gpa").value||0,field:$("#p-field").value,pubs:+$("#p-pubs").value||0,exp:+$("#p-exp").value||0,eng:+$("#p-ielts").value,docs:+$("#p-docs").value,offer:$("#p-offer").checked}}
 function dims(p){const phd=p.want==="PhD";return{Academics:clamp((p.gpa-2.5)/1.5*100,0,100),Research:clamp(p.pubs*(phd?35:45)+(phd?0:20),0,100),Experience:clamp(p.exp*20,0,100),English:p.eng===0?0:clamp((p.eng-5.5)/2*100,0,100),Readiness:clamp(p.docs*28+(p.offer?16:0),0,100)}}
 function renderAssess(){
-  const p=profile();const D=dims(p);
-  const W=p.want==="PhD"?{Academics:.25,Research:.35,Experience:.1,English:.15,Readiness:.15}:{Academics:.35,Research:.1,Experience:.15,English:.2,Readiness:.2};
-  const score=Math.round(Object.keys(D).reduce((s,k)=>s+D[k]*W[k],0));
+  const p=profile();const S=scholioScore(p);const score=S.total;
   $("#score").textContent=score;$("#ring").style.setProperty("--p",score);
-  const pct=clamp(Math.round(score*1.05-8),1,99);
-  const tier=score>=80?["Tier 1 ready","Competitive for Gates, NPGS, ESOP"]:score>=62?["Strong profile","Competitive for most listings; stretch for Tier 1"]:score>=45?["Building","Eligible for several; fix the lowest bars first"]:["Early stage","Start with English and documents, then research"];
-  $("#tier").textContent="Top "+(100-pct)+"% of a typical shortlisted "+p.want+" cohort";
-  $("#tier-h").textContent=tier[0];$("#tier-p").textContent=tier[1];
-  $("#dims").innerHTML=Object.entries(D).map(([k,v])=>`<div class="dim"><span>${k}</span><div class="bar"><i style="width:${v}%"></i></div><b>${Math.round(v)}</b></div>`).join("");
-  const S=[];const low=Object.entries(D).sort((a,b)=>a[1]-b[1]);
+  $("#tier").textContent="Scholio Score v"+SCORE_V+" · ID "+S.id;
+  $("#tier-h").textContent=S.band;
+  $("#tier-p").textContent={Distinguished:"Competitive for the most selective awards (Gates, Rhodes, NPGS, ESOP).",Strong:"Competitive for most awards; a stretch for the most selective.",Ready:"Eligible for many awards; fix the lowest component first.",Emerging:"Start with English and documents, then build research or leadership."}[S.band];
+  const DX={Academics:"GPA against indicative cut-offs",Research:"papers, posters, preprints",Experience:"relevant work or research years",English:"test score against typical minimums",Readiness:"documents, referees, supervisor",Leadership:"leadership and measurable impact"};
+  $("#dims").innerHTML=Object.entries(S.C).map(([k,v])=>`<div class="dim" title="${DX[k]}"><span>${k} <small style="color:var(--muted)">${Math.round(S.W[k]*100)}%</small></span><div class="bar"><i style="width:${v}%"></i></div><b>${Math.round(v)}</b></div>`).join("")+`<div class="cta" style="margin:12px 0 0"><button class="btn sm" type="button" id="score-copy"><svg class="i s"><use href="#ic-share"/></svg>Copy my Scholio Score</button><button class="btn sm" type="button" data-view="score">How the score works</button></div>`;
+  const low=Object.entries(S.C).sort((a,b)=>a[1]-b[1]);const Sg=[];
   low.slice(0,3).forEach(([k,v])=>{
-    if(k==="English"&&v<75)S.push(["ic-mic",p.eng===0?"Book an English test now":"Push English to 7.0+","Gates and ETH expect 7.0 to 7.5. Register on the official site, then take the 14-day intensive.","IELTS 7 in 14 Days"]);
-    if(k==="Research"&&v<60)S.push(["ic-flask",p.want==="PhD"?"Get one paper out":"Write a research proposal","A conference paper or a 3-page proposal moves PhD decisions more than GPA.","Research Proposal Lab"]);
-    if(k==="Readiness"&&v<70)S.push(["ic-mail",p.offer?"Lock referees and statement":"Email 15 supervisors this week","Two listings need a supervisor before the deadline. Start outreach now, then the SOP studio.","Supervisor Outreach Sprint"]);
-    if(k==="Academics"&&v<60)S.push(["ic-target","Lead with what offsets GPA","Target listings with lower typical GPA (KAUST, MBZUAI, OIST) and strong research statements.",null]);
-    if(k==="Experience"&&v<50)S.push(["ic-pen","Frame your experience","Short internships and teaching count. The SOP studio shows how to present them.","Statement of Purpose Studio"]);
+    if(k==="English"&&v<75)Sg.push(["ic-mic",p.eng===0?"Book an English test now":"Push English to 7.0+","Gates and ETH expect 7.0 to 7.5. Register on the official site, then use the test guides.","IELTS 7 in 14 Days"]);
+    if(k==="Research"&&v<60)Sg.push(["ic-flask",p.want==="PhD"?"Get one paper out":"Write a research proposal","A conference paper or a 3-page proposal moves PhD decisions more than GPA.","Research Proposal Lab"]);
+    if(k==="Readiness"&&v<70)Sg.push(["ic-mail",p.offer?"Lock referees and statement":"Email 15 supervisors this week","Several awards need a supervisor before the deadline. Start outreach now, then the SOP studio.","Supervisor Outreach Sprint"]);
+    if(k==="Academics"&&v<60)Sg.push(["ic-target","Lead with what offsets GPA","Target accessible awards (KAUST, MBZUAI, OIST, DAAD) and strong research statements.",null]);
+    if(k==="Experience"&&v<50)Sg.push(["ic-pen","Frame your experience","Short internships and teaching count. The SOP studio shows how to present them.","Statement of Purpose Studio"]);
+    if(k==="Leadership"&&v<60)Sg.push(["ic-star","Build one visible leadership result","Lead a small project with a number at the end: people served, money raised, members grown.",null]);
   });
-  $("#sugg").innerHTML=S.slice(0,3).map(([i,t,s,c])=>`<div class="s"><div class="ic"><svg class="i"><use href="#${i}"/></svg></div><div><b>${t}</b><small>${s}</small></div>${c?`<button class="btn sm" type="button" data-course="${c}">${c} →</button>`:""}</div>`).join("")||`<div class="s"><div class="ic"><svg class="i"><use href="#ic-check"/></svg></div><div><b>You are ready</b><small>Apply to everything green below, closest deadline first.</small></div></div>`;
-  const rows=DATA.filter(d=>d.levels.includes(p.want)).map(d=>{
-    const r=[];let f=0,w=0;
+  $("#sugg").innerHTML=Sg.slice(0,3).map(([i,t,sub,c])=>`<div class="s"><div class="ic"><svg class="i"><use href="#${i}"/></svg></div><div><b>${t}</b><small>${sub}</small></div>${c?`<button class="btn sm" type="button" data-course="${c}">${c} →</button>`:""}</div>`).join("")||`<div class="s"><div class="ic"><svg class="i"><use href="#ic-check"/></svg></div><div><b>You are ready</b><small>Apply to everything in the first group below, closest deadline first.</small></div></div>`;
+  const rows=DATA.filter(d=>d.levels.includes(p.want)&&(!p.dest||d.region===p.dest)&&(!p.fund||d.funding===p.fund)).map(d=>{
+    const r=[];let f=0,w=0;const el=eligCheck(d,p);el.reasons.forEach(x=>r.push(x));
     if(d.fields.includes("Any field"))r.push("Any field");else if(d.fields.includes(p.field))r.push(p.field+" covered");else{f++;r.push(p.field+" not listed")}
     if(d.minEng>0){if(p.eng===0){w++;r.push("Needs "+d.english)}else if(p.eng<d.minEng){w++;r.push("English below "+d.minEng+" typical")}}else r.push("No English test");
-    if(p.gpa<d.minGpa-0.3){f++;r.push("GPA well below "+d.minGpa+" typical")}else if(p.gpa<d.minGpa){w++;r.push("GPA slightly below "+d.minGpa+" typical")}
+    if(p.gpa<d.minGpa-0.3){f++;r.push("GPA well below "+d.minGpa+" indicative")}else if(p.gpa<d.minGpa){w++;r.push("GPA slightly below "+d.minGpa+" indicative")}
     if(d.research>p.pubs&&p.want==="PhD"){w++;r.push("Awardees usually have "+d.research+"+ papers")}
     if(d.offerFirst&&!p.offer){w++;r.push("Supervisor or offer needed first")}
     const n=daysLeft(d);if(!d.deadline)r.push("Annual window: "+d.window);else if(n<0){f++;r.push("Closed")}else if(n<21){w++;r.push(n+" days left, tight")}else r.push(n+" days left");
-    const fit=clamp(Math.round(score-f*35-w*10+(d.minGpa<3.4?6:0)),0,99);
-    return{d,r,st:f?"no":w?"warn":"ok",fit};
-  }).sort((a,b)=>b.fit-a.fit);
-  $("#results").innerHTML=rows.map(x=>`<div class="res ${x.st}"><div><b>${x.d.country}: ${x.d.name}</b><ul>${x.r.map(t=>`<li>${t}</li>`).join("")}</ul><div class="cta" style="margin:8px 0 0"><button class="btn sm" type="button" data-open="${x.d.id}">View</button></div></div><div class="fit">${x.fit}<small>fit · ${fmtDate(x.d.deadline)}</small></div></div>`).join("");
+    const fit=el.ok?clamp(Math.round(score-f*35-w*10+(d.minGpa<3.4?6:0)),0,99):0;
+    return{d,r,st:!el.ok?"no":f?"no":w?"warn":"ok",fit,el,grp:!el.ok?2:(fit>=55?0:1)};
+  }).sort((a,b)=>a.grp-b.grp||b.fit-a.fit);
+  const G=["Eligible and a strong match","Eligible, build up first","Not eligible for you"];let out="",g=-1;
+  rows.forEach(x=>{if(x.grp!==g){g=x.grp;out+=`<div class="mono" style="margin:${g?18:0}px 0 8px">${G[g]} · ${rows.filter(y=>y.grp===g).length}</div>`}
+    const [cl,ct]=competitiveness(x.d);
+    out+=`<div class="res ${x.st}"><div><b>${x.d.country}: ${x.d.name}</b><div style="display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 2px"><span class="tag ${ct}">${cl}</span><span class="tag">${ROUTE[x.el.route]}</span>${x.el.bond?'<span class="tag warn">Return-home bond</span>':""}${x.d.checked?'<span class="tag ok">Verified</span>':""}</div><ul>${x.r.map(t=>`<li>${t}</li>`).join("")}</ul><div class="cta" style="margin:8px 0 0"><button class="btn sm" type="button" data-open="${x.d.id}">View</button></div></div><div class="fit">${x.el.ok?x.fit:"–"}<small>${x.el.ok?"fit · ":""}${x.d.deadline?fmtDate(x.d.deadline):"annual"}</small></div></div>`});
+  $("#results").innerHTML=out||`<p class="note">No awards match this region and funding filter. Widen "Where would you go" or allow partial funding.</p>`;
+  const cp=$("#score-copy");if(cp)cp.onclick=e=>{const t=`My Scholio Score: ${score}/100 (${S.band}), ID ${S.id}, v${SCORE_V}. Checked at scholio: https://nirajbhusal.github.io/scholio/#score`;navigator.clipboard?.writeText(t).then(()=>e.currentTarget.textContent="Copied").catch(()=>{})};
 }
-
 
 /* ---------- courses ---------- */
 const COURSES=[
@@ -1187,9 +1235,8 @@ function scrollToId(id){setTimeout(()=>$("#"+id).scrollIntoView({behavior:"smoot
 
 /* ---------- for you ---------- */
 function computeFit(p){
-  const D=dims(p);const W=p.want==="PhD"?{Academics:.25,Research:.35,Experience:.1,English:.15,Readiness:.15}:{Academics:.35,Research:.1,Experience:.15,English:.2,Readiness:.2};
-  const score=Math.round(Object.keys(D).reduce((s,k)=>s+D[k]*W[k],0));
-  return DATA.filter(d=>d.levels.includes(p.want)&&daysLeft(d)>=0).map(d=>{let f=0,w=0;
+  const score=scholioScore(p).total;
+  return DATA.filter(d=>d.levels.includes(p.want)&&daysLeft(d)>=0&&eligCheck(d,p).ok&&(!p.dest||d.region===p.dest)&&(!p.fund||d.funding===p.fund)).map(d=>{let f=0,w=0;
     if(!(d.fields.includes("Any field")||d.fields.includes(p.field)))f++;
     if(d.minEng>0&&(p.eng===0||p.eng<d.minEng))w++;
     if(p.gpa<d.minGpa-0.3)f++;else if(p.gpa<d.minGpa)w++;
@@ -1205,7 +1252,7 @@ function renderForYou(){
   $("#foryou").innerHTML=rows.map(r=>`<button class="fy" data-open="${r.d.id}"><div class="top"><span class="tag acc">${r.d.country}</span><span class="fit">${r.fit}</span></div><h4>${r.d.name}</h4><small>${r.d.host} · ${dlLabel(r.d)} left</small></button>`).join("");
 }
 function saveProfile(){store.set("sc_profile",profile())}
-function loadProfile(){const p=store.get("sc_profile",null);if(!p)return;$("#p-want").value=p.want;$("#p-degree").value=p.degree;$("#p-gpa").value=p.gpa;$("#p-field").value=p.field;$("#p-pubs").value=p.pubs;$("#p-exp").value=p.exp;$("#p-ielts").value=p.eng;$("#p-docs").value=p.docs;$("#p-offer").checked=p.offer}
+function loadProfile(){const p=store.get("sc_profile",null);if(!p)return;if(p.nat)$("#p-nat").value=p.nat;if(p.age)$("#p-age").value=p.age;$("#p-lead").value=p.lead??1;$("#p-fund").value=p.fund||"";$("#p-dest").value=p.dest||"";$("#p-want").value=p.want;$("#p-degree").value=p.degree;$("#p-gpa").value=p.gpa;$("#p-field").value=p.field;$("#p-pubs").value=p.pubs;$("#p-exp").value=p.exp;$("#p-ielts").value=p.eng;$("#p-docs").value=p.docs;$("#p-offer").checked=p.offer}
 
 /* ---------- academy ---------- */
 const progress=id=>store.get("sc_course_"+id,{done:[]});
@@ -1372,9 +1419,42 @@ function downloadICS(d){const blob=new Blob([icsFor(d)],{type:"text/calendar"});
 function renderSaved(){const ids=store.get("sc_saved",[]);const el=$("#mysaved");if(!el)return;el.innerHTML=ids.length?ids.map(id=>DATA.find(d=>d.id===id)).filter(Boolean).map(d=>`<div class="c"><svg class="i" style="color:var(--amber)"><use href="#ic-star"/></svg><div><b>${d.name}</b><br><span style="color:var(--muted)">${d.country} · ${d.deadline?fmtDate(d.deadline)+" · "+dlLabel(d)+" left":d.window}</span></div><button class="btn sm" data-open="${d.id}">Open</button></div>`).join(""):`<p class="note">Nothing saved yet. Open any award and press Save.</p>`}
 
 
+
+/* ---------- nationality, eligibility, Scholio Score ---------- */
+const NAT=[["NP","Nepal","lmic adb"],["IN","India","cw lmic adb"],["PK","Pakistan","cw lmic adb"],["BD","Bangladesh","cw lmic adb"],["LK","Sri Lanka","cw lmic adb"],["BT","Bhutan","lmic adb"],["AF","Afghanistan","lmic adb"],["MM","Myanmar","lmic adb"],["ID","Indonesia","lmic adb"],["PH","Philippines","lmic adb"],["VN","Vietnam","lmic adb"],["TH","Thailand","lmic adb"],["MY","Malaysia","cw lmic adb"],["KH","Cambodia","lmic adb"],["MN","Mongolia","lmic adb"],["UZ","Uzbekistan","lmic adb"],["KZ","Kazakhstan","lmic adb"],["CN","China","lmic adb"],["NG","Nigeria","cw lmic"],["KE","Kenya","cw lmic"],["GH","Ghana","cw lmic"],["ZA","South Africa","cw lmic"],["UG","Uganda","cw lmic"],["TZ","Tanzania","cw lmic"],["RW","Rwanda","cw lmic"],["ET","Ethiopia","lmic"],["EG","Egypt","lmic"],["MA","Morocco","lmic"],["JO","Jordan","lmic"],["IR","Iran","lmic"],["IQ","Iraq","lmic"],["TR","Türkiye","lmic"],["BR","Brazil","lmic"],["MX","Mexico","lmic"],["CO","Colombia","lmic"],["PE","Peru","lmic"],["AR","Argentina","lmic"],["US","United States",""],["GB","United Kingdom",""],["CA","Canada","cw"],["AU","Australia","cw"],["NZ","New Zealand","cw"],["DE","Germany","eu"],["FR","France","eu"],["IT","Italy","eu"],["ES","Spain","eu"],["NL","Netherlands","eu"],["CH","Switzerland","eea"],["JP","Japan",""],["KR","South Korea",""],["SG","Singapore","cw"],["AE","United Arab Emirates",""],["SA","Saudi Arabia",""],["XX","Other (not listed)","lmic"]];
+const natOf=c=>NAT.find(n=>n[0]===c)||NAT[NAT.length-1];
+const natHas=(c,f)=>{const fl=natOf(c)[2].split(" ");return fl.includes(f)||(f==="eea"&&(fl.includes("eu")||fl.includes("eea")))};
+function eligCheck(d,p){const e=d.elig||{cit:"any"};const r=[];let ok=true;const c=p.nat||"XX";
+  if(e.excl&&(e.excl.includes(c)||(e.excl.includes("EEA")&&natHas(c,"eea")))){ok=false;r.push("Not open to "+natOf(c)[1]+" nationals")}
+  else if(e.cit==="cw-lmic"&&!(natHas(c,"cw")&&natHas(c,"lmic"))){ok=false;r.push("Only for citizens of low and middle income Commonwealth countries")}
+  else if(e.cit==="oda"&&!natHas(c,"lmic")){ok=false;r.push("Only for citizens of developing countries")}
+  else if(e.cit==="adb"&&!natHas(c,"adb")){ok=false;r.push("Only for citizens of ADB borrowing member countries")}
+  else if(e.cit==="participating"){r.push("Open to most countries; confirm yours on the official list")}
+  if(e.age&&p.age){const lim=e.age[p.want];if(lim&&p.age>lim){ok=false;r.push("Age limit "+lim+" for "+p.want)}}
+  if(e.bond)r.push("Return-home commitment after the award");
+  return{ok,reasons:r,route:e.route||"direct",bond:!!e.bond}}
+const ROUTE={direct:"Apply directly",university:"Apply via the university",embassy:"Apply via embassy",nomination:"Needs nomination",automatic:"Automatic with admission"};
+const competitiveness=d=>d.minGpa>=3.8?["Highly competitive","no"]:d.minGpa>=3.5?["Competitive","warn"]:["Accessible","ok"];
+/* Scholio Score v1.0: deterministic, published weights. Components 0-100, weighted by target level. */
+const SCORE_V="1.0";
+const WEIGHTS={"Master's":{Academics:.30,Research:.10,Experience:.15,English:.20,Readiness:.15,Leadership:.10},PhD:{Academics:.25,Research:.30,Experience:.10,English:.15,Readiness:.10,Leadership:.10}};
+function components(p){const phd=p.want==="PhD";return{
+  Academics:clamp((p.gpa-2.5)/1.5*100,0,100),
+  Research:clamp(p.pubs*(phd?30:40)+(phd?0:20),0,100),
+  Experience:clamp(p.exp*20,0,100),
+  English:p.eng===0?0:clamp((p.eng-5.5)/2*100,0,100),
+  Readiness:clamp(p.docs*25+(p.offer?25:0),0,100),
+  Leadership:{0:15,1:55,2:90}[p.lead]??15}}
+function scholioScore(p){const C=components(p);const W=WEIGHTS[p.want];const total=Math.round(Object.keys(C).reduce((a,k)=>a+C[k]*W[k],0));
+  const band=total>=85?"Distinguished":total>=70?"Strong":total>=55?"Ready":"Emerging";
+  const key=[SCORE_V,p.want,p.nat,p.age,p.degree,p.gpa,p.field,p.pubs,p.exp,p.eng,p.docs,p.offer?1:0,p.lead].join("|");let h=0;for(const ch of key)h=(h*31+ch.charCodeAt(0))>>>0;
+  return{total,band,C,W,id:"SS-"+h.toString(36).toUpperCase().padStart(7,"0")}}
+
 /* ---------- assessment wizard ---------- */
 const WSTEPS=[
  {id:"p-want",q:"What are you applying for?",h:"We score Master's and PhD awards differently.",opts:[["Master's","Master's"],["PhD","PhD"]]},
+ {id:"p-nat",q:"Your nationality",h:"Many awards are restricted by citizenship. We check each one for you.",select:true},
+ {id:"p-age",q:"Your age",h:"A few government awards have age limits.",range:[18,50,1]},
  {id:"p-degree",q:"Your highest completed degree",h:"Or the one you are finishing this year.",opts:[["bach","Bachelor's"],["mast","Master's"]]},
  {id:"p-gpa",q:"Your GPA on a 4.0 scale",h:"Convert from percentage or first-class if needed; an estimate is fine.",range:[2,4,0.1]},
  {id:"p-field",q:"Your field",h:"Pick the closest; many awards accept any field.",opts:[["Engineering & Tech","Engineering & Tech"],["Science","Science"],["AI & Computing","AI & Computing"],["Humanities & Social","Humanities & Social"],["Business & Economics","Business & Economics"]]},
@@ -1382,7 +1462,10 @@ const WSTEPS=[
  {id:"p-exp",q:"Years of relevant work or research",h:"Internships and research assistant roles included.",range:[0,15,1]},
  {id:"p-ielts",q:"Your English test status",h:"If you have not taken one yet, we will point you to the right test.",opts:[["0","None yet"],["6","IELTS 6.0 / TOEFL 80"],["6.5","IELTS 6.5 / TOEFL 90"],["7","IELTS 7.0 / TOEFL 100"],["7.5","IELTS 7.5+ / TOEFL 110+"]]},
  {id:"p-docs",q:"How ready are your documents?",h:"Be honest; this changes what we suggest first.",opts:[["0","Nothing yet"],["1","CV only"],["2","CV and a statement draft"],["3","CV, statement, two referees confirmed"]]},
- {id:"p-offer",q:"Do you already have a supervisor or an admission offer?",h:"Some awards need one before you can apply.",opts:[["no","Not yet"],["yes","Yes, I have one"]]}
+ {id:"p-offer",q:"Do you already have a supervisor or an admission offer?",h:"Some awards need one before you can apply.",opts:[["no","Not yet"],["yes","Yes, I have one"]]},
+ {id:"p-lead",q:"Leadership and impact",h:"Panels such as Gates, Rhodes and Chevening weigh this as much as grades.",opts:[["0","Nothing I would put on an application"],["1","Led a team, club, project or volunteer effort"],["2","Founded or led something with measurable results"]]},
+ {id:"p-fund",q:"What funding do you need?",h:"Partial awards can still be worth it if you have other support.",opts:[["Full","Full funding only"],["","Full or partial"]]},
+ {id:"p-dest",q:"Where would you go?",h:"Pick one region or keep it open.",opts:[["","Anywhere"],["Europe","Europe"],["Asia","Asia"],["North America","North America"],["Oceania","Oceania"],["Middle East","Middle East"]]}
 ];
 let wi=0,wdone=store.get("sc_profile",null)?true:false;
 function wval(id){const el=$("#"+id);return id==="p-offer"?(el.checked?"yes":"no"):el.value}
@@ -1391,7 +1474,8 @@ function renderWizard(){
   const st=WSTEPS[wi];const v=wval(st.id);
   $("#wcount").textContent=wdone?`Your answers · ${wi+1} of ${WSTEPS.length}`:`Question ${wi+1} of ${WSTEPS.length}`;$("#wbar").style.width=((wi+(wdone?1:0))/WSTEPS.length*100)+"%";
   let body=`<div class="wq">${st.q}</div><div class="whint">${st.h}</div>`;
-  if(st.opts)body+=`<div class="wopts">${st.opts.map(([k,l],i)=>`<button class="wopt" type="button" data-wv="${k}" aria-pressed="${String(v)===String(k)}"><span class="k">${i+1}</span>${l}</button>`).join("")}</div>`;
+  if(st.select)body+=`<select id="wsel">${NAT.map(([c,n])=>`<option value="${c}" ${c===v?"selected":""}>${n}</option>`).join("")}</select>`;
+  else if(st.opts)body+=`<div class="wopts">${st.opts.map(([k,l],i)=>`<button class="wopt" type="button" data-wv="${k}" aria-pressed="${String(v)===String(k)}"><span class="k">${i+1}</span>${l}</button>`).join("")}</div>`;
   else{const [mn,mx,sp]=st.range;body+=`<div class="wnum"><input type="range" id="wrange" min="${mn}" max="${mx}" step="${sp}" value="${v}"><output id="wout">${v}</output></div>`}
   $("#wstep").innerHTML=body;$("#wback").disabled=wi===0;
   $("#wnext").innerHTML=wi===WSTEPS.length-1?`See my results<svg class="i s"><use href="#ic-target"/></svg>`:`Next<svg class="i s"><use href="#ic-arrow"/></svg>`;
@@ -1403,15 +1487,21 @@ document.addEventListener("click",e=>{
   if(e.target.closest("#wback")){wi=Math.max(0,wi-1);renderWizard();return}
   if(e.target.closest("#wretake")){wi=0;wdone=false;renderWizard();window.scrollTo({top:0,behavior:"smooth"});return}
 });
-document.addEventListener("input",e=>{if(e.target.id==="wrange"){$("#wout").textContent=e.target.value;wset(WSTEPS[wi].id,e.target.value)}});
+document.addEventListener("input",e=>{if(e.target.id==="wrange"){$("#wout").textContent=e.target.value;wset(WSTEPS[wi].id,e.target.value)}if(e.target.id==="wsel")wset("p-nat",e.target.value)});
+
+
+/* ---------- theme ---------- */
+function applyTheme(t){document.documentElement.setAttribute("data-theme",t);$("#theme-ic").innerHTML=`<use href="#${t==="dark"?"ic-sun":"ic-moon"}"/>`;store.set("sc_theme",t)}
+(function(){const saved=store.get("sc_theme",null);applyTheme(saved||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"))})();
+document.addEventListener("click",e=>{if(e.target.closest("#theme"))applyTheme(document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark")});
 
 /* ---------- events ---------- */
 function renderEvents(){const dated=DATA.filter(d=>d.deadline&&daysLeft(d)>=0).sort((a,b)=>daysLeft(a)-daysLeft(b));const win=DATA.filter(d=>!d.deadline);$("#events").innerHTML=dated.map(d=>{const dt=new Date(d.deadline+"T00:00:00");return `<div class="ev"><div class="d"><b>${dt.getDate()}</b><span>${dt.toLocaleDateString("en-GB",{month:"short"})}</span></div><div><h4>${d.name}</h4><p>${d.host}, ${d.country} · ${d.deadlineNote}</p></div><div class="act" style="display:flex;gap:8px;align-items:center"><span class="tag ${dlClass(d)}">${dlLabel(d)} left</span><button class="btn sm" type="button" data-ics="${d.id}" title="Add to calendar"><svg class="i s"><use href="#ic-cal"/></svg></button><button class="btn sm" type="button" data-open="${d.id}">Open</button></div></div>`}).join("")+`<div class="mono" style="margin:18px 0 8px">Annual windows (exact dates set each cycle)</div>`+win.map(d=>`<div class="ev"><div class="d"><b style="font-size:14px">${d.window.match(/January|February|March|April|May|June|July|August|September|October|November|December/)?.[0]?.slice(0,3)||"–"}</b><span>opens</span></div><div><h4>${d.name}</h4><p>${d.host}, ${d.country} · ${d.window}</p></div><div class="act"><button class="btn sm" type="button" data-open="${d.id}">Open</button></div></div>`).join("")}
 
 /* ---------- views ---------- */
-const VIEWS=["home","map","countries","resources","rank","assess","academy","course","cert","events","funders","about","signup"];
+const VIEWS=["home","map","countries","resources","score","rank","assess","academy","course","cert","events","funders","about","signup"];
 function switchView(v){
-  const navV=v==="course"||v==="cert"?"academy":v;
+  const navV=v==="course"||v==="cert"?"academy":v==="score"?"assess":v;
   document.querySelectorAll("nav button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===navV)));
   VIEWS.forEach(x=>{const el=$("#view-"+x);if(el)el.hidden=(x!==v)});
   if(v==="assess"){loadProfile();renderAssess();renderWizard()}if(v==="rank")renderRank();if(v==="map"){setTimeout(()=>{initMap();if(map)map.invalidateSize();renderMapList()},30)}if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();if(v==="resources")renderCV();

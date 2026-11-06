@@ -11,7 +11,7 @@ Owner: Niraj Bhusal (NB). Brand: **Scholio** (domain still to be registered). If
 - We never host application forms; every award links out to the funder's official page.
 - Light theme only, Inter, blue accent `#2563eb` with violet `#7c3aed`. No em dashes in copy. Mascot: rounded badge, two eyes, mortarboard, gold tassel (`#logo` symbol).
 - Header: brand, icon+label nav in one scrollable row, Sign in, then the "Closing soon" strip.
-- Master's and PhD only for now. Assessment is a step-by-step wizard (one question per screen).
+- Master's and PhD only for now. Assessment is a 14-step wizard that produces the Scholio Score (v1.0, public weights, deterministic, score ID) and per-award eligibility by nationality and age. Light and dark themes via the header toggle.
 
 ## Structure (single file today, multipage next)
 `index.html` holds everything: CSS, markup for views (`#view-home`, `map`, `countries`, `rank`, `assess`, `academy`, `course`, `cert`, `resources`, `events`, `funders`, `about`, `signup`), and JS.
