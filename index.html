@@ -4,10 +4,10 @@
 <style>
 /* Layout: monochrome, single light theme. Left icon rail on desktop, bottom tab bar on phones. Greeting + mascot, number tiles, then each section. Hairline borders, #f7f7f7 tiles, graphite text, thin line illustrations. */
 :root{
-  --bg:#fff; --surface:#f7f7f7; --fg:#0a0a0a; --muted:#525252; --faint:#8a8a8a; --line:#e5e5e5; --illu:#e4e4e4; --illu2:#cfcfcf;
-  --accent:#2563eb; --accent-ink:#fff; --accent-soft:#e8efff; --shadow:0 8px 24px #0000000f; --glass:#ffffffdb;
+  --bg:#fafafa; --surface:#f2f3f1; --fg:#0f172a; --muted:#64748b; --faint:#94a3b8; --line:#e5e7eb; --illu:#e4e4e4; --illu2:#cfcfcf;
+  --accent:#2563eb; --accent-ink:#fff; --accent-soft:#e8efff; --accent-2:#7c3aed; --shadow:0 1px 2px rgba(15,23,42,.04),0 14px 40px rgba(15,23,42,.07); --glass:#ffffffdb;
   --ok:#1f7a4d; --ok-soft:#eaf5ee; --warn:#9a5b00; --warn-soft:#fbf3e4; --no:#b42318; --no-soft:#fbeae8;
-  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --r:18px;
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --r:16px;
   color-scheme:light;
 }
 *{box-sizing:border-box}
@@ -24,7 +24,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stro
 /* intro */
 #intro{position:fixed;inset:0;z-index:50;background:#fff;display:grid;place-items:center;animation:intro-fade .5s ease 2.3s forwards}
 #intro .m{animation:intro-pop .6s cubic-bezier(.2,1.4,.4,1) both}
-#intro .w{margin-top:14px;font-weight:700;font-size:22px;letter-spacing:-.03em;opacity:0;animation:fade-up .5s ease .7s forwards;text-align:center}
+#intro .w{margin-top:14px;font-weight:800;font-size:24px;letter-spacing:-.03em;opacity:0;animation:fade-up .5s ease .7s forwards;text-align:center}
 #intro .w small{display:block;font-weight:400;color:var(--muted);font-size:14px;letter-spacing:0;margin-top:2px}
 #intro.done{display:none}
 @keyframes intro-pop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
@@ -41,25 +41,26 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stro
 @keyframes cap-drop{0%{transform:translateY(-40px) rotate(-14deg);opacity:0}100%{transform:none;opacity:1}}
 
 /* shell */
-.shell{display:grid;grid-template-columns:64px 1fr;min-height:100%}
-.rail{position:sticky;top:0;height:100vh;height:100dvh;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 0 14px;gap:4px;background:#fff}
-.rail .logo{margin-bottom:10px}
-.rail button{width:40px;height:40px;border:0;background:transparent;border-radius:10px;display:grid;place-items:center;cursor:pointer;color:var(--muted)}
-.rail button[aria-selected="true"]{background:var(--accent-soft);color:var(--accent)}
-.rail .sp{flex:1}
-.content{min-width:0;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));padding-block:28px calc(32px + env(safe-area-inset-bottom,0px))}
-.wrap{max-width:1000px;margin:0 auto}
-.tabbar{display:none}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:16px;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;margin-right:auto;font-weight:800;font-size:18px;letter-spacing:-.03em;border:0;background:transparent;cursor:pointer;padding:0}
+nav{display:flex;gap:2px;flex-wrap:wrap}
+nav button{border:0;background:transparent;padding:7px 11px;border-radius:9px;cursor:pointer;font-weight:500;color:var(--muted);font-size:14px}
+nav button[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.signin{border:1px solid var(--line);background:#fff;padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:14px}
+.content{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px calc(48px + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:1160px;margin:0 auto}
 section[hidden]{display:none}
 
-/* greeting */
-.greet{text-align:center;padding:16px 0 28px}
-.greet .art{display:flex;justify-content:center;align-items:center;gap:22px;margin-bottom:12px;flex-wrap:wrap}
-.greet h1{font-size:clamp(32px,6vw,44px);letter-spacing:-.03em}
-.greet .date{color:var(--muted);font-size:13px;margin-top:6px}
-.greet .tagline{font-size:clamp(18px,2.6vw,24px);color:var(--muted);margin-top:18px;font-weight:400;letter-spacing:-.01em}
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;background:linear-gradient(135deg,#eef3ff 0%,#f6f1ff 55%,#eafaf3 100%);border:1px solid var(--line);border-radius:28px;padding:40px 44px;margin-bottom:24px}
+.hero h1{font-size:clamp(32px,4.6vw,52px);font-weight:800;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);margin:14px 0 0;font-size:17px;max-width:54ch}
+.hero .ctas{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.hero .art{display:flex;justify-content:center;align-items:center;gap:22px;flex-wrap:wrap}
 .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
-.tile{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px;text-align:left;cursor:pointer;display:grid;gap:4px;align-content:end;min-height:170px;transition:transform .15s,box-shadow .15s}
+.tile{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;text-align:left;cursor:pointer;display:grid;gap:4px;align-content:end;min-height:170px;transition:transform .15s,box-shadow .15s}
 .tile:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--accent)}
 .tile svg.il{width:96px;height:40px;stroke:var(--accent);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;margin-bottom:22px}
 .tile .nm{font-weight:600;font-size:15px}
@@ -70,7 +71,7 @@ section[hidden]{display:none}
 .kicker{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
 .lead{max-width:62ch;margin-bottom:24px}
 .lead h2{font-size:clamp(26px,3.6vw,34px)} .lead p{color:var(--muted);margin:10px 0 0;font-size:16px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .card.white{background:#fff}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px} .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .tag{font-size:12px;padding:3px 9px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--muted);white-space:nowrap;font-weight:500}
@@ -109,8 +110,8 @@ aside{position:sticky;top:20px;display:grid;gap:14px}
 
 /* countries */
 .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.cc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;cursor:pointer;text-align:left;display:grid;gap:8px}
-.cc:hover{background:#fff}
+.cc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;cursor:pointer;text-align:left;display:grid;gap:8px}
+.cc:hover{border-color:var(--accent)}
 .cc .hd{display:flex;gap:10px;align-items:center} .cc h3{font-size:17px} .cc .n{font-size:12px;color:var(--muted)}
 .cc ul{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:13px} .cc li{display:grid;grid-template-columns:1fr 1.2fr;gap:8px;align-items:start} .cc li span{color:var(--muted);text-align:right}
 .infobar{display:grid;grid-template-columns:130px 1fr 60px;gap:10px;align-items:center;font-size:13px}
@@ -164,12 +165,12 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 
 /* academy */
 .tests{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.test{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:8px;align-content:start}
+.test{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:8px;align-content:start}
 .test .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:11px;color:#fff;background:var(--accent)}
 .test b{font-size:15px} .test span{font-size:13px;color:var(--muted)} .test a{font-size:13px;font-weight:600}
 .courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
 .course{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;align-content:start}
-.course .cover{height:88px;display:grid;place-items:center;background:var(--surface);border-bottom:1px solid var(--line)} .course .cover svg{width:34px;height:34px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.course .cover{height:88px;display:grid;place-items:center;background:var(--accent-soft);border-bottom:1px solid var(--line)} .course .cover svg{width:34px;height:34px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .course .bd{padding:16px;display:grid;gap:10px}
 .course .top{display:flex;justify-content:space-between;gap:10px;align-items:start} .course h3{font-size:16px}
 .course p{margin:0;font-size:13px;color:var(--muted)} .course .mods{font-size:13px;display:grid;gap:3px;color:var(--muted);padding-left:16px;margin:0}
@@ -197,7 +198,7 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .box b{display:block;font-size:13px} .box span{color:var(--muted);font-size:12px}
 .box.core{background:var(--accent);color:#fff;border-color:transparent} .box.core span{color:#c7d7ff}
 .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.ph{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px} .ph .mono{margin-bottom:6px} .ph b{display:block;margin-bottom:6px} .ph ul{margin:0;padding-left:16px;font-size:13px;color:var(--muted)}
+.ph{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px} .ph .mono{margin-bottom:6px} .ph b{display:block;margin-bottom:6px} .ph ul{margin:0;padding-left:16px;font-size:13px;color:var(--muted)}
 .signup{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
 .authcard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;display:grid;gap:12px;box-shadow:var(--shadow);position:relative;overflow:hidden}
 .authcard .soon{position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--accent);color:#fff;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 48px}
@@ -205,17 +206,11 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .perks{display:grid;gap:12px} .perk{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start} .perk .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)} .perk b{display:block} .perk span{color:var(--muted);font-size:13px}
 
 /* ask button + footer */
-.ask{position:fixed;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:15;background:var(--accent);color:#fff;border:0;border-radius:999px;padding:10px 16px 10px 12px;display:flex;align-items:center;gap:8px;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
-footer{color:var(--faint);font-size:12px;padding-top:28px;max-width:1000px;margin:0 auto}
+footer{color:var(--faint);font-size:12px;padding-top:28px;border-top:1px solid var(--line);margin-top:32px}
 
 @media (max-width:900px){
-  .shell{grid-template-columns:1fr}
-  .rail{display:none}
-  .content{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
-  .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:15;background:var(--glass);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
-  .tabbar button{flex:1;border:0;background:transparent;display:grid;justify-items:center;gap:2px;font-size:11px;color:var(--muted);padding:4px 0;border-radius:10px}
-  .tabbar button[aria-selected="true"]{color:var(--accent);font-weight:600}
-  .ask{bottom:calc(78px + env(safe-area-inset-bottom,0px))}
+  .hero{grid-template-columns:1fr;padding:26px 20px}
+  nav button{padding:6px 8px;font-size:13px}
   .tiles{grid-template-columns:1fr 1fr;gap:10px} .feat{grid-template-columns:1fr 1fr} .tile{min-height:140px;padding:18px}
   .browse,.check,.grid2,.scorecard,.signup{grid-template-columns:1fr} .grid4,.phases{grid-template-columns:1fr 1fr}
   aside,.form{position:static} dl{grid-template-columns:1fr}
@@ -258,27 +253,33 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;max-width:1000px;margi
 
 <div id="intro" aria-hidden="true"><div><svg class="mascot m" width="150" height="100" viewBox="0 0 120 90"><use href="#mascot"/></svg><div class="w">OpenAward<small>Every scholarship, within reach.</small></div></div></div>
 
-<div class="shell">
-<aside class="rail" aria-label="Sections">
-  <svg class="logo mascot" width="36" height="24" viewBox="0 0 120 90"><use href="#mascot"/></svg>
-  <button data-view="discover" aria-selected="true" title="Home"><svg class="i"><use href="#ic-home"/></svg></button>
-  <button data-view="countries" aria-selected="false" title="Countries"><svg class="i"><use href="#ic-globe"/></svg></button>
-  <button data-view="rank" aria-selected="false" title="Rankings"><svg class="i"><use href="#ic-chart"/></svg></button>
-  <button data-view="assess" aria-selected="false" title="My profile"><svg class="i"><use href="#ic-target"/></svg></button>
-  <button data-view="academy" aria-selected="false" title="Academy"><svg class="i"><use href="#ic-book"/></svg></button>
-  <button data-view="events" aria-selected="false" title="Events"><svg class="i"><use href="#ic-cal"/></svg></button>
-  <button data-view="funders" aria-selected="false" title="Funders"><svg class="i"><use href="#ic-building"/></svg></button>
-  <button data-view="arch" aria-selected="false" title="Architecture"><svg class="i"><use href="#ic-layers"/></svg></button>
-  <div class="sp"></div>
-  <button data-view="about" aria-selected="false" title="About"><svg class="i"><use href="#ic-check"/></svg></button>
-  <button data-view="signup" aria-selected="false" title="Sign in"><svg class="i"><use href="#ic-user"/></svg></button>
-</aside>
+<header><div class="bar">
+  <button class="brand" data-view="discover"><svg class="mascot" width="34" height="26" viewBox="0 0 120 90"><use href="#mascot"/></svg>OpenAward</button>
+  <nav role="tablist">
+    <button role="tab" data-view="discover" aria-selected="true">Discover</button>
+    <button role="tab" data-view="countries" aria-selected="false">Countries</button>
+    <button role="tab" data-view="rank" aria-selected="false">Rankings</button>
+    <button role="tab" data-view="assess" aria-selected="false">My profile</button>
+    <button role="tab" data-view="academy" aria-selected="false">Academy</button>
+    <button role="tab" data-view="events" aria-selected="false">Events</button>
+    <button role="tab" data-view="funders" aria-selected="false">Funders</button>
+    <button role="tab" data-view="arch" aria-selected="false">Architecture</button>
+    <button role="tab" data-view="about" aria-selected="false">About</button>
+  </nav>
+  <button class="signin" data-view="signup">Sign in</button>
+</div></header>
 
 <main class="content"><div class="wrap">
 
 <!-- DISCOVER -->
 <section id="view-discover">
-  <div class="greet">
+  <div class="hero">
+    <div>
+      <div class="kicker">Every scholarship, within reach</div>
+      <h1>Find the scholarship. Prove you <em>fit</em>. Get ready to win it.</h1>
+      <p>Every Master's and PhD award on one verified template with its official link. Score your profile against each one, close the gaps with short courses, and apply on the funder's own site.</p>
+      <div class="ctas"><button class="btn primary" data-view="assess"><svg class="i"><use href="#ic-target"/></svg>Check my fit</button><button class="btn" data-view="signup"><svg class="i"><use href="#ic-bell"/></svg>Get deadline alerts</button></div>
+    </div>
     <div class="art"><svg class="mascot" width="96" height="72" viewBox="0 0 120 90"><use href="#mascot"/></svg>
       <svg width="190" height="72" viewBox="0 0 260 100" aria-hidden="true"><defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
         <circle cx="130" cy="52" r="40" fill="#e8efff"/><g fill="none" stroke="#2563eb" stroke-opacity=".45" stroke-width="1.3"><circle cx="130" cy="52" r="40"/><ellipse cx="130" cy="52" rx="40" ry="15"/><ellipse cx="130" cy="52" rx="20" ry="40"/><path d="M90 52h80M130 12v80"/></g>
@@ -288,9 +289,6 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;max-width:1000px;margi
         <g transform="translate(192 56)"><rect width="62" height="38" rx="8" fill="#fff" stroke="#e5e5e5"/><circle cx="18" cy="19" r="11" fill="none" stroke="#e5e5e5" stroke-width="4"/><circle cx="18" cy="19" r="11" fill="none" stroke="url(#gg)" stroke-width="4" stroke-dasharray="50 20" stroke-linecap="round" transform="rotate(-90 18 19)"/><text x="18" y="22" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="8" fill="#0a0a0a">72</text><rect x="34" y="12" width="20" height="3.5" rx="1.75" fill="#cfcfcf"/><rect x="34" y="20" width="16" height="3.5" rx="1.75" fill="#e4e4e4"/></g>
         <g transform="translate(10 60)"><rect width="66" height="30" rx="7" fill="#fff" stroke="#e5e5e5"/><rect x="7" y="7" width="20" height="4" rx="2" fill="#10b981"/><rect x="7" y="15" width="44" height="3.5" rx="1.75" fill="#cfcfcf"/><rect x="7" y="22" width="26" height="3.5" rx="1.75" fill="#e4e4e4"/></g>
       </svg></div>
-    <h1 id="greet-h">Good afternoon</h1>
-    <div class="date" id="greet-d"></div>
-    <div class="tagline">Every scholarship, within reach.</div>
   </div>
   <div class="tiles">
     <button class="tile" data-view="discover" data-scroll="catalogue"><svg class="il"><use href="#il-open"/></svg><span class="nm">Open now</span><span class="n" id="st-count">0</span><span class="u">Master's and PhD awards</span></button>
@@ -478,7 +476,7 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;max-width:1000px;margi
     <div class="card"><div class="mono" style="margin-bottom:10px">Why it started</div>
       <p style="margin:0 0 10px;font-size:14px">OpenAward began in Kathmandu in late 2026 as a side project by <b>Niraj Bhusal</b>, a civil servant working on digital public infrastructure, who studied abroad on a scholarship himself and watched friends miss deadlines they never knew existed.</p>
       <p style="margin:0 0 10px;font-size:14px">The first version was a spreadsheet of nine bilateral scholarships. The second was a LinkedIn list with 269 likes and a comment nobody could answer: "which of these don't need IELTS?" OpenAward is the answer to that comment, built for every student, not just one country.</p>
-      <p style="margin:0;font-size:14px">It is a sibling of <a href="https://nirajbhusal.github.io/nearby/" target="_blank" rel="noopener">Nearby</a>, and shares its design language and its mascot's eyes.</p></div>
+      </div>
   </div>
   <div class="grid2">
     <div class="card white"><div class="mono" style="margin-bottom:10px">How we stay free for seekers</div>
@@ -492,18 +490,8 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;max-width:1000px;margi
 
 <footer><a href="#about" data-view="about" style="color:inherit">About OpenAward</a> · Prototype data: 11 Master's and PhD scholarships from a public November 2026 compilation, with official pages linked. Deadlines not yet re-verified on official pages. University rankings indicative (QS 2026). Ratings, reviews, course enrolments, events and funder numbers are illustrative.</footer>
 </div></main>
-</div>
 
-<nav class="tabbar" aria-label="Sections">
-  <button data-view="discover" aria-selected="true"><svg class="i"><use href="#ic-home"/></svg>Home</button>
-  <button data-view="countries" aria-selected="false"><svg class="i"><use href="#ic-globe"/></svg>Countries</button>
-  <button data-view="assess" aria-selected="false"><svg class="i"><use href="#ic-target"/></svg>My fit</button>
-  <button data-view="academy" aria-selected="false"><svg class="i"><use href="#ic-book"/></svg>Academy</button>
-  <button data-view="events" aria-selected="false"><svg class="i"><use href="#ic-cal"/></svg>Events</button>
-  <button data-view="signup" aria-selected="false"><svg class="i"><use href="#ic-more"/></svg>More</button>
-</nav>
 
-<button class="ask" type="button" id="ask"><svg class="mascot" width="26" height="18" viewBox="0 0 120 90"><use href="#mascot"/></svg>Ask</button>
 
 <div class="sheet" id="sheet" aria-hidden="true"><div class="back" id="sheet-back"></div>
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="d-title"><button class="close" id="sheet-close" aria-label="Close">×</button><div id="detail"></div></div></div>
@@ -718,7 +706,7 @@ function renderEvents(){
 /* views */
 const VIEWS=["discover","countries","rank","assess","academy","events","funders","arch","signup","about"];
 function switchView(v){
-  document.querySelectorAll(".rail button[data-view],.tabbar button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===v)));
+  document.querySelectorAll("nav button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===v)));
   VIEWS.forEach(x=>$("#view-"+x).hidden=(x!==v));
   if(v==="assess")renderAssess();if(v==="rank")renderRank();
   window.scrollTo({top:0});
@@ -745,9 +733,6 @@ window.addEventListener("hashchange",()=>{const h=location.hash.replace("#","");
 renderChips();renderStats();renderGrid();renderCountries();renderCourses();renderEvents();renderAssess();renderRank();
 const h0=location.hash.replace("#","");if(VIEWS.includes(h0)&&h0!=="discover")switchView(h0);
 
-(function(){const h=new Date().getHours();$("#greet-h").textContent=h<5?"Good night":h<12?"Good morning":h<17?"Good afternoon":"Good evening";
-$("#greet-d").textContent=new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short"})+" · "+new Date().toLocaleTimeString("en-GB",{hour:"numeric",minute:"2-digit"});
-const intro=$("#intro");if(intro){const done=()=>intro.classList.add("done");intro.addEventListener("animationend",e=>{if(e.animationName==="intro-fade")done()});setTimeout(done,3200);intro.addEventListener("click",done)}
-$("#ask").onclick=()=>{switchView("assess")};})();
+(function(){const intro=$("#intro");if(intro){const done=()=>intro.classList.add("done");intro.addEventListener("animationend",e=>{if(e.animationName==="intro-fade")done()});setTimeout(done,3200);intro.addEventListener("click",done)}})();
 
 </script>
