@@ -1,5 +1,26 @@
-<title>Scholio</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Scholio: every scholarship, within reach</title>
+<meta name="description" content="A global index of Master's and PhD scholarships with verified deadlines, a fit score for your profile, and short courses with certificates. Apply on the funder's own site.">
+<link rel="canonical" href="https://nirajbhusal.github.io/openaward/">
+<meta property="og:title" content="Scholio: every scholarship, within reach">
+<meta property="og:description" content="Verified Master's and PhD scholarships worldwide, a fit score for your profile, and courses that close the gaps.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nirajbhusal.github.io/openaward/">
+<meta property="og:image" content="https://nirajbhusal.github.io/openaward/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@nirajbhusal">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>html{color-scheme:light}body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Scholio","url":"https://nirajbhusal.github.io/openaward/","description":"Global index of Master's and PhD scholarships with verified deadlines and a fit score.","potentialAction":{"@type":"SearchAction","target":"https://nirajbhusal.github.io/openaward/#home?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+</head>
+<body>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: light product shell. Icon nav, search-first hero, rotating deadline strip, path cards, catalogue with segmented filters, side-sheet detail, course player and certificate. */
@@ -41,17 +62,21 @@ svg.i.s{width:16px;height:16px}
 
 /* header */
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;gap:12px;padding-block:10px;flex-wrap:wrap}
+.bar{display:flex;align-items:center;gap:12px;padding-block:10px;flex-wrap:nowrap}
+header .wrap:last-child{padding-top:0}
 .brand{display:flex;align-items:center;gap:9px;margin-right:auto;font-weight:800;font-size:19px;letter-spacing:-.03em;border:0;background:transparent;cursor:pointer;padding:0}
 .brand em{font-style:normal;color:var(--accent)}
-nav{display:flex;gap:2px;flex-wrap:wrap}
-nav button{border:0;background:transparent;padding:7px 11px;border-radius:10px;cursor:pointer;font-weight:500;color:var(--muted);font-size:14px;display:inline-flex;align-items:center;gap:7px}
-nav button svg{width:17px;height:17px}
+nav{display:flex;gap:2px;flex-wrap:nowrap}
+nav button{border:0;background:transparent;padding:7px 9px;border-radius:10px;cursor:pointer;font-weight:500;color:var(--muted);font-size:13px;display:inline-flex;align-items:center;gap:5px}
+nav button svg{width:16px;height:16px}
 nav button[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
 .signin{border:1px solid var(--line);background:#fff;padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:14px;display:inline-flex;gap:8px;align-items:center}
-@media (max-width:1000px){nav button span{display:none} nav button{padding:8px}}
+nav{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;justify-content:flex-start;mask-image:linear-gradient(90deg,#000 calc(100% - 16px),transparent)} nav::-webkit-scrollbar{display:none} nav button{white-space:nowrap;flex:none}
+.brand span,.signin span{display:inline}
+@media (max-width:1100px){nav{justify-content:flex-start} nav button{padding:7px 9px;font-size:13px}}
+@media (max-width:600px){.bar{flex-wrap:wrap;gap:8px} nav{order:3;width:100%;flex:none} .brand{margin-right:auto}}
 
-main{padding-block:28px 64px}
+main{padding-block:22px 64px}
 section[hidden]{display:none}
 .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .lead{max-width:60ch;margin-bottom:28px}
@@ -79,12 +104,12 @@ section[hidden]{display:none}
 .hint-chips button{border:1px solid rgba(37,99,235,.2);background:rgba(255,255,255,.7);padding:5px 11px;border-radius:999px;font-size:13px;cursor:pointer;color:var(--accent);font-weight:500;display:inline-flex;gap:6px;align-items:center}
 
 /* strip */
-.strip{display:flex;align-items:center;gap:14px;background:var(--fg);color:#fff;border-radius:14px;padding:10px 16px;margin-bottom:22px;overflow:hidden}
+.strip{display:flex;align-items:center;gap:12px;background:var(--fg);color:#fff;border-radius:12px;padding:7px 12px;margin:0 0 10px;overflow:hidden}
 .strip .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#93c5fd;white-space:nowrap;display:flex;gap:8px;align-items:center}
 .strip .lbl i{width:8px;height:8px;border-radius:50%;background:#ef4444;animation:pulse 1.4s infinite}
 @keyframes pulse{50%{opacity:.3}}
-.strip .track{flex:1;min-width:0;position:relative;height:22px}
-.strip .track div{position:absolute;inset:0;display:flex;gap:10px;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(8px);visibility:hidden;font-size:14px}
+.strip .track{flex:1;min-width:0;position:relative;height:20px}
+.strip .track div{position:absolute;inset:0;display:flex;gap:8px;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(8px);visibility:hidden;font-size:13px}
 .strip .track div.on{opacity:1;transform:none;visibility:visible;transition:opacity .4s,transform .4s}
 .strip .track b{color:#fbbf24}
 .strip button{background:rgba(255,255,255,.12);border:0;color:#fff;border-radius:8px;padding:5px 10px;font-size:13px;cursor:pointer;white-space:nowrap}
@@ -186,7 +211,7 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 
 /* assessment */
 .check{display:grid;grid-template-columns:360px 1fr;gap:24px;align-items:start}
-.form{display:grid;gap:14px;position:sticky;top:calc(66px + env(safe-area-inset-top,0px))}
+.form{display:grid;gap:14px;position:sticky;top:calc(112px + env(safe-area-inset-top,0px))}
 .scorecard{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
 .ring{width:150px;height:150px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--surface-2) 0)}
 .ring div{width:116px;height:116px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center}
@@ -222,7 +247,7 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 
 /* course player */
 .player{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start}
-.lessons{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:4px;position:sticky;top:calc(66px + env(safe-area-inset-top,0px))}
+.lessons{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:4px;position:sticky;top:calc(112px + env(safe-area-inset-top,0px))}
 .lessons .hd{padding:6px 10px 10px;border-bottom:1px solid var(--line);margin-bottom:6px}
 .lessons .hd b{display:block;font-size:15px} .lessons .hd small{color:var(--muted)}
 .lessons button{border:0;background:transparent;text-align:left;padding:9px 10px;border-radius:10px;cursor:pointer;display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:center;font-size:14px}
@@ -294,6 +319,61 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
 .tl::before{content:"";position:absolute;left:-23px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .tl b{display:block} .tl span{font-size:13px;color:var(--muted)}
 
+
+/* map */
+.mapwrap{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+#map{height:560px;border-radius:var(--r);border:1px solid var(--line);background:#dfe8f4;overflow:hidden;position:relative}
+.maplist{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:6px;max-height:560px;overflow:auto}
+.maplist .hd{padding:4px 8px 10px;border-bottom:1px solid var(--line);margin-bottom:4px;font-size:13px;color:var(--muted)}
+.maplist button{border:0;background:transparent;text-align:left;padding:9px 10px;border-radius:10px;cursor:pointer;display:grid;grid-template-columns:10px 1fr auto;gap:10px;align-items:center;font-size:14px}
+.maplist button:hover,.maplist button.on{background:var(--accent-soft)}
+.maplist .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)} .maplist .dot.phd{background:var(--accent-2)}
+.maplist small{color:var(--muted)}
+.mapctl{position:absolute;top:10px;left:10px;z-index:1000;display:flex;gap:6px;flex-wrap:wrap}
+.mapctl button{border:1px solid var(--line);background:#fff;padding:6px 10px;border-radius:999px;font-size:13px;cursor:pointer;font-weight:600;color:var(--muted)}
+.mapctl button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.mapattr{position:absolute;right:6px;bottom:4px;z-index:1000;font-size:10px;color:#475569;background:rgba(255,255,255,.75);padding:2px 6px;border-radius:6px}
+.mapattr a{color:#475569}
+/* leaflet core (trimmed) */
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}
+.leaflet-container{overflow:hidden;outline-offset:1px;font:12px/1.5 Inter,sans-serif;-webkit-tap-highlight-color:transparent;touch-action:none}
+.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{user-select:none;-webkit-user-drag:none}
+.leaflet-tile{filter:inherit;visibility:hidden} .leaflet-tile-loaded{visibility:inherit}
+.leaflet-container .leaflet-tile{max-width:none!important;max-height:none!important;width:auto;padding:0}
+.leaflet-pane{z-index:400} .leaflet-tile-pane{z-index:200} .leaflet-overlay-pane{z-index:400} .leaflet-shadow-pane{z-index:500} .leaflet-marker-pane{z-index:600} .leaflet-tooltip-pane{z-index:650} .leaflet-popup-pane{z-index:700}
+.leaflet-map-pane canvas{z-index:100} .leaflet-map-pane svg{z-index:200}
+.leaflet-zoom-anim .leaflet-zoom-animated{transition:transform .25s cubic-bezier(0,0,.25,1)} .leaflet-zoom-anim .leaflet-tile,.leaflet-pan-anim .leaflet-tile{transition:none}
+.leaflet-zoom-animated{transform-origin:0 0}
+.leaflet-interactive{cursor:pointer} .leaflet-grab{cursor:grab} .leaflet-dragging .leaflet-grab{cursor:grabbing}
+.leaflet-control-container .leaflet-control{display:none}
+.leaflet-tooltip{position:absolute;padding:6px 9px;background:#fff;border:1px solid var(--line);border-radius:8px;color:var(--fg);white-space:nowrap;pointer-events:none;box-shadow:0 2px 8px rgba(15,23,42,.15);font-weight:600}
+.leaflet-tooltip-top:before{display:none}
+@media (max-width:920px){.mapwrap{grid-template-columns:1fr} #map{height:420px} .maplist{max-height:300px}}
+
+/* resources */
+.guide-tabs{margin-bottom:12px}
+.guide h3{font-size:22px;margin-bottom:6px} .guide .meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+.guide h4{font-size:15px;margin:18px 0 6px} .guide p{margin:0 0 10px;font-size:14px} .guide ul{margin:0 0 10px;padding-left:18px;font-size:14px}
+.guide table{min-width:0;font-size:13px} .guide .tablewrap{margin:8px 0 14px}
+.plan{display:grid;grid-template-columns:repeat(4,1fr);gap:10px} .plan div{background:var(--surface-2);border-radius:12px;padding:12px;font-size:13px} .plan b{display:block;margin-bottom:4px}
+.letter{background:var(--surface-2);border-radius:12px;padding:16px 18px;font-size:14px;line-height:1.6} .letter p{margin:0 0 10px} .letter p:last-child{margin:0}
+.annot{margin-top:12px;font-size:13px;color:var(--muted)} .annot b{display:block;color:var(--fg);margin-bottom:4px} .annot ul{margin:0;padding-left:18px}
+.cvwrap{display:grid;grid-template-columns:420px 1fr;gap:20px;align-items:start}
+.cvform{display:block} .cvsec{margin-top:14px;border-top:1px solid var(--line);padding-top:12px} .cvsec .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.cvrow{display:grid;gap:6px;background:var(--surface-2);border-radius:10px;padding:10px;margin-bottom:8px;position:relative}
+.cvrow .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px} .cvrow .rm{position:absolute;top:6px;right:6px;border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:16px}
+.cvrow input,.cvrow textarea{padding:7px 9px;font-size:13px;border-radius:8px}
+.cvpaper{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:6px;padding:40px 44px;min-height:700px;font-size:12.5px;line-height:1.45;color:#111;--acc:#2563eb}
+.cvpaper h1{font-size:26px;letter-spacing:-.02em;margin:0} .cvpaper .hd{font-size:13px;color:#444;margin:2px 0 4px} .cvpaper .ct{font-size:11.5px;color:#555;display:flex;gap:10px;flex-wrap:wrap}
+.cvpaper h2{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:16px 0 6px;padding-bottom:3px;border-bottom:1px solid #e5e7eb}
+.cvpaper .it{display:grid;grid-template-columns:1fr auto;gap:2px 12px;margin-bottom:7px} .cvpaper .it b{font-size:13px} .cvpaper .it .d{color:#666;font-size:11.5px;white-space:nowrap} .cvpaper .it .s{grid-column:1/-1;color:#333}
+.cvpaper .it .s ul{margin:2px 0 0;padding-left:16px}
+.cvpaper.modern{border-top:10px solid var(--acc);padding-top:30px} .cvpaper.modern h1{color:var(--acc)}
+.cvpaper.compact{display:grid;grid-template-columns:1fr 180px;gap:0 24px;padding:32px 36px} .cvpaper.compact .top{grid-column:1/-1} .cvpaper.compact .side{border-left:1px solid #e5e7eb;padding-left:18px}
+.cvpaper .tags{display:flex;gap:4px;flex-wrap:wrap} .cvpaper .tags span{background:#f3f4f6;border-radius:6px;padding:2px 7px;font-size:11px}
+.qset .q{margin-bottom:10px} .qset .q b{display:block;font-size:14px;margin-bottom:4px} .qset label{display:block;font-size:13px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;margin-bottom:4px;cursor:pointer} .qset label.correct{background:var(--mint-soft);border-color:var(--mint)} .qset label.wrong{background:var(--rose-soft);border-color:var(--rose)} .qset input{width:auto;margin-right:6px}
+@media print{body *{visibility:hidden} #cvpaper,#cvpaper *{visibility:visible} #cvpaper{position:absolute;left:0;top:0;width:100%;border:0;box-shadow:none;border-radius:0;padding:0} @page{margin:16mm}}
+@media (max-width:920px){.cvwrap,.plan{grid-template-columns:1fr} .cvpaper{padding:24px}}
 footer{border-top:1px solid var(--line);padding-block:18px calc(18px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:13px}
 footer .wrap{display:flex;gap:14px;flex-wrap:wrap;align-items:center} footer .wrap>span:first-of-type{flex:1;min-width:260px}
 footer .links{display:flex;gap:12px;margin-left:auto}
@@ -321,6 +401,7 @@ footer .links{display:flex;gap:12px;margin-left:auto}
     <g class="eyes"><ellipse class="eye" cx="37" cy="58" rx="11" ry="14" fill="#fff"/><ellipse class="eye eye2" cx="63" cy="58" rx="11" ry="14" fill="#fff"/><circle cx="40" cy="60" r="5" fill="#0f172a"/><circle cx="66" cy="60" r="5" fill="#0f172a"/><circle cx="42" cy="57" r="1.6" fill="#fff"/><circle cx="68" cy="57" r="1.6" fill="#fff"/></g>
     <g class="cap"><path d="M18 34 50 20l32 14-32 14z" fill="#0f172a"/><path d="M32 39v8c0 4 8 7 18 7s18-3 18-7v-8" fill="none" stroke="#0f172a" stroke-width="3.5"/><path d="M82 34v13" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/><circle cx="82" cy="49" r="3" fill="#fbbf24"/></g>
   </symbol>
+  <symbol id="ic-map" viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></symbol>
   <symbol id="ic-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></symbol>
   <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
   <symbol id="ic-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></symbol>
@@ -357,6 +438,7 @@ footer .links{display:flex;gap:12px;margin-left:auto}
   <symbol id="il-find" viewBox="0 0 160 64"><circle cx="40" cy="32" r="18"/><path d="m54 46 14 14"/><path d="M34 32h12M40 26v12"/><rect x="84" y="12" width="64" height="16" rx="6"/><rect x="84" y="36" width="48" height="16" rx="6"/><path d="M92 20h20M92 44h14"/></symbol>
   <symbol id="il-fit" viewBox="0 0 160 64"><circle cx="40" cy="32" r="22"/><circle cx="40" cy="32" r="13"/><circle cx="40" cy="32" r="4"/><path d="M80 48V24M100 48V12M120 48V32M140 48V20M72 52h76"/></symbol>
   <symbol id="il-learn" viewBox="0 0 160 64"><path d="M12 14h40v38H12zM52 14h40v38H52z"/><path d="M20 24h24M20 32h24M20 40h14M60 24h24M60 32h18"/><path d="M118 10l5 12 13 1-10 9 3 13-11-7-11 7 3-13-10-9 13-1z"/></symbol>
+  <symbol id="il-map" viewBox="0 0 160 64"><path d="M8 14l40-8 40 8 40-8v44l-40 8-40-8-40 8z"/><path d="M48 6v44M88 14v44"/><circle cx="30" cy="30" r="5"/><circle cx="68" cy="24" r="5"/><circle cx="110" cy="34" r="5"/><path d="M30 35v8M68 29v8M110 39v8"/></symbol>
   <symbol id="il-events" viewBox="0 0 160 64"><rect x="12" y="14" width="56" height="40" rx="6"/><path d="M12 26h56M24 8v10M56 8v10M26 38h8M40 38h8M54 38h8"/><path d="M92 54c0-18 12-30 28-30s28 12 28 30"/><path d="M104 54v-8M120 54v-14M136 54v-8M120 14v6"/></symbol>
   <symbol id="il-about" viewBox="0 0 220 120"><circle cx="110" cy="60" r="44"/><ellipse cx="110" cy="60" rx="44" ry="16"/><ellipse cx="110" cy="60" rx="18" ry="44"/><path d="M66 60h88M110 16v88"/><circle cx="92" cy="44" r="3"/><circle cx="128" cy="40" r="3"/><circle cx="134" cy="72" r="3"/><circle cx="96" cy="78" r="3"/><rect x="8" y="20" width="44" height="22" rx="6"/><rect x="168" y="22" width="44" height="22" rx="6"/><rect x="10" y="78" width="44" height="22" rx="6"/><rect x="166" y="76" width="44" height="22" rx="6"/><path d="M16 28h20M16 35h26M176 30h20M176 37h26M18 86h22M18 93h26M174 84h22M174 91h26"/></symbol>
   <symbol id="il-signin" viewBox="0 0 220 140"><rect x="30" y="20" width="160" height="100" rx="14"/><circle cx="70" cy="56" r="14"/><path d="M46 92c4-12 12-18 24-18s20 6 24 18"/><rect x="108" y="44" width="62" height="8" rx="4"/><rect x="108" y="60" width="48" height="8" rx="4"/><rect x="108" y="78" width="40" height="12" rx="6"/><path d="M180 10l4 8 8 1-6 6 2 8-8-4-8 4 2-8-6-6 8-1z"/></symbol>
@@ -368,16 +450,19 @@ footer .links{display:flex;gap:12px;margin-left:auto}
   <button class="brand" data-view="home"><svg class="mascot" width="32" height="32" viewBox="0 0 100 100"><use href="#logo"/></svg><span>Schol<em>io</em></span></button>
   <nav role="tablist">
     <button role="tab" aria-selected="true" data-view="home"><svg class="i"><use href="#ic-home"/></svg><span>Home</span></button>
+    <button role="tab" aria-selected="false" data-view="map"><svg class="i"><use href="#ic-map"/></svg><span>Map</span></button>
     <button role="tab" aria-selected="false" data-view="countries"><svg class="i"><use href="#ic-globe"/></svg><span>Countries</span></button>
     <button role="tab" aria-selected="false" data-view="rank"><svg class="i"><use href="#ic-chart"/></svg><span>Rankings</span></button>
     <button role="tab" aria-selected="false" data-view="assess"><svg class="i"><use href="#ic-target"/></svg><span>My fit</span></button>
     <button role="tab" aria-selected="false" data-view="academy"><svg class="i"><use href="#ic-book"/></svg><span>Academy</span></button>
+    <button role="tab" aria-selected="false" data-view="resources"><svg class="i"><use href="#ic-doc"/></svg><span>Resources</span></button>
     <button role="tab" aria-selected="false" data-view="events"><svg class="i"><use href="#ic-cal"/></svg><span>Events</span></button>
     <button role="tab" aria-selected="false" data-view="funders"><svg class="i"><use href="#ic-building"/></svg><span>Funders</span></button>
     <button role="tab" aria-selected="false" data-view="about"><svg class="i"><use href="#ic-info"/></svg><span>About</span></button>
   </nav>
   <button class="signin" data-view="signup"><svg class="i s"><use href="#ic-user"/></svg>Sign in</button>
-</div></header>
+</div>
+<div class="wrap"><div class="strip"><div class="lbl"><i></i>Closing soon</div><div class="track" id="strip"></div><button type="button" id="strip-next">Next ›</button></div></div></header>
 
 <main class="wrap">
 
@@ -410,7 +495,6 @@ footer .links{display:flex;gap:12px;margin-left:auto}
     </div>
   </div>
 
-  <div class="strip"><div class="lbl"><i></i>Closing soon</div><div class="track" id="strip"></div><button type="button" id="strip-next">Next ›</button></div>
 
   <div class="grid4">
     <div class="card stat"><div class="ic"><svg class="i"><use href="#ic-cap"/></svg></div><div><b id="st-count" data-n="0">0</b><span>Open now</span></div></div>
@@ -423,7 +507,7 @@ footer .links{display:flex;gap:12px;margin-left:auto}
     <button class="path" data-scroll="catalogue"><svg class="il"><use href="#il-find"/></svg><h4>Find an award</h4><p>Filter by level, field, region, funding and English rules.</p><span class="n">Browse the catalogue →</span></button>
     <button class="path" data-view="assess"><svg class="il"><use href="#il-fit"/></svg><h4>Check your fit</h4><p>A score across five dimensions and what to fix first.</p><span class="n">Run the assessment →</span></button>
     <button class="path" data-view="academy"><svg class="il"><use href="#il-learn"/></svg><h4>Prepare and get certified</h4><p>Crash courses with quizzes and an Scholio certificate.</p><span class="n">Open the Academy →</span></button>
-    <button class="path" data-view="events"><svg class="il"><use href="#il-events"/></svg><h4>Join a session</h4><p>Funder Q&amp;As, clinics and weekend statement sprints.</p><span class="n">See events →</span></button>
+    <button class="path" data-view="map"><svg class="il"><use href="#il-map"/></svg><h4>Explore the map</h4><p>Every award pinned to its campus. Zoom into a region and start there.</p><span class="n">Open the research map →</span></button>
   </div>
 
   <div id="foryou-wrap" hidden style="margin-bottom:28px">
@@ -432,7 +516,7 @@ footer .links{display:flex;gap:12px;margin-left:auto}
   </div>
 
   <div id="catalogue">
-    <div class="cat-head"><div><div class="kicker" style="margin-bottom:4px"><svg class="i s"><use href="#ic-search"/></svg>Catalogue</div><h2>Open Master's and PhD scholarships</h2></div><div class="fsel"><svg class="i s"><use href="#ic-chart"/></svg><select id="f-sort" aria-label="Sort"><option value="deadline">Closest deadline</option><option value="rating">Top rated</option><option value="popular">Most popular</option><option value="rank">University rank</option><option value="country">Country A to Z</option></select></div></div>
+    <div class="cat-head"><div><div class="kicker" style="margin-bottom:4px"><svg class="i s"><use href="#ic-search"/></svg>Catalogue</div><h2>Open Master's and PhD scholarships</h2></div><div class="fsel"><svg class="i s"><use href="#ic-chart"/></svg><select id="f-sort" aria-label="Sort"><option value="deadline">Closest deadline</option><option value="rank">University rank</option><option value="country">Country A to Z</option></select></div></div>
     <div class="filters">
       <div class="frow">
         <div class="seg" id="seg-level"><button aria-pressed="true" data-v=""><svg class="i s"><use href="#ic-layers"/></svg>All levels</button><button aria-pressed="false" data-v="Master's">Master's</button><button aria-pressed="false" data-v="PhD">PhD</button></div>
@@ -447,11 +531,21 @@ footer .links{display:flex;gap:12px;margin-left:auto}
   </div>
 </section>
 
+
+<!-- MAP -->
+<section id="view-map" hidden>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-map"/></svg>Research map</div><h2>Every award, pinned to its <em>campus</em></h2><p>Zoom into a region, click a pin for the listing. Blue pins are Master's, violet are PhD, split pins are both. Pins without a basemap still work if map tiles are blocked on your network.</p></div>
+  <div class="mapwrap">
+    <div id="map"><div class="mapctl"><button aria-pressed="true" data-ml="">All</button><button aria-pressed="false" data-ml="Master's">Master's</button><button aria-pressed="false" data-ml="PhD">PhD</button><button aria-pressed="false" data-ml="checked">Verified</button></div><div class="mapattr">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a></div></div>
+    <div class="maplist" id="maplist"></div>
+  </div>
+</section>
+
 <!-- COUNTRIES -->
 <section id="view-countries" hidden>
-  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-globe"/></svg>Browse by destination</div><h2>Pick a country, see its popular universities and what they <em>fund</em></h2><p>Popularity is how many seekers saved listings there. Click a country to filter the catalogue.</p></div>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-globe"/></svg>Browse by destination</div><h2>Pick a country, see its popular universities and what they <em>fund</em></h2><p>Universities we track in each destination and the awards they are known for. Click a country to filter the catalogue.</p></div>
   <div class="grid2" style="margin-bottom:24px">
-    <div class="card"><div class="mono" style="margin-bottom:12px">Where seekers are looking (saves, last 90 days)</div><div style="display:grid;gap:8px" id="savesbar"></div></div>
+    <div class="card"><div class="mono" style="margin-bottom:12px">Open listings by country</div><div style="display:grid;gap:8px" id="savesbar"></div></div>
     <div class="card"><div class="mono" style="margin-bottom:12px">Funding type and level across open listings</div><div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center"><svg viewBox="0 0 120 120" width="120" height="120" id="donut" role="img" aria-label="Funding split"></svg><div id="donut-legend" style="display:grid;gap:8px;font-size:13px"></div></div></div>
   </div>
   <div class="cgrid" id="cgrid"></div>
@@ -461,13 +555,13 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 <section id="view-rank" hidden>
   <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-chart"/></svg>University database</div><h2>Rankings, with the <em>funding</em> each university actually offers</h2><p>Indicative positions based on QS World University Rankings 2026, alongside the flagship scholarships we track and the Scholio applicant rating.</p></div>
   <div class="chips" style="margin-bottom:12px" id="rankchips"></div>
-  <div class="tablewrap"><table id="ranktable"><thead><tr><th>Rank</th><th>University</th><th>Country</th><th>Flagship funding</th><th>Int'l students</th><th>Applicant rating</th><th></th></tr></thead><tbody></tbody></table></div>
-  <p class="note" style="margin-top:12px">Rankings are indicative and compiled from public tables; confirm current positions on qs.com or timeshighereducation.com. International student share is approximate.</p>
+  <div class="tablewrap"><table id="ranktable"><thead><tr><th>Rank</th><th>University</th><th>Country</th><th>Flagship funding</th><th>Status</th><th></th></tr></thead><tbody></tbody></table></div>
+  <p class="note" style="margin-top:12px">Positions follow QS World University Rankings 2026 as published; confirm on qs.com. Unranked rows are institutions that fund every admitted graduate student.</p>
 </section>
 
 <!-- ASSESS -->
 <section id="view-assess" hidden>
-  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-target"/></svg>Profile assessment</div><h2>How <em>competitive</em> are you, and what should you fix first?</h2><p>Five dimensions, scored against the real requirements of the open listings. Your inputs stay in this browser only, so the home page can show your best matches.</p></div>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-target"/></svg>Profile assessment</div><h2>How <em>competitive</em> are you, and what should you fix first?</h2><p>Five dimensions, scored against the real requirements of the open listings. Your inputs stay in this browser only; nothing is sent anywhere.</p></div>
   <div class="check">
     <form class="form card" id="profile" onsubmit="return false">
       <div><label class="l" for="p-want">Target</label><select id="p-want"><option selected>Master's</option><option>PhD</option></select></div>
@@ -518,28 +612,153 @@ footer .links{display:flex;gap:12px;margin-left:auto}
   <div class="certwrap"><div id="cert-card"></div><div id="cert-side"></div></div>
 </section>
 
+<!-- RESOURCES -->
+<section id="view-resources" hidden>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-doc"/></svg>Resources</div><h2>Guides, samples and a free <em>CV designer</em></h2><p>Everything an applicant needs beyond the listing: how each English test works, what a winning letter looks like, an academic CV you can build here, and practice papers to warm up on.</p></div>
+  <div class="seg" id="res-tabs" style="margin-bottom:18px"><button aria-pressed="true" data-rt="tests"><svg class="i s"><use href="#ic-lang"/></svg>English test guides</button><button aria-pressed="false" data-rt="letters"><svg class="i s"><use href="#ic-mail"/></svg>Sample letters</button><button aria-pressed="false" data-rt="cv"><svg class="i s"><use href="#ic-user"/></svg>CV designer</button><button aria-pressed="false" data-rt="papers"><svg class="i s"><use href="#ic-doc"/></svg>Sample papers</button></div>
+
+  <!-- TEST GUIDES -->
+  <div id="rt-tests">
+    <div class="guide-tabs chips" id="guide-tabs"></div>
+    <div class="guide card" id="guide"></div>
+  </div>
+
+  <!-- LETTERS -->
+  <div id="rt-letters" hidden>
+    <div class="grid2">
+      <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-mail"/></svg>Sample 1</div><h3 style="font-size:20px;margin-bottom:10px">Scholarship motivation letter (Master's, fully funded)</h3>
+        <div class="letter">
+<p>Dear Selection Committee,</p>
+<p>I am applying for the Excellence Scholarship to join the MSc in Environmental Engineering in September 2027. I want to build flood early-warning tools that work in places without gauging stations, and the Water Resources group is the only one I have found that publishes open rainfall-runoff models for ungauged Himalayan catchments.</p>
+<p>In 2026 I built and ran a bilingual flood bulletin for a district hit by a glacial-lake outburst. It reached 40,000 people in its first week and was adopted by the district administration. The alerts were calibrated by hand from upstream reports; the limit I hit was hydrological modelling, and that is the gap this degree closes.</p>
+<p>My undergraduate thesis (first class, 3.7/4.0) modelled sediment transport in a monsoon river using open satellite data. The method was crude but it taught me to work with sparse, noisy inputs, which is the normal case for the communities I want to serve.</p>
+<p>I would use the two-year programme to validate the group's model on my district's data, which I already hold with local partners, and to turn the bulletin into a tool other districts can run themselves. Within five years I intend to return to the public sector at home, where I have already worked for three years, and lead the national rollout.</p>
+<p>Thank you for considering my application.</p>
+<p>Sincerely,<br>A. Applicant</p>
+        </div>
+        <div class="annot"><b>Why it works</b><ul><li>Direction in the first two sentences, with a named group.</li><li>Two concrete episodes with numbers (40,000 people; 3.7 GPA).</li><li>The gap is stated plainly, and the degree is the answer to it.</li><li>A five-year plan the funder can picture. 280 words.</li></ul></div></div>
+      <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-mail"/></svg>Sample 2</div><h3 style="font-size:20px;margin-bottom:10px">First email to a prospective PhD supervisor</h3>
+        <div class="letter">
+<p><b>Subject:</b> PhD enquiry: low-cost flood sensing in ungauged catchments (Fall 2027)</p>
+<p>Dear Dr. Lin,</p>
+<p>I read your 2025 paper on transfer learning for rainfall-runoff prediction in data-sparse basins. I am writing because I have a dataset it could be tested on, and I would like to do that as a PhD student in your group.</p>
+<p>I hold a BEng in Civil Engineering (3.7/4.0) and for the past three years I have worked in my country's ministry of finance on digital public infrastructure. In 2026 I built a flood bulletin for a district with no gauging station; it now holds 14 months of crowd-reported water levels for 23 sites, which I have permission to share for research.</p>
+<p>My question: would your group be open to a PhD project that applies your transfer-learning approach to this kind of citizen-reported data? If so, I would apply through the Hong Kong PhD Fellowship Scheme by 1 December and would welcome ten minutes of your advice on framing the proposal.</p>
+<p>My CV and a one-page proposal sketch are attached.</p>
+<p>Kind regards,<br>A. Applicant<br>[phone] · [LinkedIn]</p>
+        </div>
+        <div class="annot"><b>Why it works</b><ul><li>Subject line names the topic and the intake.</li><li>Opens with their paper and what you bring (a dataset), not with flattery.</li><li>One clear question with a date attached.</li><li>Under 200 words; the attachments carry the detail.</li></ul></div></div>
+    </div>
+    <div class="sp"></div>
+    <div class="grid2">
+      <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-mail"/></svg>Sample 3</div><h3 style="font-size:20px;margin-bottom:10px">Reference request to a former professor</h3>
+        <div class="letter">
+<p>Dear Professor Rai,</p>
+<p>I am applying for the Gates Cambridge Scholarship (deadline 8 December) for the MPhil in Technology Policy, and I would be grateful if you would write one of my two references.</p>
+<p>You supervised my final-year thesis on sediment transport in 2023 and taught me Hydrology II, where I scored 92%. If you are able to write, I will send a one-page summary of what I have done since, the scholarship's criteria, and the portal link; the reference is submitted online and takes about 30 minutes.</p>
+<p>If your schedule does not allow it this cycle, I completely understand and would appreciate a quick reply so I can ask someone else in time.</p>
+<p>With thanks,<br>A. Applicant</p>
+        </div>
+        <div class="annot"><b>Why it works</b><ul><li>Names the award, the deadline and the course in line one.</li><li>Reminds them who you are with specifics.</li><li>Promises to make it easy: summary, criteria, link, time estimate.</li><li>Gives them a graceful way to say no, early.</li></ul></div></div>
+      <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-pen"/></svg>Rules for all three</div>
+        <div class="steps">
+          <div class="step"><b>First sentence does the job</b><span>Award, course, intake, or the one question you are asking. Never "I hope this finds you well".</span></div>
+          <div class="step"><b>One number per paragraph</b><span>Grades, people reached, months of data, team size. Numbers are read; adjectives are skipped.</span></div>
+          <div class="step"><b>Name the gap</b><span>What you cannot yet do, and why this degree or person fixes it. Panels trust applicants who know their limits.</span></div>
+          <div class="step"><b>Stop at 300 words</b><span>Motivation letters 250 to 300; emails under 200. Attachments carry detail.</span></div>
+          <div class="step"><b>Formatting</b><span>Plain text or a one-page PDF. Your name in the filename. No photos unless the funder asks.</span></div>
+        </div></div>
+    </div>
+  </div>
+
+  <!-- CV DESIGNER -->
+  <div id="rt-cv" hidden>
+    <div class="cvwrap">
+      <div class="cvform card">
+        <div style="display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px"><div class="mono">Your details</div><div style="display:flex;gap:6px"><button class="btn sm" type="button" id="cv-sample">Load sample</button><button class="btn sm" type="button" id="cv-clear">Clear</button></div></div>
+        <div class="grid2" style="gap:10px"><div><label class="l">Full name</label><input id="cv-name"></div><div><label class="l">Headline</label><input id="cv-head" placeholder="e.g. Civil engineer · flood early-warning systems"></div></div>
+        <div class="grid2" style="gap:10px;margin-top:10px"><div><label class="l">Email</label><input id="cv-email"></div><div><label class="l">Phone</label><input id="cv-phone"></div></div>
+        <div class="grid2" style="gap:10px;margin-top:10px"><div><label class="l">City, country</label><input id="cv-city"></div><div><label class="l">Links (LinkedIn, website, ORCID)</label><input id="cv-links"></div></div>
+        <div style="margin-top:10px"><label class="l">Summary (2 to 3 lines)</label><textarea id="cv-sum" rows="3"></textarea></div>
+        <div class="cvsec"><div class="hd"><b>Education</b><button class="btn sm" type="button" data-add="edu">+ Add</button></div><div id="cv-edu"></div></div>
+        <div class="cvsec"><div class="hd"><b>Experience</b><button class="btn sm" type="button" data-add="exp">+ Add</button></div><div id="cv-exp"></div></div>
+        <div class="cvsec"><div class="hd"><b>Publications and projects</b><button class="btn sm" type="button" data-add="pub">+ Add</button></div><div id="cv-pub"></div></div>
+        <div class="cvsec"><div class="hd"><b>Awards</b><button class="btn sm" type="button" data-add="awd">+ Add</button></div><div id="cv-awd"></div></div>
+        <div class="grid2" style="gap:10px;margin-top:10px"><div><label class="l">Skills (comma separated)</label><input id="cv-skills"></div><div><label class="l">Languages (comma separated)</label><input id="cv-langs"></div></div>
+        <div class="grid2" style="gap:10px;margin-top:10px"><div><label class="l">Template</label><select id="cv-tpl"><option value="classic">Classic academic</option><option value="modern">Modern (accent bar)</option><option value="compact">Compact two-column</option></select></div><div><label class="l">Accent</label><select id="cv-acc"><option value="#2563eb">Blue</option><option value="#0f172a">Ink</option><option value="#0f766e">Teal</option><option value="#7c3aed">Violet</option></select></div></div>
+        <p class="note" style="margin-top:12px">Saved automatically in this browser. Nothing is uploaded.</p>
+      </div>
+      <div>
+        <div class="cta" style="margin:0 0 10px;justify-content:flex-end"><button class="btn primary" type="button" id="cv-print"><svg class="i s"><use href="#ic-download"/></svg>Print / Save as PDF</button></div>
+        <div class="cvpaper" id="cvpaper"></div>
+      </div>
+    </div>
+    <div class="sp"></div>
+    <div class="card"><div class="mono" style="margin-bottom:10px">Academic CV rules the designer follows</div>
+      <div class="grid2"><ul style="margin:0;padding-left:18px;font-size:14px;color:var(--muted)"><li>Education before experience for Master's and PhD applications; reverse chronological inside each section.</li><li>Degrees carry the grade or GPA and the thesis title. Panels look for both.</li><li>Publications in a consistent citation style with you in bold; preprints and conference papers count.</li></ul><ul style="margin:0;padding-left:18px;font-size:14px;color:var(--muted)"><li>Two pages maximum for Master's, three for PhD with publications.</li><li>No photo, date of birth, marital status or nationality unless the funder asks.</li><li>Every bullet starts with a verb and ends with a result.</li></ul></div></div>
+  </div>
+
+  <!-- SAMPLE PAPERS -->
+  <div id="rt-papers" hidden>
+    <div class="grid2" style="margin-bottom:16px">
+      <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-pen"/></svg>IELTS Writing Task 2 · sample with model answer</div>
+        <p style="font-size:14px"><b>Prompt (40 minutes, at least 250 words):</b> Some people believe that governments should fund university education for all students. Others think students should pay for their own studies. Discuss both views and give your own opinion.</p>
+        <details><summary style="cursor:pointer;font-weight:600;font-size:14px">Model answer (band 7+ features marked)</summary>
+        <div class="letter" style="margin-top:10px">
+<p>Whether the state or the student should pay for a degree is a question every country answers differently. This essay examines the case for public funding and the case for personal payment before arguing that a mixed model serves societies best.</p>
+<p>Supporters of free university education point to access. When fees are abolished, as in Germany and Norway, enrolment among lower-income families rises, and the economy gains graduates who would otherwise never have applied. They also note that the public already benefits from the doctors, engineers and teachers that universities produce, so it is reasonable for the public to pay.</p>
+<p>Those who favour student payment reply that free places are not free: taxpayers who never attend university end up subsidising those who will later earn more. They argue that fees make students choose courses carefully and complete them faster, and that income-contingent loans, as in Australia, protect graduates who earn little.</p>
+<p>In my view, neither extreme is satisfactory. Full public funding is costly and can crowd out schools and hospitals; full private payment deters precisely the students a country most needs to reach. A model in which tuition is state-funded for a capped number of years, with loans repaid only above an income threshold, captures the benefits of both.</p>
+<p>In conclusion, while both positions have merit, a blended system that removes the upfront barrier yet asks successful graduates to contribute is the fairest and most sustainable choice. (268 words)</p>
+        </div>
+        <div class="annot"><b>What earns the band</b><ul><li>Clear position stated in the introduction and held throughout.</li><li>Each body paragraph has one idea, an example, and a link back to the question.</li><li>Range: "income-contingent", "crowd out", "capped"; complex sentences without errors.</li><li>Cohesion through reference ("They also note", "reply that") rather than listing linkers.</li></ul></div></details></div>
+      <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-book"/></svg>IELTS Reading · mini passage with questions</div>
+        <p style="font-size:14px"><b>Passage (extract, 7 minutes):</b> Early-warning systems for floods have traditionally depended on networks of river gauges. These instruments are accurate but expensive to install and maintain, and in mountainous regions many are destroyed by the very events they are meant to record. A newer approach replaces or supplements gauges with reports from residents, submitted by phone. Such "citizen observations" are less precise, yet because they arrive from many points along a river, they can reveal the shape of a flood wave in a way a single gauge cannot. Researchers in Nepal and Bangladesh found that combining the two sources cut false alarms by a third without reducing the number of real events detected.</p>
+        <div class="qset" id="read-q"></div>
+        <button class="btn sm" type="button" id="read-check">Check answers</button><p class="note" id="read-msg" hidden></p></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-mic"/></svg>Speaking Part 2 · cue card and a model structure</div>
+        <p style="font-size:14px"><b>Cue card (1 minute to prepare, speak for 2):</b> Describe a project you worked on that you are proud of. You should say what it was, who you worked with, what your role was, and explain why you are proud of it.</p>
+        <div class="steps"><div class="step"><b>Set the scene (20 s)</b><span>"The project I want to talk about is a flood bulletin I built last year, during the monsoon, for a district north of the capital."</span></div><div class="step"><b>Who and what (40 s)</b><span>Team size, your role, two concrete tasks. Use past tenses accurately; one conditional ("if we had waited, …").</span></div><div class="step"><b>The difficulty (30 s)</b><span>One problem and how you solved it. Examiners score this for fluency and range.</span></div><div class="step"><b>Why proud (30 s)</b><span>A result with a number, and one sentence about what you learned.</span></div></div></div>
+      <div class="card"><div class="kicker" style="margin-bottom:6px"><svg class="i s"><use href="#ic-doc"/></svg>Official free practice papers</div>
+        <div class="perks">
+          <div class="perk"><div class="ic"><svg class="i"><use href="#ic-lang"/></svg></div><div><b>IELTS</b><span><a href="https://ielts.org/take-a-test/preparation-resources" target="_blank" rel="noopener">ielts.org preparation resources ↗</a>: free sample questions for all four parts, answer keys, and band descriptors.</span></div></div>
+          <div class="perk"><div class="ic"><svg class="i"><use href="#ic-lang"/></svg></div><div><b>TOEFL iBT</b><span><a href="https://www.ets.org/toefl/test-takers/ibt/prepare.html" target="_blank" rel="noopener">ets.org TOEFL prep ↗</a>: free practice test and the official TOEFL Practice Online.</span></div></div>
+          <div class="perk"><div class="ic"><svg class="i"><use href="#ic-lang"/></svg></div><div><b>Duolingo English Test</b><span><a href="https://englishtest.duolingo.com/applicants" target="_blank" rel="noopener">englishtest.duolingo.com ↗</a>: unlimited free practice tests with an estimated score.</span></div></div>
+          <div class="perk"><div class="ic"><svg class="i"><use href="#ic-lang"/></svg></div><div><b>PTE Academic</b><span><a href="https://www.pearsonpte.com/preparation" target="_blank" rel="noopener">pearsonpte.com preparation ↗</a>: free scored practice test and question-type guides.</span></div></div>
+          <div class="perk"><div class="ic"><svg class="i"><use href="#ic-flask"/></svg></div><div><b>GRE</b><span><a href="https://www.ets.org/gre/test-takers/general-test/prepare.html" target="_blank" rel="noopener">ets.org GRE prep ↗</a>: two free POWERPREP practice tests.</span></div></div>
+        </div></div>
+    </div>
+  </div>
+</section>
+
 <!-- EVENTS -->
 <section id="view-events" hidden>
-  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-cal"/></svg>Events</div><h2>Webinars, fairs and deadline <em>sprints</em></h2><p>Funder info sessions, alumni AMAs, and weekend sprints where you finish a statement with a mentor in the room. Times shown in your local time zone.</p></div>
-  <div class="events" id="events"></div>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-cal"/></svg>Events</div><h2>Webinars, fairs and deadline <em>sprints</em></h2><p>Every open deadline on one calendar. Community sessions (funder Q&amp;As, statement sprints) will appear here as they are scheduled.</p></div>
+  <div class="mono" style="margin-bottom:10px">Deadline calendar</div><div class="events" id="events"></div><div class="sp"></div><div class="mono" style="margin-bottom:10px">Sessions</div><p class="note">No sessions scheduled yet. Want to host a Q&amp;A for applicants or run a statement sprint? <a href="https://github.com/nirajbhusal/openaward/issues/new?title=Session%20proposal:%20&labels=event" target="_blank" rel="noopener">Propose one ↗</a></p>
 </section>
 
 <!-- FUNDERS -->
 <section id="view-funders" hidden>
   <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-building"/></svg>For funders</div><h2>List once, reach qualified applicants <em>everywhere</em></h2><p>Universities, governments, foundations and corporate donors post on one template. We verify, route and report. Applications stay on your own site.</p></div>
   <div class="grid2">
-    <div class="card"><h3 style="font-size:20px;margin-bottom:12px">Your listings</h3>
-      <div class="grid4" style="grid-template-columns:1fr 1fr;margin-bottom:14px"><div class="kpi"><b>24,180</b><span>Views, 30 days</span></div><div class="kpi"><b>3,120</b><span>Saved</span></div><div class="kpi"><b>1,410</b><span>Clicked to apply</span></div><div class="kpi"><b>61%</b><span>Passed fit check</span></div></div>
-      <svg viewBox="0 0 400 110" width="100%" role="img" aria-label="Views per week, sample"><g fill="#2563eb" fill-opacity=".9"><rect x="10" y="60" width="28" height="40" rx="4"/><rect x="48" y="50" width="28" height="50" rx="4"/><rect x="86" y="42" width="28" height="58" rx="4"/><rect x="124" y="55" width="28" height="45" rx="4"/><rect x="162" y="35" width="28" height="65" rx="4"/><rect x="200" y="28" width="28" height="72" rx="4"/><rect x="238" y="20" width="28" height="80" rx="4"/><rect x="276" y="30" width="28" height="70" rx="4"/><rect x="314" y="14" width="28" height="86" rx="4"/><rect x="352" y="8" width="28" height="92" rx="4"/></g><line x1="0" y1="100" x2="400" y2="100" stroke="#e5e7eb"/></svg>
-      <p class="note">Sample numbers. Live data breaks down by country of origin, field and fit score.</p></div>
+    <div class="card"><h3 style="font-size:20px;margin-bottom:12px">Why list on Scholio</h3>
+      <div class="perks">
+        <div class="perk"><div class="ic"><svg class="i"><use href="#ic-check"/></svg></div><div><b>Verified, so applicants trust it</b><span>We check your official page before publishing and stamp the date on the listing.</span></div></div>
+        <div class="perk"><div class="ic" style="background:#f3e8ff;color:var(--accent-2)"><svg class="i"><use href="#ic-target"/></svg></div><div><b>Pre-qualified traffic</b><span>Seekers see your award next to their own fit score, so the clicks you get are from people who meet the rules.</span></div></div>
+        <div class="perk"><div class="ic" style="background:var(--mint-soft);color:#047857"><svg class="i"><use href="#ic-chart"/></svg></div><div><b>Reporting as the index grows</b><span>Views, saves and fit-check pass rates by country of origin, once there is enough traffic to report responsibly.</span></div></div>
+        <div class="perk"><div class="ic" style="background:var(--amber-soft);color:#b45309"><svg class="i"><use href="#ic-money"/></svg></div><div><b>Free at launch</b><span>Listing is free while the index is being built. Featured placement and sponsored courses come later.</span></div></div>
+      </div>
+      </div>
     <div class="card"><h3 style="font-size:20px;margin-bottom:12px">Post a scholarship</h3>
       <div class="steps">
         <div class="step"><b>Fill the standard template</b><span>Level, fields, host, deadline, funding, English test, admission-first, value, who may apply.</span></div>
         <div class="step"><b>Attach the official link</b><span>Moderators verify against it before it goes live and set the "verified on" date.</span></div>
         <div class="step"><b>Publish, then roll over</b><span>Last cycle becomes the archive; clone and update dates.</span></div>
         <div class="step"><b>Sponsor readiness</b><span>Fund a course or a sprint and get first look at certificate holders.</span></div></div>
-      <div class="cta"><button class="btn primary" type="button" id="post-btn">Start a listing</button><button class="btn" type="button" disabled>Import last cycle</button></div>
-      <p class="note" id="post-note" hidden>Listing form would open here. Not wired up in the prototype.</p></div>
+      <div class="cta"><a class="btn primary" href="https://github.com/nirajbhusal/openaward/issues/new?title=New%20listing:%20&labels=listing&body=Scholarship%20name:%0AHost:%0ACountry:%0ALevel%20(Master%27s/PhD):%0AFields:%0ADeadline:%0AFunding%20(full/partial)%20and%20what%20it%20covers:%0AEnglish%20test:%0AAdmission%20needed%20first%3F:%0AWho%20may%20apply:%0AOfficial%20page%20URL:" target="_blank" rel="noopener">Submit a listing ↗</a></div>
+      <p class="note">Submissions open a form on GitHub; a moderator verifies the official page and publishes within a few days.</p></div>
   </div>
   <div class="sp"></div>
   <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-layers"/></svg>Product architecture</div><h2>One data model, four engines, two audiences</h2></div>
@@ -604,9 +823,9 @@ footer .links{display:flex;gap:12px;margin-left:auto}
         <button class="btn" type="button" disabled style="justify-content:center"><svg class="i"><use href="#ic-globe"/></svg>Continue with Google</button>
         <button class="btn" type="button" disabled style="justify-content:center"><svg class="i"><use href="#ic-lock"/></svg>Continue with LinkedIn</button>
         <div class="or">or</div>
-        <div><label class="l" for="su-email">Email</label><input id="su-email" type="email" placeholder="you@university.edu"></div>
-        <button class="btn primary" type="button" id="su-btn" style="justify-content:center"><svg class="i s"><use href="#ic-bell"/></svg>Join the waitlist</button>
-        <p class="note" id="su-note" hidden>You are on the list. We will email you when profiles open.</p>
+        <a class="btn primary" href="https://github.com/nirajbhusal/openaward" target="_blank" rel="noopener" style="justify-content:center"><svg class="i s"><use href="#ic-bell"/></svg>Watch the repo for the launch</a>
+        <a class="btn" href="https://x.com/nirajbhusal" target="_blank" rel="noopener" style="justify-content:center">Follow @nirajbhusal</a>
+        <p class="note">Until accounts exist, your fit profile and certificates are saved in this browser only.</p>
       </div>
       <div class="card"><div class="mono" style="margin-bottom:10px">My certificates (this browser)</div><div class="certlist" id="mycerts"></div></div>
     </div>
@@ -615,11 +834,12 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 
 </main>
 
-<footer><div class="wrap"><svg class="mascot" width="22" height="22" viewBox="0 0 100 100"><use href="#logo"/></svg><span>Prototype data: 11 Master's and PhD scholarships from a public November 2026 compilation, with official pages linked. Deadlines not yet re-verified. Rankings indicative (QS 2026). Reviews, events and funder numbers illustrative.</span><span class="links"><a href="#about" data-view="about">About</a><a href="#funders" data-view="funders">Funders</a><a href="https://github.com/nirajbhusal/openaward" target="_blank" rel="noopener">GitHub</a></span></div></footer>
+<footer><div class="wrap"><svg class="mascot" width="22" height="22" viewBox="0 0 100 100"><use href="#logo"/></svg><span>Scholio is an independent index. Every listing links to its official page; "Verified" means we checked the deadline and terms there on the date shown. Found an error? <a href="https://github.com/nirajbhusal/openaward/issues" target="_blank" rel="noopener">Report it</a>.</span><span class="links"><a href="#about" data-view="about">About</a><a href="#funders" data-view="funders">Funders</a><a href="https://github.com/nirajbhusal/openaward" target="_blank" rel="noopener">GitHub</a></span></div></footer>
 
 <div class="sheet" id="sheet" aria-hidden="true"><div class="back" id="sheet-back"></div>
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="d-title"><button class="close" id="sheet-close" aria-label="Close">×</button><div id="detail"></div></div></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script>
 const UNI = {
  "University of Cambridge":{rank:6,country:"United Kingdom",intl:"39%",fund:"Gates Cambridge, Cambridge Trust",code:"CAM",col:"#1d4ed8"},
@@ -640,52 +860,32 @@ const UNI = {
  "University of Groningen":{rank:139,country:"Netherlands",intl:"28%",fund:"Erasmus Mundus, Eric Bleumink Fund",code:"RUG",col:"#be123c"}
 };
 const DATA = [
- {id:"oist",country:"Japan",region:"Asia",name:"OIST PhD Scholarship",host:"Okinawa Institute of Science and Technology",levels:["PhD"],fields:["Science","Engineering & Tech","AI & Computing"],deadline:"2026-11-15",deadlineNote:"Autumn round for Sept 2027 entry",funding:"Full",who:"All nationalities",value:"Tuition waived, stipend about JPY 2.4M/yr, relocation, housing support",english:"Not required as a test; programme is in English",minEng:0,offerFirst:false,minGpa:3.3,research:2,apply:"https://admissions.oist.jp/",note:"Rotation-based first year, no supervisor needed before applying.",rating:4.6,reviews:38,saves:1240,
-  rv:[{n:"Priya, India · awarded 2025",s:5,t:"No IELTS, no GRE, and the interview was friendly. Rotations let me change my mind about the lab."},{n:"Tom, Kenya · applied 2025",s:4,t:"Very competitive; a first-author paper seemed to make the difference among my cohort."}]},
- {id:"yca",country:"China",region:"Asia",name:"Yenching Academy Scholarship",host:"Peking University",levels:["Master's"],fields:["Humanities & Social","Business & Economics"],deadline:"2026-11-30",deadlineNote:"International applicants",funding:"Full",who:"All nationalities",value:"Tuition, accommodation, stipend, one return airfare, 2-year China Studies MA",english:"TOEFL/IELTS unless degree was in English",minEng:7,offerFirst:false,minGpa:3.5,research:0,apply:"https://yenchingacademy.pku.edu.cn/",note:"Interdisciplinary China Studies; strong fit for policy backgrounds.",rating:4.4,reviews:21,saves:860,
-  rv:[{n:"Ana, Brazil · awarded 2024",s:5,t:"The essay on why China matters to your field carries real weight. Be specific."}]},
- {id:"esop",country:"Switzerland",region:"Europe",name:"Excellence Scholarship (ESOP)",host:"ETH Zurich",levels:["Master's"],fields:["Engineering & Tech","Science","AI & Computing"],deadline:"2026-11-30",deadlineNote:"Same deadline as the Master's application",funding:"Full",who:"All nationalities",value:"CHF 12,000 per semester plus tuition waiver",english:"C1 proof (IELTS 7.0) for English-taught programmes",minEng:7,offerFirst:false,minGpa:3.7,research:1,apply:"https://ethz.ch/en/studies/financial/scholarships/excellencescholarship.html",note:"Top 10% of class; apply with the Master's application.",rating:4.7,reviews:17,saves:1510,
-  rv:[{n:"Luca, Italy · awarded 2025",s:5,t:"The research proposal is judged like a PhD one. I spent four weeks on it."}]},
- {id:"hkpfs",country:"Hong Kong",region:"Asia",name:"Hong Kong PhD Fellowship Scheme",host:"University of Hong Kong",levels:["PhD"],fields:["Any field"],deadline:"2026-12-01",deadlineNote:"Initial application via RGC; university deadline follows",funding:"Full",who:"All nationalities",value:"HKD 331,200/yr stipend plus HKD 13,800/yr travel, up to 3 years",english:"Per university (IELTS 6.5 typical)",minEng:6.5,offerFirst:false,minGpa:3.5,research:2,apply:"https://cerg1.ugc.edu.hk/hkpfs/index.html",note:"Apply to RGC first, then to up to two universities (HKU, HKUST, CUHK and others).",rating:4.3,reviews:44,saves:1320,
-  rv:[{n:"Mei, Malaysia · awarded 2024",s:4,t:"Contact supervisors in September. Those with a named supervisor got through."},{n:"Daniel, Nigeria · applied 2025",s:3,t:"Process is two-step and confusing; the university deadline came a week after RGC's."}]},
- {id:"gates",country:"United Kingdom",region:"Europe",name:"Gates Cambridge Scholarship",host:"University of Cambridge",levels:["Master's","PhD"],fields:["Any field"],deadline:"2026-12-08",deadlineNote:"8 Dec or 6 Jan 2027, depending on course",funding:"Full",who:"All nationalities except UK",value:"Full tuition, stipend about GBP 21,000/yr, airfare, visa, family allowance",english:"Per course (IELTS 7.5 typical)",minEng:7.5,offerFirst:false,minGpa:3.8,research:2,apply:"https://www.gatescambridge.org/",note:"Tick the Gates box on the Cambridge application; one form does both.",rating:4.9,reviews:63,saves:2980,
-  rv:[{n:"Sofia, Mexico · awarded 2023",s:5,t:"Leadership and commitment to others weigh as much as grades. Tell one true story well."}]},
- {id:"mbzuai",country:"UAE",region:"Middle East",name:"MBZUAI Graduate Scholarship",host:"MBZUAI",levels:["Master's","PhD"],fields:["AI & Computing"],deadline:"2026-12-15",deadlineNote:"Most programmes; check yours",funding:"Full",who:"All nationalities",value:"Full tuition, monthly stipend, housing, health insurance",english:"IELTS 6.5 or TOEFL 90 unless exempt",minEng:6.5,offerFirst:false,minGpa:3.2,research:1,apply:"https://mbzuai.ac.ae/admissions/",note:"Every admitted student is funded; CS, ML, CV, NLP, robotics.",rating:4.2,reviews:29,saves:1100,
-  rv:[{n:"Hassan, Pakistan · awarded 2025",s:4,t:"Coding interview plus research talk. The stipend is generous and housing is on campus."}]},
- {id:"usyd",country:"Australia",region:"Oceania",name:"Research Training Program (RTP)",host:"University of Sydney",levels:["Master's","PhD"],fields:["Any field"],deadline:"2026-12-18",deadlineNote:"2027 round; research degrees only",funding:"Full",who:"Domestic and international",value:"Tuition offset plus stipend about AUD 41,000/yr",english:"IELTS 6.5 to 7.0 depending on faculty",minEng:6.5,offerFirst:true,minGpa:3.5,research:1,apply:"https://www.sydney.edu.au/scholarships/",note:"Supervisor and proposal needed before the scholarship round.",rating:4.1,reviews:52,saves:900,
-  rv:[{n:"Wei, China · awarded 2024",s:4,t:"Finding a supervisor took three months of emails. Start in August."}]},
- {id:"npgs",country:"Singapore",region:"Asia",name:"Nanyang President's Graduate Scholarship",host:"Nanyang Technological University",levels:["PhD"],fields:["Any field"],deadline:"2026-12-31",deadlineNote:"August 2027 intake",funding:"Full",who:"All nationalities",value:"Full tuition, stipend about SGD 3,100 to 3,300/month, travel, IT allowance",english:"Per school; GRE often required",minEng:6.5,offerFirst:false,minGpa:3.8,research:2,apply:"https://www.ntu.edu.sg/admissions/graduate/scholarships",note:"First-class honours or equivalent expected.",rating:4.5,reviews:19,saves:780,
-  rv:[{n:"Arjun, India · awarded 2025",s:5,t:"Research statement and two strong referees. GRE helped but was not decisive."}]},
- {id:"kaust",country:"Saudi Arabia",region:"Middle East",name:"KAUST Fellowship",host:"KAUST",levels:["Master's","PhD"],fields:["Science","Engineering & Tech","AI & Computing"],deadline:"2027-01-03",deadlineNote:"Fall 2027 intake",funding:"Full",who:"All nationalities",value:"Full tuition, stipend USD 20,000 to 30,000/yr, housing, medical, relocation",english:"TOEFL 79 or IELTS 6.0",minEng:6,offerFirst:false,minGpa:3.3,research:1,apply:"https://admissions.kaust.edu.sa/",note:"All admitted students receive the fellowship; GRE recommended.",rating:4.4,reviews:71,saves:1650,
-  rv:[{n:"Fatima, Egypt · awarded 2024",s:5,t:"Campus is a bubble but the labs are world class. Reach out to faculty before applying."},{n:"Jorge, Colombia · applied 2025",s:4,t:"Fast decisions. Interview focused on my thesis."}]},
- {id:"eiffel",country:"France",region:"Europe",name:"Eiffel Excellence Scholarship",host:"Campus France",levels:["Master's","PhD"],fields:["Engineering & Tech","Science","Business & Economics","Humanities & Social"],deadline:"2027-01-06",deadlineNote:"Institutional deadline; your French university nominates you earlier",funding:"Partial",who:"Non-French nationals under 25 (Master's) or 30 (PhD)",value:"EUR 1,181/month (Master's) or 1,700/month (PhD), travel, insurance; tuition not covered",english:"Per programme; many taught in English",minEng:6.5,offerFirst:true,minGpa:3.5,research:1,apply:"https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence",note:"The French institution must nominate you; contact them in November.",rating:4.0,reviews:34,saves:720,
-  rv:[{n:"Nguyen, Vietnam · awarded 2025",s:4,t:"You apply to the school, the school applies for you. Pick one that nominates every year."}]},
- {id:"euroculture",country:"Netherlands",region:"Europe",name:"Erasmus Mundus Euroculture",host:"University of Groningen",levels:["Master's"],fields:["Humanities & Social"],deadline:"2027-01-15",deadlineNote:"Scholarship applicants",funding:"Full",who:"All nationalities, EU and non-EU quotas",value:"Tuition, EUR 1,400/month, travel and installation, 2 years in two EU countries",english:"IELTS 6.5 or TOEFL 90",minEng:6.5,offerFirst:false,minGpa:3.3,research:0,apply:"https://www.euroculturemaster.eu/",note:"Studies in two of eight partner universities.",rating:4.5,reviews:26,saves:640,
-  rv:[{n:"Ayşe, Türkiye · awarded 2024",s:5,t:"Two countries, one degree, and the consortium handles visas well."}]}
+ {id:"oist",lat:26.465,lng:127.831,checked:"2026-11-06",country:"Japan",region:"Asia",name:"OIST PhD Scholarship",host:"Okinawa Institute of Science and Technology",levels:["PhD"],fields:["Science","Engineering & Tech","AI & Computing"],deadline:"2026-11-15",deadlineNote:"Admissions Workshop 2027 round; interviews 18 Jan to 7 Feb 2027; enrol May 2027, Sept 2027 or Jan 2028. Application fee JPY 5,000",funding:"Full",who:"All nationalities",value:"Tuition waived, stipend about JPY 2.4M/yr, relocation, housing support",english:"TOEFL iBT or IELTS only if your degree was not taught in English; no minimum score",minEng:0,offerFirst:false,minGpa:3.3,research:2,apply:"https://admissions.oist.jp/",note:"Rotation-based first year, no supervisor needed before applying."},
+ {id:"yca",lat:39.992,lng:116.306,checked:null,country:"China",region:"Asia",name:"Yenching Academy Scholarship",host:"Peking University",levels:["Master's"],fields:["Humanities & Social","Business & Economics"],deadline:"2026-11-30",deadlineNote:"International applicants",funding:"Full",who:"All nationalities",value:"Tuition, accommodation, stipend, one return airfare, 2-year China Studies MA",english:"TOEFL/IELTS unless degree was in English",minEng:7,offerFirst:false,minGpa:3.5,research:0,apply:"https://yenchingacademy.pku.edu.cn/",note:"Interdisciplinary China Studies; strong fit for policy backgrounds."},
+ {id:"esop",lat:47.376,lng:8.548,checked:null,country:"Switzerland",region:"Europe",name:"Excellence Scholarship (ESOP)",host:"ETH Zurich",levels:["Master's"],fields:["Engineering & Tech","Science","AI & Computing"],deadline:"2026-11-30",deadlineNote:"Same deadline as the Master's application",funding:"Full",who:"All nationalities",value:"CHF 12,000 per semester plus tuition waiver",english:"C1 proof (IELTS 7.0) for English-taught programmes",minEng:7,offerFirst:false,minGpa:3.7,research:1,apply:"https://ethz.ch/en/studies/financial/scholarships/excellencescholarship.html",note:"Top 10% of class; apply with the Master's application."},
+ {id:"hkpfs",lat:22.283,lng:114.137,checked:"2026-11-06",country:"Hong Kong",region:"Asia",name:"Hong Kong PhD Fellowship Scheme",host:"University of Hong Kong",levels:["PhD"],fields:["Any field"],deadline:"2026-12-01",deadlineNote:"Initial application to RGC by 12:00 noon HKT; full application to your chosen university the same day",funding:"Full",who:"All nationalities",value:"HKD 344,400/yr stipend plus HKD 14,400/yr conference grant, up to 3 years; universities add tuition support",english:"Per university (IELTS 6.5 typical)",minEng:6.5,offerFirst:false,minGpa:3.5,research:2,apply:"https://cerg1.ugc.edu.hk/hkpfs/index.html",note:"Apply to RGC first, then to up to two universities (HKU, HKUST, CUHK and others)."},
+ {id:"gates",lat:52.205,lng:0.117,checked:"2026-11-06",country:"United Kingdom",region:"Europe",name:"Gates Cambridge Scholarship",host:"University of Cambridge",levels:["Master's","PhD"],fields:["Any field"],deadline:"2026-12-08",deadlineNote:"8 Dec 2026 or 6 Jan 2027 depending on course (see the Cambridge course directory); applications opened 11 Sep 2026; US citizens in the US had a 14 Oct 2026 deadline",funding:"Full",who:"Any nationality other than UK; US citizens resident in the US apply in the October round",value:"Full tuition, stipend about GBP 21,000/yr, airfare, visa, family allowance",english:"Per course (IELTS 7.5 typical)",minEng:7.5,offerFirst:false,minGpa:3.8,research:2,apply:"https://www.gatescambridge.org/",note:"Tick the Gates box on the Cambridge application; one form does both."},
+ {id:"mbzuai",lat:24.432,lng:54.616,checked:null,country:"UAE",region:"Middle East",name:"MBZUAI Graduate Scholarship",host:"MBZUAI",levels:["Master's","PhD"],fields:["AI & Computing"],deadline:"2026-12-15",deadlineNote:"Most programmes; check yours",funding:"Full",who:"All nationalities",value:"Full tuition, monthly stipend, housing, health insurance",english:"IELTS 6.5 or TOEFL 90 unless exempt",minEng:6.5,offerFirst:false,minGpa:3.2,research:1,apply:"https://mbzuai.ac.ae/admissions/",note:"Every admitted student is funded; CS, ML, CV, NLP, robotics."},
+ {id:"usyd",lat:-33.888,lng:151.187,checked:null,country:"Australia",region:"Oceania",name:"Research Training Program (RTP)",host:"University of Sydney",levels:["Master's","PhD"],fields:["Any field"],deadline:"2026-12-18",deadlineNote:"2027 round; research degrees only",funding:"Full",who:"Domestic and international",value:"Tuition offset plus stipend about AUD 41,000/yr",english:"IELTS 6.5 to 7.0 depending on faculty",minEng:6.5,offerFirst:true,minGpa:3.5,research:1,apply:"https://www.sydney.edu.au/scholarships/",note:"Supervisor and proposal needed before the scholarship round."},
+ {id:"npgs",lat:1.348,lng:103.683,checked:null,country:"Singapore",region:"Asia",name:"Nanyang President's Graduate Scholarship",host:"Nanyang Technological University",levels:["PhD"],fields:["Any field"],deadline:"2026-12-31",deadlineNote:"August 2027 intake",funding:"Full",who:"All nationalities",value:"Full tuition, stipend about SGD 3,100 to 3,300/month, travel, IT allowance",english:"Per school; GRE often required",minEng:6.5,offerFirst:false,minGpa:3.8,research:2,apply:"https://www.ntu.edu.sg/admissions/graduate/scholarships",note:"First-class honours or equivalent expected."},
+ {id:"kaust",lat:22.309,lng:39.104,checked:null,country:"Saudi Arabia",region:"Middle East",name:"KAUST Fellowship",host:"KAUST",levels:["Master's","PhD"],fields:["Science","Engineering & Tech","AI & Computing"],deadline:"2027-01-03",deadlineNote:"Fall 2027 intake",funding:"Full",who:"All nationalities",value:"Full tuition, stipend USD 20,000 to 30,000/yr, housing, medical, relocation",english:"TOEFL 79 or IELTS 6.0",minEng:6,offerFirst:false,minGpa:3.3,research:1,apply:"https://admissions.kaust.edu.sa/",note:"All admitted students receive the fellowship; GRE recommended."},
+ {id:"eiffel",lat:48.853,lng:2.349,checked:null,country:"France",region:"Europe",name:"Eiffel Excellence Scholarship",host:"Campus France",levels:["Master's","PhD"],fields:["Engineering & Tech","Science","Business & Economics","Humanities & Social"],deadline:"2027-01-06",deadlineNote:"Institutional deadline; your French university nominates you earlier",funding:"Partial",who:"Non-French nationals under 25 (Master's) or 30 (PhD)",value:"EUR 1,181/month (Master's) or 1,700/month (PhD), travel, insurance; tuition not covered",english:"Per programme; many taught in English",minEng:6.5,offerFirst:true,minGpa:3.5,research:1,apply:"https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence",note:"The French institution must nominate you; contact them in November."},
+ {id:"euroculture",lat:53.219,lng:6.563,checked:null,country:"Netherlands",region:"Europe",name:"Erasmus Mundus Euroculture",host:"University of Groningen",levels:["Master's"],fields:["Humanities & Social"],deadline:"2027-01-15",deadlineNote:"Scholarship applicants",funding:"Full",who:"All nationalities, EU and non-EU quotas",value:"Tuition, EUR 1,400/month, travel and installation, 2 years in two EU countries",english:"IELTS 6.5 or TOEFL 90",minEng:6.5,offerFirst:false,minGpa:3.3,research:0,apply:"https://www.euroculturemaster.eu/",note:"Studies in two of eight partner universities."}
 ];
 const COUNTRIES = [
- {c:"United Kingdom",saves:3200,u:[["Cambridge","Gates, Cambridge Trust"],["Oxford","Rhodes, Clarendon"],["Imperial","President's PhD"],["Edinburgh","Global Research"]]},
- {c:"Japan",saves:2100,u:[["OIST","PhD Scholarship"],["University of Tokyo","MEXT, ADB-JSP"],["Kyoto","MEXT"],["Tohoku","Global Hagi"]]},
- {c:"Switzerland",saves:1900,u:[["ETH Zurich","ESOP"],["EPFL","Excellence Fellowships"],["Geneva","Excellence Master"]]},
- {c:"Saudi Arabia",saves:1700,u:[["KAUST","Fellowship"],["KFUPM","Graduate Assistantship"]]},
- {c:"Hong Kong",saves:1500,u:[["HKU","HKPFS, Presidential"],["HKUST","HKPFS, RedBird"],["CUHK","HKPFS, Vice-Chancellor"]]},
- {c:"Singapore",saves:1300,u:[["NTU","NPGS"],["NUS","Research Scholarship"],["SUTD","PhD Fellowship"]]},
- {c:"UAE",saves:1100,u:[["MBZUAI","Graduate Scholarship"],["Khalifa","Graduate Research"]]},
- {c:"Australia",saves:1000,u:[["Sydney","RTP"],["Melbourne","Graduate Research"],["ANU","University Research"]]},
- {c:"France",saves:900,u:[["Campus France","Eiffel"],["PSL","Scholarships"],["Sorbonne","Master Excellence"]]},
- {c:"China",saves:900,u:[["Peking","Yenching"],["Tsinghua","Schwarzman, CSC"],["Fudan","CSC"]]},
- {c:"Netherlands",saves:700,u:[["Groningen","Euroculture, Eric Bleumink"],["Leiden","LExS"],["TU Delft","Justus & Louise van Effen"]]}
-];
-const EVENTS = [
- {d:"2026-11-12",t:"Gates Cambridge: how we read applications",p:"Live Q&A with two selection-panel alumni. 60 min.",k:"Funder session"},
- {d:"2026-11-14",t:"Weekend Statement Sprint #7",p:"Finish your SOP draft with a mentor in the room. 20 seats.",k:"Sprint"},
- {d:"2026-11-21",t:"KAUST virtual open day",p:"Labs, admissions, current students. Hosted by KAUST.",k:"Funder session"},
- {d:"2026-11-28",t:"HKPFS: supervisor matching clinic",p:"Bring your shortlist, leave with three emails drafted.",k:"Clinic"},
- {d:"2026-12-05",t:"IELTS Writing mock, marked live",p:"Sit Task 2 together, marked by an examiner on the call.",k:"Academy"},
- {d:"2026-12-13",t:"European PhD funding panel",p:"Marie Curie, DAAD, Eiffel, Swiss Excellence compared.",k:"Panel"}
+ {c:"United Kingdom",u:[["Cambridge","Gates, Cambridge Trust"],["Oxford","Rhodes, Clarendon"],["Imperial","President's PhD"],["Edinburgh","Global Research"]]},
+ {c:"Japan",u:[["OIST","PhD Scholarship"],["University of Tokyo","MEXT, ADB-JSP"],["Kyoto","MEXT"],["Tohoku","Global Hagi"]]},
+ {c:"Switzerland",u:[["ETH Zurich","ESOP"],["EPFL","Excellence Fellowships"],["Geneva","Excellence Master"]]},
+ {c:"Saudi Arabia",u:[["KAUST","Fellowship"],["KFUPM","Graduate Assistantship"]]},
+ {c:"Hong Kong",u:[["HKU","HKPFS, Presidential"],["HKUST","HKPFS, RedBird"],["CUHK","HKPFS, Vice-Chancellor"]]},
+ {c:"Singapore",u:[["NTU","NPGS"],["NUS","Research Scholarship"],["SUTD","PhD Fellowship"]]},
+ {c:"UAE",u:[["MBZUAI","Graduate Scholarship"],["Khalifa","Graduate Research"]]},
+ {c:"Australia",u:[["Sydney","RTP"],["Melbourne","Graduate Research"],["ANU","University Research"]]},
+ {c:"France",u:[["Campus France","Eiffel"],["PSL","Scholarships"],["Sorbonne","Master Excellence"]]},
+ {c:"China",u:[["Peking","Yenching"],["Tsinghua","Schwarzman, CSC"],["Fudan","CSC"]]},
+ {c:"Netherlands",u:[["Groningen","Euroculture, Eric Bleumink"],["Leiden","LExS"],["TU Delft","Justus & Louise van Effen"]]}
 ];
 
-const VERIFIED="3 Nov 2026 (from compilation)";
 const TODAY=new Date();
 const $=s=>document.querySelector(s);
 const state={chip:"",chips:new Set(),q:"",level:"",field:"",region:"",fund:"",sort:"deadline"};
@@ -718,7 +918,7 @@ function filtered(){
     if(state.chip==="top50"&&rankOf(d)>50)return false;
     if(state.chip==="full"&&d.funding!=="Full")return false;
     return true;});
-  const S={deadline:(a,b)=>daysLeft(a)-daysLeft(b),rating:(a,b)=>b.rating-a.rating,popular:(a,b)=>b.saves-a.saves,rank:(a,b)=>rankOf(a)-rankOf(b),country:(a,b)=>a.country.localeCompare(b.country)};
+  const S={deadline:(a,b)=>daysLeft(a)-daysLeft(b),rank:(a,b)=>rankOf(a)-rankOf(b),country:(a,b)=>a.country.localeCompare(b.country)};
   return list.sort(S[state.sort]);
 }
 function renderStats(){
@@ -733,36 +933,33 @@ function renderGrid(){
   $("#grid").innerHTML=list.map(d=>{const u=uni(d);return `<button class="item" data-id="${d.id}">
     <div class="flagic" style="background:${u.col}">${u.code}</div>
     <div style="min-width:0"><div class="mono" style="color:var(--accent)">${d.country} · ${d.region}${u.rank?" · QS #"+u.rank:""}</div><h3>${d.name}</h3><div class="host">${d.host}</div>
-      <div class="meta">${d.levels.map(l=>`<span class="tag">${l}</span>`).join("")}<span class="tag acc">${d.funding==="Full"?"Fully funded":"Partial"}</span>${noTest(d)?'<span class="tag ok">No English test</span>':""}${d.offerFirst?'<span class="tag warn">Admission first</span>':""}<span class="stars">${stars(d.rating)}</span><span style="font-size:12px;color:var(--muted)">${d.rating} (${d.reviews})</span></div></div>
+      <div class="meta">${d.levels.map(l=>`<span class="tag">${l}</span>`).join("")}<span class="tag acc">${d.funding==="Full"?"Fully funded":"Partial"}</span>${noTest(d)?'<span class="tag ok">No English test</span>':""}${d.offerFirst?'<span class="tag warn">Admission first</span>':""}${d.checked?`<span class="tag ok"><svg class="i s" style="width:12px;height:12px;vertical-align:-2px"><use href="#ic-tick"/></svg> Verified ${fmtDate(d.checked)}</span>`:`<span class="tag">Confirm on official page</span>`}</div></div>
     <div class="due ${dlClass(d)}"><b>${dlLabel(d)}</b><small>${daysLeft(d)>=0?"left · ":""}${fmtDate(d.deadline)}</small></div></button>`}).join("")||`<p class="note">No listings match. Clear a filter or two.</p>`;
 }
 function openDetail(id){
   const d=DATA.find(x=>x.id===id);const u=uni(d);
-  const hist=[5,4,3,2,1].map(s=>{const c=d.rv.filter(r=>r.s===s).length;return `<div class="ratebar"><span>${s} ★</span><div class="bar"><i style="width:${d.rv.length?c/d.rv.length*100:0}%"></i></div><span>${c}</span></div>`}).join("");
+  
   $("#detail").innerHTML=`<div style="display:flex;gap:12px;align-items:center;margin-top:24px"><div class="flagic" style="background:${u.col}">${u.code}</div><div><div class="mono" style="color:var(--accent)">${d.country} · ${d.region}${u.rank?" · QS #"+u.rank:""}</div><h2 id="d-title" style="margin:2px 0 0">${d.name}</h2></div></div>
-    <div class="sub" style="margin-top:8px">${d.host} · ${d.levels.join(" / ")} · ${d.funding==="Full"?"Fully funded":"Partial"} · <span class="stars">${stars(d.rating)}</span> ${d.rating} from ${d.reviews} applicants</div>
+    <div class="sub" style="margin-top:8px">${d.host} · ${d.levels.join(" / ")} · ${d.funding==="Full"?"Fully funded":"Partial"}</div>
     <div class="deadline-big"><b>${dlLabel(d)}</b><span>${daysLeft(d)>=0?"left. ":""}Deadline ${fmtDate(d.deadline)}. ${d.deadlineNote}.</span></div>
-    <dl><dt>Who may apply</dt><dd>${d.who}</dd><dt>Fields</dt><dd>${d.fields.join(", ")}</dd><dt>Covers</dt><dd>${d.value}</dd><dt>English</dt><dd>${d.english}</dd><dt>Typical GPA</dt><dd>${d.minGpa}+ on 4.0, by past awardees</dd><dt>Admission first?</dt><dd>${d.offerFirst?"Yes. Offer or supervisor needed before the scholarship application.":"No. One application covers both."}</dd><dt>Good to know</dt><dd>${d.note}</dd><dt>Verified</dt><dd>${VERIFIED}. Deadline not yet re-checked on the official page.</dd></dl>
+    <dl><dt>Who may apply</dt><dd>${d.who}</dd><dt>Fields</dt><dd>${d.fields.join(", ")}</dd><dt>Covers</dt><dd>${d.value}</dd><dt>English</dt><dd>${d.english}</dd><dt>Typical GPA</dt><dd>${d.minGpa}+ on 4.0, by past awardees</dd><dt>Admission first?</dt><dd>${d.offerFirst?"Yes. Offer or supervisor needed before the scholarship application.":"No. One application covers both."}</dd><dt>Good to know</dt><dd>${d.note}</dd><dt>Checked</dt><dd>${d.checked?"Deadline and terms checked on the official page on "+fmtDate(d.checked)+".":"Listed from a public November 2026 compilation; confirm the deadline on the official page before applying."} <a href="https://github.com/nirajbhusal/openaward/issues/new?title=Correction:%20"+encodeURIComponent(d.name)+"&labels=correction" target="_blank" rel="noopener">Report a correction</a></dd></dl>
     <div class="cta"><a class="btn primary" href="${d.apply}" target="_blank" rel="noopener">Official page ↗</a><button class="btn" type="button" id="d-check">Check my fit</button><button class="btn" type="button" id="d-save"><svg class="i"><use href="#ic-bell"/></svg>Remind me</button></div>
-    <h3 style="font-size:18px;margin:8px 0 10px">Applicant reviews</h3><div style="display:grid;gap:6px;margin-bottom:10px">${hist}</div>
-    ${d.rv.map(r=>`<div class="review"><div class="who"><span>${r.n}</span><span class="stars">${stars(r.s)}</span></div>${r.t}</div>`).join("")}
-    <div class="cta" style="margin-top:6px"><button class="btn sm" type="button" id="d-review">Write a review</button><span class="note" style="flex:1">Only users who marked "applied" or "awarded" on this listing can review.</span></div>`;
+    <h3 style="font-size:18px;margin:8px 0 10px">Applicant reviews</h3><p class="note">No reviews yet. If you applied to or were awarded this scholarship, share what you learned. Reviews are published after a check that they come from real applicants.</p><div class="cta" style="margin-top:10px"><a class="btn sm" href="https://github.com/nirajbhusal/openaward/issues/new?title=Review:%20${encodeURIComponent(d.name)}&labels=review&body=${encodeURIComponent("Applied / awarded (year):\n\nWhat helped most:\n\nWhat I wish I had known:\n\nRating out of 5:")}" target="_blank" rel="noopener">Write a review ↗</a></div>`;
   $("#sheet").classList.add("open");$("#sheet").setAttribute("aria-hidden","false");
   $("#d-check").onclick=()=>{closeDetail();switchView("assess")};
   $("#d-save").onclick=e=>{e.currentTarget.textContent="Reminder set ✓";e.currentTarget.disabled=true};
-  $("#d-review").onclick=e=>{e.target.textContent="Opens after you mark 'applied'";e.target.disabled=true};
 }
 function closeDetail(){$("#sheet").classList.remove("open");$("#sheet").setAttribute("aria-hidden","true")}
 
 /* countries + infographics */
 function renderCountries(){
-  const max=Math.max(...COUNTRIES.map(c=>c.saves));
-  $("#savesbar").innerHTML=COUNTRIES.slice(0,8).map(c=>`<div class="infobar"><span>${c.c}</span><div class="bar"><i style="width:${c.saves/max*100}%"></i></div><b>${c.saves.toLocaleString()}</b></div>`).join("");
+  const cnt=COUNTRIES.map(c=>[c.c,DATA.filter(d=>d.country===c.c&&daysLeft(d)>=0).length]).sort((a,b)=>b[1]-a[1]);const max=Math.max(1,...cnt.map(x=>x[1]));
+  $("#savesbar").innerHTML=cnt.map(([c,n])=>`<div class="infobar"><span>${c}</span><div class="bar"><i style="width:${n/max*100}%"></i></div><b>${n}</b></div>`).join("");
   const segs=[["Full · PhD",DATA.filter(d=>d.funding==="Full"&&d.levels.includes("PhD")&&!d.levels.includes("Master's")).length,"#2563eb"],["Full · Master's",DATA.filter(d=>d.funding==="Full"&&d.levels.includes("Master's")&&!d.levels.includes("PhD")).length,"#7c3aed"],["Full · both",DATA.filter(d=>d.funding==="Full"&&d.levels.length>1).length,"#10b981"],["Partial",DATA.filter(d=>d.funding!=="Full").length,"#f59e0b"]];
   const tot=segs.reduce((s,x)=>s+x[1],0);let acc=0;const C=2*Math.PI*44;
   $("#donut").innerHTML=segs.map(([l,n,c])=>{const len=n/tot*C;const el=`<circle cx="60" cy="60" r="44" fill="none" stroke="${c}" stroke-width="16" stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-acc}" transform="rotate(-90 60 60)"/>`;acc+=len;return el}).join("")+`<text x="60" y="65" text-anchor="middle" font-weight="800" font-size="20" fill="#0f172a">${tot}</text>`;
   $("#donut-legend").innerHTML=segs.map(([l,n,c])=>`<div style="display:flex;gap:8px;align-items:center"><i style="width:10px;height:10px;border-radius:3px;background:${c};display:inline-block"></i>${l}<b style="margin-left:auto">${n}</b></div>`).join("");
-  $("#cgrid").innerHTML=COUNTRIES.map(c=>{const n=DATA.filter(d=>d.country===c.c).length;return `<button class="cc" data-c="${c.c}"><div class="hd"><div class="ic" style="width:36px;height:36px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center"><svg class="i" style="width:18px;height:18px"><use href="#ic-globe"/></svg></div><div><h3>${c.c}</h3><div class="n">${c.saves.toLocaleString()} saves · ${n} open listing${n===1?"":"s"}</div></div></div><ul>${c.u.map(([u,s])=>`<li>${u}<span>${s}</span></li>`).join("")}</ul></button>`}).join("");
+  $("#cgrid").innerHTML=COUNTRIES.map(c=>{const n=DATA.filter(d=>d.country===c.c).length;return `<button class="cc" data-c="${c.c}"><div class="hd"><div class="ic" style="width:36px;height:36px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center"><svg class="i" style="width:18px;height:18px"><use href="#ic-globe"/></svg></div><div><h3>${c.c}</h3><div class="n">${n} open listing${n===1?"":"s"} · ${c.u.length} universities tracked</div></div></div><ul>${c.u.map(([u,s])=>`<li>${u}<span>${s}</span></li>`).join("")}</ul></button>`}).join("");
 }
 
 /* rankings */
@@ -772,7 +969,7 @@ function renderRank(){
   const regionOf={"United Kingdom":"Europe","Switzerland":"Europe","Netherlands":"Europe","Singapore":"Asia","Hong Kong":"Asia","China":"Asia","Japan":"Asia","Australia":"Oceania","Saudi Arabia":"Middle East","UAE":"Middle East"};
   $("#rankchips").innerHTML=chips.map(([v,l])=>`<button class="chip" aria-pressed="${rankFilter===v}" data-rank="${v}">${l}</button>`).join("");
   const rows=Object.entries(UNI).filter(([n,u])=>!rankFilter||rankFilter===u.country||rankFilter===regionOf[u.country]||(rankFilter==="unranked"&&!u.rank)).sort((a,b)=>(a[1].rank??999)-(b[1].rank??999));
-  $("#ranktable tbody").innerHTML=rows.map(([n,u])=>{const ls=DATA.filter(d=>d.host===n);const r=ls.length?(ls.reduce((s,d)=>s+d.rating,0)/ls.length).toFixed(1):null;return `<tr><td><span class="rk">${u.rank??"–"}</span></td><td><b style="display:flex;gap:10px;align-items:center"><span class="flagic" style="width:32px;height:32px;border-radius:9px;font-size:10px;background:${u.col}">${u.code}</span>${n}</b></td><td>${u.country}</td><td>${u.fund}</td><td><span class="score"><span class="bar"><i style="width:${parseInt(u.intl)}%"></i></span>${u.intl}</span></td><td>${r?`<span class="stars">${stars(r)}</span> ${r}`:'<span style="color:var(--muted)">No reviews yet</span>'}</td><td>${ls.length?`<button class="btn sm" data-open="${ls[0].id}">View listing</button>`:'<span class="tag">Coming</span>'}</td></tr>`}).join("");
+  $("#ranktable tbody").innerHTML=rows.map(([n,u])=>{const ls=DATA.filter(d=>d.host===n);return `<tr><td><span class="rk">${u.rank??"–"}</span></td><td><b style="display:flex;gap:10px;align-items:center"><span class="flagic" style="width:32px;height:32px;border-radius:9px;font-size:10px;background:${u.col}">${u.code}</span>${n}</b></td><td>${u.country}</td><td>${u.fund}</td><td>${ls.length?(ls[0].checked?`<span class="tag ok">Verified</span>`:`<span class="tag">Listed</span>`):`<span class="tag">Tracking</span>`}</td><td>${ls.length?`<button class="btn sm" data-open="${ls[0].id}">View listing</button>`:'<span class="tag">Coming</span>'}</td></tr>`}).join("");
 }
 
 /* assessment */
@@ -869,7 +1066,7 @@ const COURSES=[
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 
 /* ---------- filters (segmented + toggles) ---------- */
-const TOGGLES=[["soon","ic-clock","Closing in 30 days"],["noielts","ic-lang","No English test"],["nooffer","ic-key","No admission first"],["top50","ic-trophy","Top-50 university"],["full","ic-money","Fully funded"],["top","ic-star","Rated 4.5+"]];
+const TOGGLES=[["soon","ic-clock","Closing in 30 days"],["noielts","ic-lang","No English test"],["nooffer","ic-key","No admission first"],["top50","ic-trophy","Top-50 university"],["full","ic-money","Fully funded"],["checked","ic-check","Verified on official page"]];
 function renderChips(){
   $("#toggles").innerHTML=TOGGLES.map(([v,ic,l])=>`<button class="tgl" aria-pressed="${state.chips.has(v)}" data-chip="${v}"><svg class="i"><use href="#${ic}"/></svg>${l}</button>`).join("");
   document.querySelectorAll("#seg-level button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===state.level)));
@@ -891,9 +1088,9 @@ function filtered(){
     if(has("nooffer")&&d.offerFirst)return false;
     if(has("top50")&&rankOf(d)>50)return false;
     if(has("full")&&d.funding!=="Full")return false;
-    if(has("top")&&d.rating<4.5)return false;
+    if(has("checked")&&!d.checked)return false;
     return true;});
-  const S={deadline:(a,b)=>daysLeft(a)-daysLeft(b),rating:(a,b)=>b.rating-a.rating,popular:(a,b)=>b.saves-a.saves,rank:(a,b)=>rankOf(a)-rankOf(b),country:(a,b)=>a.country.localeCompare(b.country)};
+  const S={deadline:(a,b)=>daysLeft(a)-daysLeft(b),rank:(a,b)=>rankOf(a)-rankOf(b),country:(a,b)=>a.country.localeCompare(b.country)};
   return list.sort(S[state.sort]);
 }
 function countUp(el,to){const from=+el.dataset.n||0;el.dataset.n=to;const t0=performance.now();const step=t=>{const k=Math.min(1,(t-t0)/700);el.textContent=Math.round(from+(to-from)*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
@@ -963,7 +1160,7 @@ const progress=id=>store.get("sc_course_"+id,{done:[]});
 function renderCourses(){
   const certs=store.get("sc_certs",[]);
   $("#courses").innerHTML=COURSES.map(c=>{const pr=progress(c.id);const n=c.lessons?c.lessons.length:c.outline.length;const done=pr.done.length;const pct=c.lessons?Math.round(done/n*100):0;const cert=certs.find(x=>x.course===c.id);
-   return `<div class="course"><div class="cover" style="background:${c.col}"><span class="pill">${c.soon?"Outline · launching soon":c.lvl}</span><svg><use href="#${c.ic}"/></svg></div><div class="bd"><h3>${c.t}</h3><p>${c.h}</p><p>${c.blurb}</p>
+   return `<div class="course"><div class="cover" style="background:${c.col}"><span class="pill">${c.soon?"Coming soon":c.lvl}</span><svg><use href="#${c.ic}"/></svg></div><div class="bd"><h3>${c.t}</h3><p>${c.h}</p><p>${c.blurb}</p>
    <ul class="mods">${(c.lessons?c.lessons.map(l=>l.t):c.outline).map((m,i)=>`<li><svg class="i"><use href="#${pr.done.includes(i)?"ic-check":"ic-arrow"}"/></svg>${m}</li>`).join("")}</ul>
    ${c.lessons?`<div class="prog"><i style="width:${pct}%"></i></div>`:""}
    <div class="cert"><span class="badge">SC</span><span>${cert?"Certificate "+cert.id+" issued":"Scholio certificate with verifiable ID on completion"}</span></div>
@@ -992,7 +1189,7 @@ function checkQuiz(){
 function issueCert(){
   const c=COURSES.find(x=>x.id===cur.id);const certs=store.get("sc_certs",[]);let cert=certs.find(x=>x.course===c.id);
   if(cert){showCert(cert.id);return}
-  $("#cert-card").innerHTML=`<div class="card"><div class="kicker"><svg class="i s"><use href="#ic-trophy"/></svg>Course complete</div><h2 style="font-size:28px;margin-bottom:6px">Issue your certificate</h2><p style="color:var(--muted);margin:0 0 14px">Enter your name exactly as it should appear. The certificate and its ID are stored in this browser; with an account they would follow you.</p><label class="l" for="cname">Full name</label><input id="cname" placeholder="e.g. Niraj Bhusal" style="margin-bottom:12px"><button class="btn primary" type="button" id="issue"><svg class="i s"><use href="#ic-sparkle"/></svg>Issue certificate</button></div>`;
+  $("#cert-card").innerHTML=`<div class="card"><div class="kicker"><svg class="i s"><use href="#ic-trophy"/></svg>Course complete</div><h2 style="font-size:28px;margin-bottom:6px">Issue your certificate</h2><p style="color:var(--muted);margin:0 0 14px">Enter your name exactly as it should appear. The certificate and its ID are stored in this browser. Online verification arrives with accounts.</p><label class="l" for="cname">Full name</label><input id="cname" placeholder="e.g. Niraj Bhusal" style="margin-bottom:12px"><button class="btn primary" type="button" id="issue"><svg class="i s"><use href="#ic-sparkle"/></svg>Issue certificate</button></div>`;
   $("#cert-side").innerHTML="";switchView("cert");
   $("#issue").onclick=()=>{const name=$("#cname").value.trim();if(!name){$("#cname").focus();return}const id="SC-"+c.id.toUpperCase()+"-"+Math.random().toString(36).slice(2,8).toUpperCase();cert={id,name,course:c.id,title:c.t,date:new Date().toISOString().slice(0,10)};certs.push(cert);store.set("sc_certs",certs);showCert(id)};
 }
@@ -1002,7 +1199,7 @@ function showCert(id){
   $("#cert-card").innerHTML=`<div class="certificate" id="certdom"><div class="hd"><div style="display:flex;gap:10px;align-items:center;font-weight:800;font-size:18px"><svg class="mascot" width="36" height="36" viewBox="0 0 100 100"><use href="#logo"/></svg><span>Schol<span style="color:var(--accent)">io</span> Academy</span></div><div class="seal"><div>VERIFIED<br>SC</div></div></div>
    <div class="title">Certificate of completion</div><h2>${cert.title}</h2><p style="color:var(--muted);margin:0">is awarded to</p><div class="name">${cert.name}</div><p style="margin:0;max-width:60ch;color:var(--muted)">for completing all lessons and passing every lesson quiz of the Scholio Academy course.</p>
    <div class="meta"><div><b>Issued</b>${d}</div><div><b>Certificate ID</b><span style="font-family:var(--mono)">${cert.id}</span></div><div><b>Verify</b>scholio.org/verify/${cert.id.toLowerCase()}</div></div></div>`;
-  $("#cert-side").innerHTML=`<div class="card" style="display:grid;gap:10px"><div class="mono">Share</div><button class="btn" type="button" id="dl"><svg class="i s"><use href="#ic-download"/></svg>Download PNG</button><button class="btn" type="button" id="cp"><svg class="i s"><use href="#ic-share"/></svg>Copy certificate ID</button><p class="note">Add the ID to your CV or LinkedIn. In the live product the verify link resolves to this certificate. Downloads may be blocked inside some preview frames; they work on the published site.</p></div>`;
+  $("#cert-side").innerHTML=`<div class="card" style="display:grid;gap:10px"><div class="mono">Share</div><button class="btn" type="button" id="dl"><svg class="i s"><use href="#ic-download"/></svg>Download PNG</button><button class="btn" type="button" id="cp"><svg class="i s"><use href="#ic-share"/></svg>Copy certificate ID</button><p class="note">Add the ID to your CV or LinkedIn. The verify link will resolve once accounts launch; until then keep the PNG.</p></div>`;
   switchView("cert");
   $("#cp").onclick=e=>{navigator.clipboard?.writeText(cert.id).then(()=>e.currentTarget.textContent="Copied "+cert.id).catch(()=>{})};
   $("#dl").onclick=()=>drawCert(cert);
@@ -1025,16 +1222,106 @@ function drawCert(cert){
 }
 function renderMyCerts(){const certs=store.get("sc_certs",[]);$("#mycerts").innerHTML=certs.length?certs.map(c=>`<div class="c"><svg class="i" style="color:var(--accent)"><use href="#ic-trophy"/></svg><div><b>${c.title}</b><br><span style="color:var(--muted)">${c.name} · ${c.date} · <span style="font-family:var(--mono)">${c.id}</span></span></div><button class="btn sm" data-cert="${c.id}">Open</button></div>`).join(""):`<p class="note">No certificates yet. Finish a course in the Academy to earn one.</p>`}
 
+
+/* ---------- research map ---------- */
+let map,mapLayer,mapFilter="",mapMarkers=[];
+function mapRows(){return DATA.filter(d=>daysLeft(d)>=0&&(mapFilter===""||(mapFilter==="checked"?d.checked:d.levels.includes(mapFilter))))}
+function renderMapList(){const rows=mapRows().sort((a,b)=>a.country.localeCompare(b.country));$("#maplist").innerHTML=`<div class="hd">${rows.length} pins · click to zoom</div>`+rows.map(d=>`<button data-fly="${d.id}"><span class="dot ${d.levels.includes("PhD")&&!d.levels.includes("Master's")?"phd":""}"></span><span>${d.name}<br><small>${d.host}, ${d.country}</small></span><small>${dlLabel(d)}</small></button>`).join("")}
+function initMap(){
+  if(map||!window.L)return;
+  map=L.map("map",{zoomControl:false,worldCopyJump:true,attributionControl:false}).setView([25,40],2);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:18}).addTo(map);
+  mapLayer=L.layerGroup().addTo(map);drawPins();
+  $("#map").addEventListener("click",e=>{const b=e.target.closest("[data-ml]");if(!b)return;mapFilter=b.dataset.ml;document.querySelectorAll("[data-ml]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));drawPins();renderMapList()});
+  $("#maplist").addEventListener("click",e=>{const b=e.target.closest("[data-fly]");if(!b)return;const d=DATA.find(x=>x.id===b.dataset.fly);map.flyTo([d.lat,d.lng],6,{duration:.8});document.querySelectorAll("#maplist button").forEach(x=>x.classList.toggle("on",x===b));const m=mapMarkers.find(m=>m.id===d.id);if(m)m.marker.openTooltip()});
+}
+function drawPins(){
+  if(!mapLayer)return;mapLayer.clearLayers();mapMarkers=[];
+  mapRows().forEach(d=>{const phd=d.levels.includes("PhD"),ms=d.levels.includes("Master's");const col=phd&&!ms?"#7c3aed":"#2563eb";
+    const m=L.circleMarker([d.lat,d.lng],{radius:9,color:"#fff",weight:2,fillColor:col,fillOpacity:.95}).addTo(mapLayer);
+    if(phd&&ms)L.circleMarker([d.lat,d.lng],{radius:4,color:"#7c3aed",weight:0,fillColor:"#7c3aed",fillOpacity:1,interactive:false}).addTo(mapLayer);
+    m.bindTooltip(`${d.name} · ${dlLabel(d)}`,{direction:"top",offset:[0,-8]});m.on("click",()=>openDetail(d.id));mapMarkers.push({id:d.id,marker:m})});
+}
+
+
+/* ---------- resources: test guides ---------- */
+const GUIDES=[
+ {id:"ielts",t:"IELTS Academic",tags:["Paper or computer","2 h 45 min","Band 1 to 9","Valid 2 years"],
+  body:`<h4>Format</h4><div class="tablewrap"><table><thead><tr><th>Part</th><th>Time</th><th>What it is</th><th>Scored on</th></tr></thead><tbody><tr><td>Listening</td><td>30 min + 10 to transfer (paper)</td><td>4 recordings, 40 questions</td><td>Correct answers out of 40</td></tr><tr><td>Reading</td><td>60 min</td><td>3 long academic passages, 40 questions</td><td>Correct answers out of 40</td></tr><tr><td>Writing</td><td>60 min</td><td>Task 1: describe a chart or process (150 words). Task 2: essay (250 words)</td><td>Task response, coherence, vocabulary, grammar</td></tr><tr><td>Speaking</td><td>11 to 14 min</td><td>Face to face: interview, 2-minute talk, discussion</td><td>Fluency, vocabulary, grammar, pronunciation</td></tr></tbody></table></div>
+  <h4>What scholarships ask for</h4><p>Most Master's listings want overall 6.5 with no band below 6.0. Gates Cambridge and many UK humanities courses want 7.0 to 7.5 with 7.0 in each part. ETH asks for C1, which maps to IELTS 7.0. Check each listing; the "English" row shows the figure.</p>
+  <h4>Where candidates lose bands</h4><ul><li><b>Writing Task 2 position.</b> Not stating a clear opinion in the introduction caps Task Response at 6.</li><li><b>Task 1 overview.</b> One sentence summarising the main trend is required; without it the ceiling is 5.</li><li><b>Listening spelling.</b> Misspelled answers are wrong. Practise names, numbers and addresses in Section 1.</li><li><b>Reading time.</b> 20 minutes per passage; skim headings first, answer True/False/Not Given last.</li><li><b>Speaking Part 2.</b> Keep talking for the full two minutes; silence costs more than small errors.</li></ul>
+  <h4>Four-week plan (about 1 hour a day)</h4><div class="plan"><div><b>Week 1 · Diagnose</b>One full official practice test under time. Mark it. Note the two weakest parts.</div><div><b>Week 2 · Writing</b>Six Task 2 essays, one every other day, each on a different question type. Learn the four essay types and their intros.</div><div><b>Week 3 · Listening and Reading</b>One section a day with the transcript afterwards. Keep a list of every misspelled or unknown word.</div><div><b>Week 4 · Speaking and rehearsal</b>Record a Part 2 daily. Second full test on day 26. Rest the day before.</div></div>
+  <h4>Register</h4><p><a href="https://ielts.org/take-a-test" target="_blank" rel="noopener">ielts.org/take-a-test ↗</a>. Results in 3 to 5 days for computer, 13 for paper. Many universities accept IELTS Online too; confirm with the listing.</p>`},
+ {id:"toefl",t:"TOEFL iBT",tags:["Computer, test centre or home","About 2 hours","0 to 120","Valid 2 years"],
+  body:`<h4>Format</h4><div class="tablewrap"><table><thead><tr><th>Section</th><th>Time</th><th>What it is</th><th>Score</th></tr></thead><tbody><tr><td>Reading</td><td>35 min</td><td>2 academic passages, 20 questions</td><td>0 to 30</td></tr><tr><td>Listening</td><td>36 min</td><td>3 lectures, 2 conversations, 28 questions</td><td>0 to 30</td></tr><tr><td>Speaking</td><td>16 min</td><td>4 tasks, recorded; 1 independent, 3 integrated</td><td>0 to 30</td></tr><tr><td>Writing</td><td>29 min</td><td>Integrated essay (read, listen, write) and a 10-minute academic discussion post</td><td>0 to 30</td></tr></tbody></table></div>
+  <h4>What scholarships ask for</h4><p>80 is the common floor (KAUST accepts 79, MBZUAI asks 90). Competitive US and UK programmes expect 100+, with Speaking 22+ for teaching assistantships. TOEFL is preferred in North America; everywhere else IELTS and TOEFL are treated as equal.</p>
+  <h4>Where candidates lose points</h4><ul><li><b>Integrated tasks.</b> You must use the listening, not just the reading. Note-taking is the whole skill: write the lecturer's three points as they come.</li><li><b>Speaking timing.</b> 45 seconds feels short; practise a 15-second answer and a 30-second reason-with-example.</li><li><b>Academic discussion writing.</b> Respond to the professor's question and to one classmate; 100+ words in 10 minutes.</li><li><b>Reading pace.</b> About 1 minute 45 seconds per question. Do not reread the whole passage for each.</li></ul>
+  <h4>Four-week plan</h4><div class="plan"><div><b>Week 1</b>Free official practice test. Learn the integrated task templates.</div><div><b>Week 2</b>Daily: one lecture with notes, one integrated speaking task recorded and self-scored against the rubric.</div><div><b>Week 3</b>Two reading passages a day with timing; write four integrated essays.</div><div><b>Week 4</b>TOEFL Practice Online (paid, scored) on day 24; review; rest.</div></div>
+  <h4>Register</h4><p><a href="https://www.ets.org/toefl.html" target="_blank" rel="noopener">ets.org/toefl ↗</a>. Scores in 4 to 8 days. Home Edition needs a quiet room, a working webcam and a mirror.</p>`},
+ {id:"det",t:"Duolingo English Test",tags:["Online, at home","About 1 hour","10 to 160","Valid 2 years"],
+  body:`<h4>Format</h4><p>Adaptive: questions get harder as you answer correctly. Mixed item types in one 45-minute session (fill in missing letters, read aloud, listen and type, describe an image, write and speak on a prompt), then a 10-minute video interview and writing sample that universities see but that is not scored.</p>
+  <h4>What scholarships ask for</h4><p>120 is a common minimum, roughly IELTS 6.5; 130 is roughly 7.0. Acceptance varies: many US and UK universities accept it, several European and Asian scholarships do not. Check the listing's English row and the university's own page before paying.</p>
+  <h4>Where candidates lose points</h4><ul><li><b>Fill-in-the-blanks.</b> Vocabulary breadth is tested directly; read widely for a month.</li><li><b>Read-aloud and listen-and-type.</b> Clear microphone, quiet room; background noise invalidates sessions.</li><li><b>Rule violations.</b> Looking away, another person in the room, or a second screen ends the test. Read the rules twice.</li></ul>
+  <h4>Two-week plan</h4><div class="plan"><div><b>Days 1 to 3</b>Three free practice tests to learn the item types.</div><div><b>Days 4 to 10</b>Daily 20 minutes of vocabulary (academic word list) plus one practice test every other day.</div><div><b>Days 11 to 13</b>Speaking and writing prompts timed; record and listen back.</div><div><b>Day 14</b>Test in the morning. Results in about 2 days.</div></div>
+  <h4>Register</h4><p><a href="https://englishtest.duolingo.com/" target="_blank" rel="noopener">englishtest.duolingo.com ↗</a>. Lowest cost of the four tests; you can send results to unlimited institutions free.</p>`},
+ {id:"pte",t:"PTE Academic",tags:["Computer, test centre or home","About 2 hours","10 to 90","Valid 2 years"],
+  body:`<h4>Format</h4><p>Three parts in one sitting: Speaking and Writing together (54 to 67 minutes: read aloud, repeat sentence, describe image, retell lecture, summarise text, essay), Reading (29 to 30 minutes), Listening (30 to 43 minutes). Entirely computer-marked, which is why results arrive in about two days.</p>
+  <h4>What scholarships ask for</h4><p>58 is roughly IELTS 6.5; 65 is roughly 7.0. Widely accepted in Australia (Sydney RTP lists it), the UK and New Zealand; less common in continental Europe and East Asia.</p>
+  <h4>Where candidates lose points</h4><ul><li><b>Speaking fluency.</b> The machine rewards even pace over perfect content. Hesitation and self-correction cost more than a wrong word.</li><li><b>Repeat sentence.</b> Worth a lot; practise holding 10 to 12 words in memory.</li><li><b>Write from dictation.</b> Spelling counts, and these items feed both Listening and Writing scores.</li></ul>
+  <h4>Three-week plan</b></h4><div class="plan"><div><b>Week 1</b>Free scored practice test. Learn the templates for describe image and retell lecture.</div><div><b>Week 2</b>Daily 30 minutes of repeat sentence and write from dictation; two essays.</div><div><b>Week 3</b>Second scored practice test; fix the lowest enabling skill; rest a day.</div><div><b>Tip</b>Speak at a steady pace into the mic from the first second; the recording stops after 3 seconds of silence.</div></div>
+  <h4>Register</h4><p><a href="https://www.pearsonpte.com/" target="_blank" rel="noopener">pearsonpte.com ↗</a>. Results typically within 48 hours.</p>`}
+];
+let guideI=0;
+function renderGuide(){$("#guide-tabs").innerHTML=GUIDES.map((g,i)=>`<button class="chip" aria-pressed="${i===guideI}" data-g="${i}">${g.t}</button>`).join("");const g=GUIDES[guideI];$("#guide").innerHTML=`<h3>${g.t}</h3><div class="meta">${g.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>${g.body}`}
+function showRes(t){document.querySelectorAll("#res-tabs button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.rt===t)));["tests","letters","cv","papers"].forEach(k=>$("#rt-"+k).hidden=(k!==t));if(t==="cv")renderCV()}
+
+/* ---------- reading mini quiz ---------- */
+const READQ=[{q:"1. River gauges are described as",o:["cheap but imprecise","accurate but costly and vulnerable","useless in mountains"],a:1},{q:"2. Citizen observations are valuable mainly because they",o:["are more precise than gauges","come from many points along the river","are free"],a:1},{q:"3. Combining both sources",o:["reduced false alarms by a third","detected a third more floods","was tested only in Nepal"],a:0}];
+function renderReadQ(){$("#read-q").innerHTML=READQ.map((q,i)=>`<div class="q"><b>${q.q}</b>${q.o.map((o,oi)=>`<label><input type="radio" name="r${i}" value="${oi}">${o}</label>`).join("")}</div>`).join("")}
+
+/* ---------- CV designer ---------- */
+const CVS={name:"",head:"",email:"",phone:"",city:"",links:"",sum:"",edu:[],exp:[],pub:[],awd:[],skills:"",langs:"",tpl:"classic",acc:"#2563eb"};
+const CVSAMPLE={name:"Asha Applicant",head:"Civil engineer · flood early-warning systems",email:"asha@example.edu",phone:"+977 98 0000 0000",city:"Kathmandu, Nepal",links:"linkedin.com/in/asha · orcid.org/0000-0000",sum:"Civil engineer with three years in digital public infrastructure and a shipped flood-bulletin platform used by 40,000 people. Seeking a research Master's in hydrology to build early-warning tools for ungauged catchments.",
+ edu:[{t:"BEng Civil Engineering, first class (GPA 3.7/4.0)",o:"Tribhuvan University, Institute of Engineering",d:"2019 to 2023",s:"Thesis: Sediment transport in a monsoon river from open satellite data (A)."}],
+ exp:[{t:"Assistant IT Officer",o:"Ministry of Finance, Government of Nepal",d:"2023 to present",s:"Built and ran a bilingual flood bulletin for Rasuwa district; 40,000 users in week one, adopted by the district administration.\nLed data integration for a cabinet decision-tracking system used by 26 ministries."},{t:"Research intern",o:"Hydrology Lab, IOE",d:"Summer 2022",s:"Processed 10 years of rainfall records for 23 stations; co-wrote the lab's QA checklist."}],
+ pub:[{t:"Citizen-reported water levels as a substitute for gauges in Himalayan catchments",o:"Conference paper, HydroAsia 2026 (co-author)",d:"2026",s:""},{t:"Rasuwa Flood Bulletin (open source)",o:"github.com/example/rasuwa-flood-bulletin",d:"2026",s:"Bilingual static site with live alerts; 14 months of crowd-reported levels for 23 sites."}],
+ awd:[{t:"Dean's List",o:"Institute of Engineering",d:"2021, 2022",s:""}],skills:"Python, QGIS, hydrological modelling (HEC-HMS), JavaScript, data pipelines",langs:"Nepali (native), English (IELTS 7.5), Hindi (fluent)",tpl:"classic",acc:"#2563eb"};
+let cv=store.get("sc_cv",null)||JSON.parse(JSON.stringify(CVS));
+const CVF=["name","head","email","phone","city","links","sum","skills","langs","tpl","acc"];
+function cvFromForm(){CVF.forEach(k=>cv[k]=$("#cv-"+k).value);["edu","exp","pub","awd"].forEach(k=>{cv[k]=[...document.querySelectorAll(`#cv-${k} .cvrow`)].map(r=>({t:r.querySelector("[data-f=t]").value,o:r.querySelector("[data-f=o]").value,d:r.querySelector("[data-f=d]").value,s:r.querySelector("[data-f=s]").value}))});store.set("sc_cv",cv);renderCVPaper()}
+function cvRow(k,it){const lbl={edu:["Degree and grade","Institution","Dates","Thesis or notes"],exp:["Role","Organisation","Dates","Achievements, one per line"],pub:["Title","Venue or link","Year","Notes"],awd:["Award","Given by","Year","Notes"]}[k];return `<div class="cvrow"><button class="rm" type="button" data-rm title="Remove">×</button><input data-f="t" placeholder="${lbl[0]}" value="${esc(it.t)}"><div class="g2"><input data-f="o" placeholder="${lbl[1]}" value="${esc(it.o)}"><input data-f="d" placeholder="${lbl[2]}" value="${esc(it.d)}"></div><textarea data-f="s" rows="2" placeholder="${lbl[3]}">${esc(it.s)}</textarea></div>`}
+function esc(x){return String(x||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
+function renderCV(){CVF.forEach(k=>$("#cv-"+k).value=cv[k]||"");["edu","exp","pub","awd"].forEach(k=>$("#cv-"+k).innerHTML=(cv[k]||[]).map(it=>cvRow(k,it)).join(""));renderCVPaper()}
+function renderCVPaper(){const p=$("#cvpaper");p.className="cvpaper "+cv.tpl;p.style.setProperty("--acc",cv.acc);
+  const sec=(title,items)=>items&&items.length?`<h2>${title}</h2>`+items.map(it=>`<div class="it"><b>${esc(it.t)}</b><span class="d">${esc(it.d)}</span><span class="s">${esc(it.o)}${it.s?`<ul>${it.s.split("\n").filter(Boolean).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>`:""}</span></div>`).join(""):"";
+  const tags=(title,v)=>v?`<h2>${title}</h2><div class="tags">${v.split(",").map(x=>x.trim()).filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("")}</div>`:"";
+  const top=`<div class="top"><h1>${esc(cv.name)||"Your name"}</h1><div class="hd">${esc(cv.head)}</div><div class="ct">${[cv.email,cv.phone,cv.city,cv.links].filter(Boolean).map(esc).join(" · ")}</div>${cv.sum?`<p style="margin:10px 0 0">${esc(cv.sum)}</p>`:""}</div>`;
+  const main=sec("Education",cv.edu)+sec("Experience",cv.exp)+sec("Publications and projects",cv.pub)+sec("Awards",cv.awd);
+  const side=tags("Skills",cv.skills)+tags("Languages",cv.langs);
+  p.innerHTML=cv.tpl==="compact"?top+`<div>${main}</div><div class="side">${side}</div>`:top+main+side;}
+document.addEventListener("click",e=>{
+  const rt=e.target.closest("[data-rt]");if(rt){showRes(rt.dataset.rt);return}
+  const g=e.target.closest("[data-g]");if(g){guideI=+g.dataset.g;renderGuide();return}
+  const ad=e.target.closest("[data-add]");if(ad){cvFromForm();cv[ad.dataset.add].push({t:"",o:"",d:"",s:""});renderCV();return}
+  const rm=e.target.closest("[data-rm]");if(rm){rm.closest(".cvrow").remove();cvFromForm();return}
+  if(e.target.closest("#cv-sample")){cv=JSON.parse(JSON.stringify(CVSAMPLE));store.set("sc_cv",cv);renderCV();return}
+  if(e.target.closest("#cv-clear")){cv=JSON.parse(JSON.stringify(CVS));store.set("sc_cv",cv);renderCV();return}
+  if(e.target.closest("#cv-print")){window.print();return}
+  if(e.target.closest("#read-check")){let ok=0;READQ.forEach((q,i)=>{const sel=document.querySelector(`input[name=r${i}]:checked`);const L=document.querySelectorAll(`#read-q .q:nth-child(${i+1}) label`);L.forEach(l=>l.classList.remove("correct","wrong"));L[q.a].classList.add("correct");if(sel){if(+sel.value===q.a)ok++;else L[+sel.value].classList.add("wrong")}});$("#read-msg").hidden=false;$("#read-msg").textContent=ok+" of 3 correct. "+(ok===3?"Band-9 reading on this extract.":"Re-read the sentence the answer sits in; IELTS answers are always in the text.");return}
+});
+document.addEventListener("input",e=>{if(e.target.closest("#rt-cv"))cvFromForm()});
+renderGuide();renderReadQ();
+
 /* ---------- events ---------- */
-function renderEvents(){$("#events").innerHTML=EVENTS.map(e=>{const dt=new Date(e.d+"T00:00:00");return `<div class="ev"><div class="d"><b>${dt.getDate()}</b><span>${dt.toLocaleDateString("en-GB",{month:"short"})}</span></div><div><h4>${e.t}</h4><p>${e.p}</p></div><div class="act" style="display:flex;gap:8px;align-items:center"><span class="tag">${e.k}</span><button class="btn sm" type="button" data-rsvp>RSVP</button></div></div>`}).join("")}
+function renderEvents(){$("#events").innerHTML=DATA.filter(d=>daysLeft(d)>=0).sort((a,b)=>daysLeft(a)-daysLeft(b)).map(d=>{const dt=new Date(d.deadline+"T00:00:00");return `<div class="ev"><div class="d"><b>${dt.getDate()}</b><span>${dt.toLocaleDateString("en-GB",{month:"short"})}</span></div><div><h4>${d.name}</h4><p>${d.host}, ${d.country} · ${d.deadlineNote}</p></div><div class="act" style="display:flex;gap:8px;align-items:center"><span class="tag ${dlClass(d)}">${dlLabel(d)} left</span><button class="btn sm" type="button" data-open="${d.id}">Open</button></div></div>`}).join("")}
 
 /* ---------- views ---------- */
-const VIEWS=["home","countries","rank","assess","academy","course","cert","events","funders","about","signup"];
+const VIEWS=["home","map","countries","resources","rank","assess","academy","course","cert","events","funders","about","signup"];
 function switchView(v){
   const navV=v==="course"||v==="cert"?"academy":v;
   document.querySelectorAll("nav button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===navV)));
   VIEWS.forEach(x=>{const el=$("#view-"+x);if(el)el.hidden=(x!==v)});
-  if(v==="assess"){loadProfile();renderAssess()}if(v==="rank")renderRank();if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();
+  if(v==="assess"){loadProfile();renderAssess()}if(v==="rank")renderRank();if(v==="map"){setTimeout(()=>{initMap();if(map)map.invalidateSize();renderMapList()},30)}if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();if(v==="resources")renderCV();
   window.scrollTo({top:0});
   if(location.hash.replace("#","")!==v)history.replaceState(null,"","#"+v);
 }
@@ -1058,8 +1345,8 @@ document.addEventListener("click",e=>{
   const rs=e.target.closest("[data-rsvp]");if(rs){rs.textContent="Going ✓";rs.disabled=true;return}
   if(e.target.closest("#clear")){clearFilters();return}
   if(e.target.closest("#go")){doSearch();return}
-  if(e.target.closest("#post-btn")){$("#post-note").hidden=false;return}
-  if(e.target.closest("#su-btn")){if(!$("#su-email").value){$("#su-email").focus();return}$("#su-note").hidden=false;$("#su-btn").textContent="On the waitlist ✓";$("#su-btn").disabled=true;return}
+  
+  
   if(!e.target.closest(".search"))$("#sugg-box").classList.remove("open");
 });
 $("#q").addEventListener("input",()=>{suggIdx=-1;renderSugg();state.q=$("#q").value;renderChips();renderGrid()});
@@ -1080,3 +1367,6 @@ renderChips();renderStats();renderGrid();renderStrip();renderCountries();renderC
 const h0=location.hash.replace("#","");if(VIEWS.includes(h0)&&h0!=="home"&&h0!=="course"&&h0!=="cert")switchView(h0);
 
 </script>
+
+</body>
+</html>

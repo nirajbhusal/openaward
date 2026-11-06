@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nirajbhusal.github.io/openaward/sitemap.xml
