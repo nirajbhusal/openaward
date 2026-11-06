@@ -1,27 +1,27 @@
 <title>OpenAward</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: monochrome, single light theme. Left icon rail on desktop, bottom tab bar on phones. Greeting + mascot, number tiles, then each section. Hairline borders, #f7f7f7 tiles, graphite text, thin line illustrations. */
+/* Layout: single light theme. Inter throughout. Soft gradient hero with an SVG illustration, icon tiles, SVG infographics, a ranking table, sidebar+list catalogue, side-sheet detail. */
 :root{
-  --bg:#fafafa; --surface:#f2f3f1; --fg:#0f172a; --muted:#64748b; --faint:#94a3b8; --line:#e5e7eb; --illu:#e4e4e4; --illu2:#cfcfcf;
-  --accent:#2563eb; --accent-ink:#fff; --accent-soft:#e8efff; --accent-2:#7c3aed; --shadow:0 1px 2px rgba(15,23,42,.04),0 14px 40px rgba(15,23,42,.07); --glass:#ffffffdb;
-  --ok:#1f7a4d; --ok-soft:#eaf5ee; --warn:#9a5b00; --warn-soft:#fbf3e4; --no:#b42318; --no-soft:#fbeae8;
-  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --r:16px;
+  --bg:#fafafa; --surface:#ffffff; --surface-2:#f3f4f6; --fg:#0f172a; --muted:#64748b; --line:#e5e7eb;
+  --accent:#2563eb; --accent-fg:#ffffff; --accent-soft:#e8efff; --accent-2:#7c3aed; --mint:#10b981; --mint-soft:#e6f7f1; --amber:#f59e0b; --amber-soft:#fff4de; --rose:#ef4444; --rose-soft:#fde8e8;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r:16px; --shadow:0 1px 2px rgba(15,23,42,.04),0 14px 40px rgba(15,23,42,.07);
   color-scheme:light;
 }
 *{box-sizing:border-box}
-html,body{height:100%}
-body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.5;margin:0;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55;margin:0;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#fff}
 button,input,select{font:inherit;color:inherit}
-h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
+h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-.025em;line-height:1.1;text-wrap:balance}
 a{color:var(--accent)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
-/* intro */
+/* intro + mascot */
 #intro{position:fixed;inset:0;z-index:50;background:#fff;display:grid;place-items:center;animation:intro-fade .5s ease 2.3s forwards}
 #intro .m{animation:intro-pop .6s cubic-bezier(.2,1.4,.4,1) both}
 #intro .w{margin-top:14px;font-weight:800;font-size:24px;letter-spacing:-.03em;opacity:0;animation:fade-up .5s ease .7s forwards;text-align:center}
@@ -31,282 +31,262 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stro
 @keyframes intro-fade{to{opacity:0;visibility:hidden}}
 @keyframes fade-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){#intro{display:none}}
-/* mascot: two eyes + mortarboard */
-.mascot{display:inline-block}
-.mascot .eye{animation:blink 4s infinite}
+.mascot .eye{animation:blink 4s infinite;transform-origin:center;transform-box:fill-box}
 .mascot .eye:nth-child(2){animation-delay:.08s}
 @keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
-.mascot .eye{transform-origin:center;transform-box:fill-box}
 #intro .cap{animation:cap-drop .6s cubic-bezier(.2,1.2,.4,1) .9s both;transform-origin:center;transform-box:fill-box}
 @keyframes cap-drop{0%{transform:translateY(-40px) rotate(-14deg);opacity:0}100%{transform:none;opacity:1}}
 
-/* shell */
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.bar{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:16px;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));flex-wrap:wrap}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:16px;padding-block:10px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:8px;margin-right:auto;font-weight:800;font-size:18px;letter-spacing:-.03em;border:0;background:transparent;cursor:pointer;padding:0}
 nav{display:flex;gap:2px;flex-wrap:wrap}
 nav button{border:0;background:transparent;padding:7px 11px;border-radius:9px;cursor:pointer;font-weight:500;color:var(--muted);font-size:14px}
-nav button[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+nav button[aria-selected="true"]{background:var(--surface-2);color:var(--fg);font-weight:600}
 .signin{border:1px solid var(--line);background:#fff;padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:14px}
-.content{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px calc(48px + env(safe-area-inset-bottom,0px))}
-.wrap{max-width:1160px;margin:0 auto}
+
+main{padding-block:36px 64px}
 section[hidden]{display:none}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.lead{max-width:60ch;margin-bottom:28px}
+.lead h1{font-size:clamp(34px,5vw,58px);font-weight:800} .lead h2{font-size:clamp(28px,3.6vw,40px)}
+.lead em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead p{color:var(--muted);margin:14px 0 0;font-size:17px}
 
-/* hero */
-.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;background:linear-gradient(135deg,#eef3ff 0%,#f6f1ff 55%,#eafaf3 100%);border:1px solid var(--line);border-radius:28px;padding:40px 44px;margin-bottom:24px}
-.hero h1{font-size:clamp(32px,4.6vw,52px);font-weight:800;letter-spacing:-.03em}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:var(--muted);margin:14px 0 0;font-size:17px;max-width:54ch}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;background:linear-gradient(135deg,#eef3ff 0%,#f6f1ff 50%,#eafaf3 100%);border:1px solid var(--line);border-radius:28px;padding:44px 44px 36px;margin-bottom:28px;overflow:hidden;position:relative}
+.hero .lead{margin:0}
 .hero .ctas{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
-.hero .art{display:flex;justify-content:center;align-items:center;gap:22px;flex-wrap:wrap}
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
-.tile{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;text-align:left;cursor:pointer;display:grid;gap:4px;align-content:end;min-height:170px;transition:transform .15s,box-shadow .15s}
-.tile:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--accent)}
-.tile svg.il{width:96px;height:40px;stroke:var(--accent);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;margin-bottom:22px}
-.tile .nm{font-weight:600;font-size:15px}
-.tile .n{font-size:34px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;color:var(--accent)}
-.tile .u{font-size:13px;color:var(--muted)}
-
-/* common */
-.kicker{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
-.lead{max-width:62ch;margin-bottom:24px}
-.lead h2{font-size:clamp(26px,3.6vw,34px)} .lead p{color:var(--muted);margin:10px 0 0;font-size:16px}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px}
-.card.white{background:#fff}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px} .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.tag{font-size:12px;padding:3px 9px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--muted);white-space:nowrap;font-weight:500}
-.tag.ok{background:var(--ok-soft);color:var(--ok);border-color:transparent} .tag.warn{background:var(--warn-soft);color:var(--warn);border-color:transparent} .tag.no{background:var(--no-soft);color:var(--no);border-color:transparent} .tag.acc{background:var(--accent-soft);color:var(--accent);border-color:transparent}
-.btn{border:1px solid var(--line);background:#fff;padding:10px 16px;border-radius:999px;cursor:pointer;font-weight:600;text-decoration:none;color:inherit;display:inline-flex;gap:8px;align-items:center;font-size:14px}
-.btn.primary{background:var(--accent);color:#fff;border-color:transparent} .btn.sm{padding:6px 12px;font-size:13px} .btn:disabled{opacity:.5;cursor:default}
-.note{background:var(--surface);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--muted)}
-.mono{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.hero .art{position:relative;min-height:300px}
+.hero .art svg{width:100%;height:auto;max-width:100%;display:block}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px} .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px} .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat{display:flex;gap:14px;align-items:center}
+.stat .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.stat b{display:block;font-size:28px;line-height:1;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+.tag{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted);white-space:nowrap;font-weight:600}
+.tag.ok{background:var(--mint-soft);color:#047857} .tag.warn{background:var(--amber-soft);color:#b45309} .tag.no{background:var(--rose-soft);color:#b91c1c} .tag.acc{background:var(--accent-soft);color:var(--accent)}
+.btn{border:1px solid var(--line);background:#fff;padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:600;text-decoration:none;color:inherit;display:inline-flex;gap:8px;align-items:center;font-size:14px}
+.btn.primary{background:var(--accent);color:#fff;border-color:transparent} .btn.sm{padding:6px 11px;font-size:13px;border-radius:9px} .btn:disabled{opacity:.55;cursor:default}
+.note{background:var(--surface-2);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--muted)}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 label.l{display:block;font-size:13px;color:var(--muted);margin-bottom:5px;font-weight:500}
-input,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
-.stars{color:#f59e0b;letter-spacing:1px;font-size:12px}
-.sp{height:32px}
-.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
-.feat .card{display:grid;gap:8px;background:#fff}
+input,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:#fff}
+.stars{color:var(--amber);letter-spacing:1px;font-size:13px}
+
+.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.feat .card{display:grid;gap:10px}
 .feat .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center}
 .feat h4{font-size:15px} .feat p{margin:0;font-size:13px;color:var(--muted)}
 
-/* discover list */
-.browse{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:start}
-aside{position:sticky;top:20px;display:grid;gap:14px}
+.browse{display:grid;grid-template-columns:250px 1fr;gap:28px;align-items:start}
+aside{position:sticky;top:calc(66px + env(safe-area-inset-top,0px));display:grid;gap:14px}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
 .chip{border:1px solid var(--line);background:#fff;padding:5px 11px;border-radius:999px;font-size:13px;cursor:pointer;color:var(--muted);font-weight:500}
-.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:#fff}
 .count{color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
 .count select{width:auto;padding:6px 10px;font-size:13px}
 .list{display:grid;gap:10px}
-.item{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;grid-template-columns:48px 1fr auto;gap:4px 16px;cursor:pointer;text-align:left;min-width:0;transition:background .15s}
-.item:hover{background:var(--surface)}
-.flagic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:12px;letter-spacing:-.02em;color:var(--accent);background:var(--accent-soft)}
-.item h3{font-size:17px} .item .host{font-size:13px;color:var(--muted)}
+.item{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;grid-template-columns:52px 1fr auto;gap:6px 16px;cursor:pointer;text-align:left;min-width:0;transition:border-color .15s,box-shadow .15s}
+.item:hover{border-color:var(--accent);box-shadow:var(--shadow)}
+.flagic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:-.02em;color:#fff}
+.item h3{font-size:18px} .item .host{font-size:13px;color:var(--muted)}
 .item .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
 .due{text-align:right;display:grid;align-content:start;gap:2px}
-.due b{font-size:24px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.due b{font-size:26px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
 .due small{font-size:12px;color:var(--muted)}
-.due.no b{color:var(--no)} .due.warn b{color:var(--warn)}
+.due.no b{color:var(--rose)} .due.warn b{color:#b45309} .due.ok b{color:#047857}
 
-/* countries */
-.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.cc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;cursor:pointer;text-align:left;display:grid;gap:8px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.cc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;cursor:pointer;text-align:left;transition:border-color .15s;display:grid;gap:8px}
 .cc:hover{border-color:var(--accent)}
-.cc .hd{display:flex;gap:10px;align-items:center} .cc h3{font-size:17px} .cc .n{font-size:12px;color:var(--muted)}
-.cc ul{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:13px} .cc li{display:grid;grid-template-columns:1fr 1.2fr;gap:8px;align-items:start} .cc li span{color:var(--muted);text-align:right}
-.infobar{display:grid;grid-template-columns:130px 1fr 60px;gap:10px;align-items:center;font-size:13px}
-.infobar .bar{height:8px;background:#fff;border:1px solid var(--line);border-radius:5px;overflow:hidden} .infobar .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,#2563eb,#7c3aed)}
+.cc .hd{display:flex;gap:10px;align-items:center} .cc h3{font-size:18px} .cc .n{font-size:12px;color:var(--muted)}
+.cc ul{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:13px}
+.cc li{display:grid;grid-template-columns:1fr 1.2fr;gap:8px;align-items:start} .cc li span{color:var(--muted);text-align:right}
+.infobar{display:grid;grid-template-columns:150px 1fr 60px;gap:10px;align-items:center;font-size:13px}
+.infobar .bar{height:10px;background:var(--surface-2);border-radius:5px;overflow:hidden} .infobar .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
 .infobar b{text-align:right;font-variant-numeric:tabular-nums}
 
-/* rankings */
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:#fff}
 table{width:100%;border-collapse:collapse;font-size:14px;min-width:720px}
 th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
-th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em;background:var(--surface)}
+th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em;background:var(--surface-2)}
 tr:last-child td{border-bottom:0}
-td .rk{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-weight:800}
-.score{display:inline-flex;align-items:center;gap:8px} .score .bar{width:80px;height:6px;background:var(--surface);border-radius:3px;overflow:hidden} .score .bar i{display:block;height:100%;background:var(--accent)}
+td b{font-variant-numeric:tabular-nums} td .rk{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-weight:800}
+.score{display:inline-flex;align-items:center;gap:8px} .score .bar{width:90px;height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden} .score .bar i{display:block;height:100%;background:var(--accent)}
 
-/* sheet */
 .sheet{position:fixed;inset:0;z-index:20;display:none} .sheet.open{display:block}
-.sheet .back{position:absolute;inset:0;background:#0a0a0a40}
-.panel{position:absolute;top:0;right:0;bottom:0;width:min(580px,100%);background:#fff;overflow:auto;padding-block:20px calc(24px + env(safe-area-inset-bottom,0px));padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));box-shadow:var(--shadow)}
+.sheet .back{position:absolute;inset:0;background:rgba(15,23,42,.4)}
+.panel{position:absolute;top:0;right:0;bottom:0;width:min(600px,100%);background:#fff;overflow:auto;padding-block:20px calc(24px + env(safe-area-inset-bottom,0px));padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));box-shadow:var(--shadow)}
 .panel .close{position:sticky;top:0;float:right;border:1px solid var(--line);background:#fff;border-radius:999px;width:34px;height:34px;cursor:pointer}
-.panel h2{font-size:26px;margin:0} .panel .sub{color:var(--muted);margin-bottom:16px;font-size:14px}
-dl{display:grid;grid-template-columns:130px 1fr;gap:10px 14px;margin:0;font-size:14px}
+.panel h2{font-size:28px;margin:30px 0 4px} .panel .sub{color:var(--muted);margin-bottom:16px}
+dl{display:grid;grid-template-columns:140px 1fr;gap:10px 14px;margin:0;font-size:14px}
 dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:0;min-width:0;overflow-wrap:anywhere}
 .cta{display:flex;gap:10px;margin:18px 0;flex-wrap:wrap}
-.deadline-big{display:flex;gap:14px;align-items:baseline;background:var(--surface);border-radius:14px;padding:14px 16px;margin-bottom:18px}
-.deadline-big b{font-size:30px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums} .deadline-big span{color:var(--muted);font-size:13px}
+.deadline-big{display:flex;gap:14px;align-items:baseline;background:var(--surface-2);border-radius:14px;padding:14px 16px;margin-bottom:18px}
+.deadline-big b{font-size:32px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums} .deadline-big span{color:var(--muted);font-size:13px}
 .review{border-top:1px solid var(--line);padding:12px 0;font-size:14px}
 .review .who{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted);margin-bottom:4px}
-.ratebar{display:grid;grid-template-columns:40px 1fr auto;gap:10px;align-items:center;font-size:13px}
-.ratebar .bar{height:6px;background:var(--surface);border-radius:3px;overflow:hidden} .ratebar .bar i{display:block;height:100%;background:var(--accent)}
+.ratebar{display:grid;grid-template-columns:60px 1fr auto;gap:10px;align-items:center;font-size:13px}
+.ratebar .bar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden} .ratebar .bar i{display:block;height:100%;background:var(--amber)}
 
-/* assessment */
-.check{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
-.form{display:grid;gap:14px;position:sticky;top:20px}
+.check{display:grid;grid-template-columns:360px 1fr;gap:24px;align-items:start}
+.form{display:grid;gap:14px;position:sticky;top:calc(66px + env(safe-area-inset-top,0px))}
 .scorecard{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
-.ring{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--line) 0)}
-.ring div{width:110px;height:110px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center}
-.ring b{font-size:40px;line-height:1;font-weight:800;letter-spacing:-.04em} .ring small{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.ring{width:150px;height:150px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--surface-2) 0)}
+.ring div{width:116px;height:116px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center}
+.ring b{font-size:42px;line-height:1;font-weight:800;letter-spacing:-.04em} .ring small{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 .dims{display:grid;gap:8px}
-.dim{display:grid;grid-template-columns:100px 1fr 36px;gap:10px;align-items:center;font-size:13px}
-.dim .bar{height:8px;background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden} .dim .bar i{display:block;height:100%;background:var(--accent)}
+.dim{display:grid;grid-template-columns:110px 1fr 36px;gap:10px;align-items:center;font-size:13px}
+.dim .bar{height:8px;background:var(--surface-2);border-radius:4px;overflow:hidden} .dim .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:4px}
 .dim b{text-align:right;font-variant-numeric:tabular-nums}
 .sugg .s{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:start;padding:12px 0;border-top:1px solid var(--line);font-size:14px}
 .sugg .s .ic{width:36px;height:36px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
 .sugg .s small{color:var(--muted);display:block}
-.res{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;display:grid;grid-template-columns:10px 1fr auto;gap:12px;align-items:start;font-size:14px}
-.res .dot{width:10px;height:10px;border-radius:50%;background:var(--line);margin-top:6px}
-.res.ok .dot{background:var(--ok)} .res.warn .dot{background:var(--warn)} .res.no .dot{background:var(--no)}
+.res{background:#fff;border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:var(--r);padding:12px 16px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;font-size:14px}
+.res.ok{border-left-color:var(--mint)} .res.warn{border-left-color:var(--amber)} .res.no{border-left-color:var(--rose)}
 .res ul{margin:4px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
-.res .fit{font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1;text-align:right} .res .fit small{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:2px;font-weight:600}
+.res .fit{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1;text-align:right} .res .fit small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2px;font-weight:400}
 
-/* academy */
-.tests{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.tests{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
 .test{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:8px;align-content:start}
-.test .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:11px;color:#fff;background:var(--accent)}
+.test .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}
 .test b{font-size:15px} .test span{font-size:13px;color:var(--muted)} .test a{font-size:13px;font-weight:600}
-.courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
 .course{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;align-content:start}
-.course .cover{height:88px;display:grid;place-items:center;background:var(--accent-soft);border-bottom:1px solid var(--line)} .course .cover svg{width:34px;height:34px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.course .cover{height:96px;display:grid;place-items:center;color:#fff} .course .cover svg{width:36px;height:36px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .course .bd{padding:16px;display:grid;gap:10px}
-.course .top{display:flex;justify-content:space-between;gap:10px;align-items:start} .course h3{font-size:16px}
+.course .top{display:flex;justify-content:space-between;gap:10px;align-items:start} .course h3{font-size:17px}
 .course p{margin:0;font-size:13px;color:var(--muted)} .course .mods{font-size:13px;display:grid;gap:3px;color:var(--muted);padding-left:16px;margin:0}
-.prog{height:6px;background:var(--surface);border-radius:3px;overflow:hidden} .prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .4s}
+.prog{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden} .prog i{display:block;height:100%;background:var(--mint);width:0;transition:width .4s}
 .cert{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
-.cert .badge{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--accent);color:var(--accent);display:grid;place-items:center;font-size:10px;font-weight:800}
+.cert .badge{width:30px;height:30px;border-radius:50%;border:2px solid var(--amber);display:grid;place-items:center;font-size:11px;color:#b45309;font-weight:800}
 
-/* events */
 .events{display:grid;gap:10px}
-.ev{display:grid;grid-template-columns:60px 1fr auto;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 18px}
-.ev .d{text-align:center;background:var(--accent-soft);color:var(--accent);border-radius:12px;padding:8px 0} .ev .d b{display:block;font-size:22px;line-height:1;font-weight:800} .ev .d span{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.ev{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 18px}
+.ev .d{text-align:center;background:var(--accent-soft);border-radius:12px;padding:8px 0;color:var(--accent)} .ev .d b{display:block;font-size:24px;line-height:1;font-weight:800} .ev .d span{font-size:11px;text-transform:uppercase;letter-spacing:.08em}
 .ev h4{font-size:15px} .ev p{margin:2px 0 0;font-size:13px;color:var(--muted)}
 
-/* funders, arch, signup */
-.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px} .kpi b{display:block;font-size:24px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums} .kpi span{font-size:12px;color:var(--muted)}
+.kpi{background:var(--surface-2);border-radius:12px;padding:12px} .kpi b{display:block;font-size:24px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums} .kpi span{font-size:12px;color:var(--muted)}
 .steps{display:grid;gap:12px;counter-reset:s}
 .step{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start}
-.step::before{counter-increment:s;content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:800;font-size:12px}
+.step::before{counter-increment:s;content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:800;font-size:13px}
 .step b{display:block} .step span{color:var(--muted);font-size:13px}
 .arch{display:grid;gap:10px}
-.layer{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start}
-.layer .nm{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;padding-top:12px}
+.layer{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:start}
+.layer .nm{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:12px}
 .layer .boxes{display:flex;gap:8px;flex-wrap:wrap}
 .box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;min-width:0}
 .box b{display:block;font-size:13px} .box span{color:var(--muted);font-size:12px}
-.box.core{background:var(--accent);color:#fff;border-color:transparent} .box.core span{color:#c7d7ff}
+.box.core{border-color:var(--accent);background:var(--accent-soft)}
 .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .ph{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px} .ph .mono{margin-bottom:6px} .ph b{display:block;margin-bottom:6px} .ph ul{margin:0;padding-left:16px;font-size:13px;color:var(--muted)}
 .signup{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
 .authcard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;display:grid;gap:12px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.authcard .soon{position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--accent);color:#fff;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 48px}
+.authcard .soon{position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--amber);color:#1f1300;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 48px}
 .authcard .or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px} .authcard .or::before,.authcard .or::after{content:"";flex:1;height:1px;background:var(--line)}
 .perks{display:grid;gap:12px} .perk{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start} .perk .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)} .perk b{display:block} .perk span{color:var(--muted);font-size:13px}
+.about-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.about-tiles .card b{display:block;margin-bottom:6px} .about-tiles .card p{margin:0;font-size:14px;color:var(--muted)}
 
-/* ask button + footer */
-footer{color:var(--faint);font-size:12px;padding-top:28px;border-top:1px solid var(--line);margin-top:32px}
+footer{border-top:1px solid var(--line);padding-block:18px calc(18px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:13px}
+.sp{height:36px}
 
-@media (max-width:900px){
-  .hero{grid-template-columns:1fr;padding:26px 20px}
-  nav button{padding:6px 8px;font-size:13px}
-  .tiles{grid-template-columns:1fr 1fr;gap:10px} .feat{grid-template-columns:1fr 1fr} .tile{min-height:140px;padding:18px}
-  .browse,.check,.grid2,.scorecard,.signup{grid-template-columns:1fr} .grid4,.phases{grid-template-columns:1fr 1fr}
-  aside,.form{position:static} dl{grid-template-columns:1fr}
-  .item{grid-template-columns:48px 1fr} .due{grid-column:2;text-align:left}
-  .res{grid-template-columns:10px 1fr} .res .fit{grid-column:2;text-align:left}
-  .ev{grid-template-columns:52px 1fr} .ev .act{grid-column:2}
+@media (max-width:920px){
+  .hero,.browse,.check,.grid2,.grid3,.scorecard,.signup,.about-tiles{grid-template-columns:1fr}
+  .grid4,.feat,.phases{grid-template-columns:1fr 1fr}
+  .hero{padding:28px 20px} .hero .art{min-height:0}
+  aside,.form{position:static}
+  dl{grid-template-columns:1fr}
+  .item{grid-template-columns:52px 1fr} .due{grid-column:2;text-align:left}
+  .res{grid-template-columns:1fr} .res .fit{text-align:left}
+  .ev{grid-template-columns:56px 1fr} .ev .act{grid-column:2}
   .layer{grid-template-columns:1fr} .layer .nm{padding-top:0}
+  nav button{padding:6px 8px;font-size:13px}
 }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="mascot" viewBox="0 0 120 90"><g class="eyes"><rect class="eye" x="30" y="40" width="22" height="44" rx="11" fill="#0a0a0a"/><rect class="eye" x="68" y="40" width="22" height="44" rx="11" fill="#0a0a0a"/><circle cx="46" cy="53" r="4.5" fill="#fff"/><circle cx="84" cy="53" r="4.5" fill="#fff"/></g><g class="cap"><path d="M18 22 60 6l42 16-42 16z" fill="#0a0a0a"/><path d="M36 28v8c0 5 11 9 24 9s24-4 24-9v-8" fill="none" stroke="#0a0a0a" stroke-width="3"/><path d="M102 22v16" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/><circle cx="102" cy="41" r="3.2" fill="#2563eb"/></g></symbol>
-  <symbol id="ic-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="mascot" viewBox="0 0 120 90"><g class="eyes"><rect class="eye" x="30" y="40" width="22" height="44" rx="11" fill="#0f172a"/><rect class="eye" x="68" y="40" width="22" height="44" rx="11" fill="#0f172a"/><circle cx="46" cy="53" r="4.5" fill="#fff"/><circle cx="84" cy="53" r="4.5" fill="#fff"/></g><g class="cap"><path d="M18 22 60 6l42 16-42 16z" fill="#0f172a"/><path d="M36 28v8c0 5 11 9 24 9s24-4 24-9v-8" fill="none" stroke="#0f172a" stroke-width="3"/><path d="M102 22v16" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/><circle cx="102" cy="41" r="3.2" fill="#2563eb"/></g></symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="ic-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></symbol>
   <symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
-  <symbol id="ic-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
   <symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
   <symbol id="ic-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h12"/></symbol>
   <symbol id="ic-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
-  <symbol id="ic-building" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M10 21v-3h4v3"/></symbol>
-  <symbol id="ic-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5M3 17l9 5 9-5"/></symbol>
-  <symbol id="ic-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
-  <symbol id="ic-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21a2 2 0 0 0 4 0"/></symbol>
   <symbol id="ic-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+  <symbol id="ic-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21a2 2 0 0 0 4 0"/></symbol>
   <symbol id="ic-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.8 6.2.9-4.5 4.4 1.1 6.3L12 17.5 6.4 20.4l1.1-6.3L3 9.7l6.2-.9z"/></symbol>
+  <symbol id="ic-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="ic-building" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M10 21v-3h4v3"/></symbol>
   <symbol id="ic-pen" viewBox="0 0 24 24"><path d="m4 20 4-1L19 8a2 2 0 0 0-3-3L5 16z"/><path d="m14 6 4 4"/></symbol>
   <symbol id="ic-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
   <symbol id="ic-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
   <symbol id="ic-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-6 10a1 1 0 0 0 1 2h14a1 1 0 0 0 1-2l-6-10V3"/></symbol>
   <symbol id="ic-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+  <symbol id="ic-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
   <symbol id="ic-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
-  <symbol id="ic-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></symbol>
-  <!-- line illustrations for tiles -->
-  <symbol id="il-open" viewBox="0 0 96 40"><path d="M6 30h26l-4-18H10z"/><path d="M8 18h22M12 30v4M26 30v4"/><path d="M46 12l12-6 12 6-12 6z"/><path d="M50 15v8c0 2 4 4 8 4s8-2 8-4v-8M70 12v9"/><path d="M80 20c4-6 10-6 14 0"/></symbol>
-  <symbol id="il-soon" viewBox="0 0 96 40"><circle cx="20" cy="22" r="13"/><path d="M20 13v9l6 4M8 8l-4 3M32 8l4 3"/><path d="M50 34h40M55 34v-8h8v8M69 34V14h8v20M83 34V22h8v12"/></symbol>
-  <symbol id="il-countries" viewBox="0 0 96 40"><circle cx="24" cy="20" r="14"/><path d="M10 20h28M24 6c6 6 6 22 0 28M24 6c-6 6-6 22 0 28"/><path d="M52 32c6-10 14-14 22-10 6 3 8 8 18 6"/><path d="M60 14l4-6 4 6M78 18l3-5 3 5"/></symbol>
-  <symbol id="il-uni" viewBox="0 0 96 40"><path d="M6 16l18-8 18 8H6z"/><path d="M10 16v14M18 16v14M30 16v14M38 16v14M4 30h40M4 34h40"/><path d="M58 32V12l10-4 10 4v20"/><path d="M62 18h12M62 24h12M80 32h12"/></symbol>
-  <symbol id="il-course" viewBox="0 0 96 40"><path d="M6 10h24v22H6zM30 10h24v22H30z"/><path d="M10 16h16M10 21h16M10 26h10M34 16h16M34 21h12"/><path d="M66 8l4 10 10 1-8 7 3 10-9-6-9 6 3-10-8-7 10-1z"/></symbol>
-  <symbol id="il-events" viewBox="0 0 96 40"><rect x="6" y="10" width="32" height="24" rx="3"/><path d="M6 17h32M13 7v6M31 7v6M14 24h4M22 24h4M30 24h4"/><path d="M52 34c0-10 8-18 20-18s20 8 20 18"/><path d="M60 34v-4M72 34v-8M84 34v-4M72 10v4"/></symbol>
 </svg>
 
-<div id="intro" aria-hidden="true"><div><svg class="mascot m" width="150" height="100" viewBox="0 0 120 90"><use href="#mascot"/></svg><div class="w">OpenAward<small>Every scholarship, within reach.</small></div></div></div>
+<div id="intro" aria-hidden="true"><div><svg class="mascot m" width="150" height="112" viewBox="0 0 120 90"><use href="#mascot"/></svg><div class="w">OpenAward<small>Every scholarship, within reach.</small></div></div></div>
 
-<header><div class="bar">
+<header><div class="wrap bar">
   <button class="brand" data-view="discover"><svg class="mascot" width="34" height="26" viewBox="0 0 120 90"><use href="#mascot"/></svg>OpenAward</button>
   <nav role="tablist">
-    <button role="tab" data-view="discover" aria-selected="true">Discover</button>
-    <button role="tab" data-view="countries" aria-selected="false">Countries</button>
-    <button role="tab" data-view="rank" aria-selected="false">Rankings</button>
-    <button role="tab" data-view="assess" aria-selected="false">My profile</button>
-    <button role="tab" data-view="academy" aria-selected="false">Academy</button>
-    <button role="tab" data-view="events" aria-selected="false">Events</button>
-    <button role="tab" data-view="funders" aria-selected="false">Funders</button>
-    <button role="tab" data-view="arch" aria-selected="false">Architecture</button>
-    <button role="tab" data-view="about" aria-selected="false">About</button>
+    <button role="tab" aria-selected="true" data-view="discover">Discover</button>
+    <button role="tab" aria-selected="false" data-view="countries">Countries</button>
+    <button role="tab" aria-selected="false" data-view="rank">Rankings</button>
+    <button role="tab" aria-selected="false" data-view="assess">My profile</button>
+    <button role="tab" aria-selected="false" data-view="academy">Academy</button>
+    <button role="tab" aria-selected="false" data-view="events">Events</button>
+    <button role="tab" aria-selected="false" data-view="funders">Funders</button>
+    <button role="tab" aria-selected="false" data-view="arch">Architecture</button>
+    <button role="tab" aria-selected="false" data-view="about">About</button>
   </nav>
   <button class="signin" data-view="signup">Sign in</button>
 </div></header>
 
-<main class="content"><div class="wrap">
+<main class="wrap">
 
 <!-- DISCOVER -->
 <section id="view-discover">
   <div class="hero">
-    <div>
-      <div class="kicker">Every scholarship, within reach</div>
+    <div class="lead">
+      <div class="kicker"><svg class="i" style="width:14px;height:14px"><use href="#ic-globe"/></svg>Master's and PhD funding, worldwide</div>
       <h1>Find the scholarship. Prove you <em>fit</em>. Get ready to win it.</h1>
-      <p>Every Master's and PhD award on one verified template with its official link. Score your profile against each one, close the gaps with short courses, and apply on the funder's own site.</p>
+      <p>Every award on one verified template with its official link. Score your profile against each one, close the gaps with short courses, and apply on the funder's own site.</p>
       <div class="ctas"><button class="btn primary" data-view="assess"><svg class="i"><use href="#ic-target"/></svg>Check my fit</button><button class="btn" data-view="signup"><svg class="i"><use href="#ic-bell"/></svg>Get deadline alerts</button></div>
     </div>
-    <div class="art"><svg class="mascot" width="96" height="72" viewBox="0 0 120 90"><use href="#mascot"/></svg>
-      <svg width="190" height="72" viewBox="0 0 260 100" aria-hidden="true"><defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
-        <circle cx="130" cy="52" r="40" fill="#e8efff"/><g fill="none" stroke="#2563eb" stroke-opacity=".45" stroke-width="1.3"><circle cx="130" cy="52" r="40"/><ellipse cx="130" cy="52" rx="40" ry="15"/><ellipse cx="130" cy="52" rx="20" ry="40"/><path d="M90 52h80M130 12v80"/></g>
-        <g fill="#2563eb"><circle cx="112" cy="38" r="2.5"/><circle cx="144" cy="33" r="2.5"/><circle cx="154" cy="60" r="2.5"/><circle cx="120" cy="70" r="2.5"/></g><path d="M112 38Q128 28 144 33M144 33Q156 45 154 60M154 60Q138 70 120 70M120 70Q112 55 112 38" fill="none" stroke="#2563eb" stroke-opacity=".5" stroke-dasharray="2 3"/>
-        <g transform="translate(6 10)"><rect width="66" height="30" rx="7" fill="#fff" stroke="#e5e5e5"/><rect x="7" y="7" width="22" height="4" rx="2" fill="#2563eb"/><rect x="7" y="15" width="44" height="3.5" rx="1.75" fill="#cfcfcf"/><rect x="7" y="22" width="30" height="3.5" rx="1.75" fill="#e4e4e4"/></g>
-        <g transform="translate(188 8)"><rect width="66" height="30" rx="7" fill="#fff" stroke="#e5e5e5"/><rect x="7" y="7" width="28" height="4" rx="2" fill="#7c3aed"/><rect x="7" y="15" width="44" height="3.5" rx="1.75" fill="#cfcfcf"/><rect x="7" y="22" width="24" height="3.5" rx="1.75" fill="#e4e4e4"/></g>
-        <g transform="translate(192 56)"><rect width="62" height="38" rx="8" fill="#fff" stroke="#e5e5e5"/><circle cx="18" cy="19" r="11" fill="none" stroke="#e5e5e5" stroke-width="4"/><circle cx="18" cy="19" r="11" fill="none" stroke="url(#gg)" stroke-width="4" stroke-dasharray="50 20" stroke-linecap="round" transform="rotate(-90 18 19)"/><text x="18" y="22" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="8" fill="#0a0a0a">72</text><rect x="34" y="12" width="20" height="3.5" rx="1.75" fill="#cfcfcf"/><rect x="34" y="20" width="16" height="3.5" rx="1.75" fill="#e4e4e4"/></g>
-        <g transform="translate(10 60)"><rect width="66" height="30" rx="7" fill="#fff" stroke="#e5e5e5"/><rect x="7" y="7" width="20" height="4" rx="2" fill="#10b981"/><rect x="7" y="15" width="44" height="3.5" rx="1.75" fill="#cfcfcf"/><rect x="7" y="22" width="26" height="3.5" rx="1.75" fill="#e4e4e4"/></g>
-      </svg></div>
-  </div>
-  <div class="tiles">
-    <button class="tile" data-view="discover" data-scroll="catalogue"><svg class="il"><use href="#il-open"/></svg><span class="nm">Open now</span><span class="n" id="st-count">0</span><span class="u">Master's and PhD awards</span></button>
-    <button class="tile" data-view="discover" data-chip="soon"><svg class="il"><use href="#il-soon"/></svg><span class="nm">Closing soon</span><span class="n" id="st-soon">0</span><span class="u">within 30 days</span></button>
-    <button class="tile" data-view="countries"><svg class="il"><use href="#il-countries"/></svg><span class="nm">Countries</span><span class="n" id="st-countries">0</span><span class="u">destinations</span></button>
-    <button class="tile" data-view="rank"><svg class="il"><use href="#il-uni"/></svg><span class="nm">Universities</span><span class="n" id="st-uni">0</span><span class="u">in the ranking database</span></button>
-    <button class="tile" data-view="academy"><svg class="il"><use href="#il-course"/></svg><span class="nm">Academy</span><span class="n" id="st-courses">0</span><span class="u">crash courses</span></button>
-    <button class="tile" data-view="events"><svg class="il"><use href="#il-events"/></svg><span class="nm">Events</span><span class="n" id="st-events">0</span><span class="u">coming up</span></button>
+    <div class="art">
+      <svg viewBox="0 0 520 360" role="img" aria-label="Illustration: a globe with scholarship cards orbiting it">
+        <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#7c3aed"/></linearGradient><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dbe7ff"/><stop offset="1" stop-color="#eef3ff"/></linearGradient></defs>
+        <circle cx="260" cy="190" r="120" fill="url(#g2)"/>
+        <g fill="none" stroke="#2563eb" stroke-opacity=".35" stroke-width="1.5"><circle cx="260" cy="190" r="120"/><ellipse cx="260" cy="190" rx="120" ry="45"/><ellipse cx="260" cy="190" rx="60" ry="120"/><path d="M140 190h240M260 70v240"/></g>
+        <g fill="#2563eb"><circle cx="205" cy="150" r="4"/><circle cx="300" cy="135" r="4"/><circle cx="330" cy="215" r="4"/><circle cx="235" cy="240" r="4"/><circle cx="275" cy="190" r="4"/></g>
+        <g fill="none" stroke="#2563eb" stroke-opacity=".5" stroke-width="1.2" stroke-dasharray="3 4"><path d="M205 150Q250 120 300 135M300 135Q330 170 330 215M330 215Q290 240 235 240M235 240Q220 190 205 150"/></g>
+        <g transform="translate(40 40)"><rect width="150" height="64" rx="12" fill="#fff" stroke="#e5e7eb"/><rect x="12" y="12" width="40" height="8" rx="4" fill="#2563eb"/><rect x="12" y="28" width="110" height="7" rx="3.5" fill="#cbd5e1"/><rect x="12" y="42" width="80" height="7" rx="3.5" fill="#e2e8f0"/><rect x="110" y="40" width="28" height="12" rx="6" fill="#e6f7f1"/></g>
+        <g transform="translate(340 60)"><rect width="150" height="64" rx="12" fill="#fff" stroke="#e5e7eb"/><rect x="12" y="12" width="56" height="8" rx="4" fill="#7c3aed"/><rect x="12" y="28" width="100" height="7" rx="3.5" fill="#cbd5e1"/><rect x="12" y="42" width="70" height="7" rx="3.5" fill="#e2e8f0"/><rect x="104" y="40" width="34" height="12" rx="6" fill="#fff4de"/></g>
+        <g transform="translate(60 250)"><rect width="150" height="64" rx="12" fill="#fff" stroke="#e5e7eb"/><rect x="12" y="12" width="48" height="8" rx="4" fill="#10b981"/><rect x="12" y="28" width="110" height="7" rx="3.5" fill="#cbd5e1"/><rect x="12" y="42" width="60" height="7" rx="3.5" fill="#e2e8f0"/><rect x="104" y="40" width="34" height="12" rx="6" fill="#e8efff"/></g>
+        <g transform="translate(350 240)"><rect width="140" height="90" rx="14" fill="#fff" stroke="#e5e7eb"/><circle cx="40" cy="45" r="26" fill="none" stroke="#e5e7eb" stroke-width="7"/><circle cx="40" cy="45" r="26" fill="none" stroke="url(#g1)" stroke-width="7" stroke-dasharray="118 46" stroke-linecap="round" transform="rotate(-90 40 45)"/><text x="40" y="50" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="16" fill="#0f172a">72</text><rect x="78" y="30" width="48" height="7" rx="3.5" fill="#cbd5e1"/><rect x="78" y="44" width="36" height="7" rx="3.5" fill="#e2e8f0"/><rect x="78" y="58" width="42" height="7" rx="3.5" fill="#e2e8f0"/></g>
+        <g transform="translate(222 300) scale(.6)"><use href="#mascot" width="120" height="90"/></g>
+      </svg>
+    </div>
   </div>
 
+  <div class="grid4" style="margin-bottom:16px">
+    <div class="card stat"><div class="ic"><svg class="i"><use href="#ic-cap"/></svg></div><div><b id="st-count">0</b><span>Open now</span></div></div>
+    <div class="card stat"><div class="ic" style="background:var(--amber-soft);color:#b45309"><svg class="i"><use href="#ic-cal"/></svg></div><div><b id="st-soon">0</b><span>Close in 30 days</span></div></div>
+    <div class="card stat"><div class="ic" style="background:var(--mint-soft);color:#047857"><svg class="i"><use href="#ic-globe"/></svg></div><div><b id="st-countries">0</b><span>Countries</span></div></div>
+    <div class="card stat"><div class="ic" style="background:#f3e8ff;color:var(--accent-2)"><svg class="i"><use href="#ic-star"/></svg></div><div><b id="st-value">0</b><span>Avg applicant rating</span></div></div>
+  </div>
   <div class="feat">
     <div class="card"><div class="ic" style="background:var(--accent-soft);color:var(--accent)"><svg class="i"><use href="#ic-check"/></svg></div><h4>Verified listings</h4><p>Every record checked against its official page and stamped with a date.</p></div>
-    <div class="card"><div class="ic" style="background:#f3e8ff;color:#7c3aed"><svg class="i"><use href="#ic-target"/></svg></div><h4>Fit score</h4><p>Your profile scored against each award's real requirements.</p></div>
-    <div class="card"><div class="ic" style="background:#e6f7f1;color:#047857"><svg class="i"><use href="#ic-book"/></svg></div><h4>Academy</h4><p>Crash courses and certificates for the exact gap the score finds.</p></div>
-    <div class="card"><div class="ic" style="background:#fff4de;color:#b45309"><svg class="i"><use href="#ic-star"/></svg></div><h4>Applicant reviews</h4><p>Ratings only from people who applied or were awarded.</p></div>
+    <div class="card"><div class="ic" style="background:#f3e8ff;color:var(--accent-2)"><svg class="i"><use href="#ic-target"/></svg></div><h4>Fit score</h4><p>Your profile scored against each award's real requirements.</p></div>
+    <div class="card"><div class="ic" style="background:var(--mint-soft);color:#047857"><svg class="i"><use href="#ic-book"/></svg></div><h4>Academy</h4><p>Crash courses and certificates for the exact gap the score finds.</p></div>
+    <div class="card"><div class="ic" style="background:var(--amber-soft);color:#b45309"><svg class="i"><use href="#ic-star"/></svg></div><h4>Applicant reviews</h4><p>Ratings only from people who applied or were awarded.</p></div>
   </div>
 
-  <div id="catalogue" class="browse">
+  <div class="browse">
     <aside>
       <div><label class="l" for="q">Search</label><input id="q" type="search" placeholder="Country, university, subject"></div>
       <div><label class="l" for="f-level">Level</label><select id="f-level"><option value="">Master's and PhD</option><option>Master's</option><option>PhD</option></select></div>
@@ -324,25 +304,27 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;border-top:1px solid v
 
 <!-- COUNTRIES -->
 <section id="view-countries" hidden>
-  <div class="lead"><div class="kicker">Browse by destination</div><h2>Pick a country, see its popular universities and what they fund</h2><p>Popularity is how many seekers saved listings there. Tap a country to filter the catalogue.</p></div>
-  <div class="grid2" style="margin-bottom:20px">
+  <div class="lead"><div class="kicker"><svg class="i" style="width:14px;height:14px"><use href="#ic-globe"/></svg>Browse by destination</div><h2>Pick a country, see its popular universities and what they <em>fund</em></h2><p>Popularity is how many seekers saved listings there. Click a country to filter the catalogue.</p></div>
+  <div class="grid2" style="margin-bottom:24px">
     <div class="card"><div class="mono" style="margin-bottom:12px">Where seekers are looking (saves, last 90 days)</div><div style="display:grid;gap:8px" id="savesbar"></div></div>
-    <div class="card"><div class="mono" style="margin-bottom:12px">Funding type and level across open listings</div><div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center"><svg viewBox="0 0 120 120" width="120" height="120" id="donut" role="img" aria-label="Funding split"></svg><div id="donut-legend" style="display:grid;gap:8px;font-size:13px"></div></div></div>
+    <div class="card"><div class="mono" style="margin-bottom:12px">Funding type and level across open listings</div><div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center">
+      <svg viewBox="0 0 120 120" width="120" height="120" id="donut" role="img" aria-label="Funding split"></svg>
+      <div id="donut-legend" style="display:grid;gap:8px;font-size:13px"></div></div></div>
   </div>
   <div class="cgrid" id="cgrid"></div>
 </section>
 
 <!-- RANKINGS -->
 <section id="view-rank" hidden>
-  <div class="lead"><div class="kicker">University database</div><h2>Rankings, with the funding each university actually offers</h2><p>Indicative positions based on QS World University Rankings 2026, alongside the flagship scholarships we track and the OpenAward applicant rating.</p></div>
+  <div class="lead"><div class="kicker"><svg class="i" style="width:14px;height:14px"><use href="#ic-chart"/></svg>University database</div><h2>Rankings, with the <em>funding</em> each university actually offers</h2><p>Indicative positions based on QS World University Rankings 2026, shown alongside the flagship scholarships we track and the OpenAward applicant rating. Sort by what matters to you.</p></div>
   <div class="chips" style="margin-bottom:12px" id="rankchips"></div>
   <div class="tablewrap"><table id="ranktable"><thead><tr><th>Rank</th><th>University</th><th>Country</th><th>Flagship funding</th><th>Int'l students</th><th>Applicant rating</th><th></th></tr></thead><tbody></tbody></table></div>
-  <p class="note" style="margin-top:12px">Rankings are indicative and compiled from public tables; confirm current positions on qs.com or timeshighereducation.com. International student share is approximate.</p>
+  <p class="note" style="margin-top:12px">Rankings are indicative and compiled from public tables; always confirm current positions on qs.com or timeshighereducation.com. International student share is approximate.</p>
 </section>
 
 <!-- ASSESS -->
 <section id="view-assess" hidden>
-  <div class="lead"><div class="kicker">Profile assessment</div><h2>How competitive are you, and what should you fix first?</h2><p>Five dimensions, scored against the real requirements of the open listings. The ranking compares you with a typical shortlisted cohort. Nothing is stored in this prototype.</p></div>
+  <div class="lead"><div class="kicker"><svg class="i" style="width:14px;height:14px"><use href="#ic-target"/></svg>Profile assessment</div><h2>How <em>competitive</em> are you, and what should you fix first?</h2><p>Five dimensions, scored against the real requirements of the open listings. The ranking compares you with a typical shortlisted cohort. Nothing is stored in this prototype.</p></div>
   <div class="check">
     <form class="form card" id="profile" onsubmit="return false">
       <div><label class="l" for="p-want">Target</label><select id="p-want"><option selected>Master's</option><option>PhD</option></select></div>
@@ -357,8 +339,8 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;border-top:1px solid v
     </form>
     <div style="display:grid;gap:16px">
       <div class="card scorecard"><div class="ring" id="ring"><div><b id="score">0</b><small>fit score</small></div></div>
-        <div><div class="mono" id="tier"></div><h3 id="tier-h" style="font-size:24px;margin:4px 0 6px"></h3><p id="tier-p" style="margin:0 0 14px;color:var(--muted);font-size:14px"></p><div class="dims" id="dims"></div></div></div>
-      <div class="card white"><div class="mono" style="margin-bottom:6px">What to do first</div><div class="sugg" id="sugg"></div></div>
+        <div><div class="mono" id="tier"></div><h3 id="tier-h" style="font-size:26px;margin:4px 0 6px"></h3><p id="tier-p" style="margin:0 0 14px;color:var(--muted);font-size:14px"></p><div class="dims" id="dims"></div></div></div>
+      <div class="card"><div class="mono" style="margin-bottom:6px">What to do first</div><div class="sugg" id="sugg"></div></div>
       <div><div class="mono" style="margin-bottom:8px">Your match across open listings</div><div class="list" id="results"></div></div>
     </div>
   </div>
@@ -366,15 +348,15 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;border-top:1px solid v
 
 <!-- ACADEMY -->
 <section id="view-academy" hidden>
-  <div class="lead"><div class="kicker">OpenAward Academy</div><h2>Short courses that close the exact gaps the assessment finds</h2><p>Free fundamentals, paid intensives, and an OpenAward certificate on completion. Official test registration links first, because nothing replaces the real exam.</p></div>
+  <div class="lead"><div class="kicker"><svg class="i" style="width:14px;height:14px"><use href="#ic-book"/></svg>OpenAward Academy</div><h2>Short courses that close the exact gaps the <em>assessment</em> finds</h2><p>Free fundamentals, paid intensives, and an OpenAward certificate on completion. Official test registration links first, because nothing replaces the real exam.</p></div>
   <div class="mono" style="margin-bottom:10px">Official English and aptitude tests</div>
   <div class="tests">
-    <div class="test"><div class="ic">IELTS</div><b>IELTS Academic</b><span>Accepted by nearly every listing. Paper or computer. Results in 3 to 13 days.</span><a href="https://ielts.org/take-a-test" target="_blank" rel="noopener">Register at ielts.org ↗</a></div>
-    <div class="test"><div class="ic">TOEFL</div><b>TOEFL iBT</b><span>Preferred in North America. Home edition available. Results in about 6 days.</span><a href="https://www.ets.org/toefl.html" target="_blank" rel="noopener">Register at ets.org ↗</a></div>
-    <div class="test"><div class="ic">DET</div><b>Duolingo English Test</b><span>Online, cheaper, 1-hour test. Check each listing; acceptance varies.</span><a href="https://englishtest.duolingo.com/" target="_blank" rel="noopener">englishtest.duolingo.com ↗</a></div>
-    <div class="test"><div class="ic">PTE</div><b>PTE Academic</b><span>Computer-based, fast results. Widely accepted in Australia and the UK.</span><a href="https://www.pearsonpte.com/" target="_blank" rel="noopener">pearsonpte.com ↗</a></div>
-    <div class="test"><div class="ic">C1</div><b>Cambridge C1 Advanced</b><span>Valid for life. Accepted by many European universities including ETH.</span><a href="https://www.cambridgeenglish.org/exams-and-tests/advanced/" target="_blank" rel="noopener">cambridgeenglish.org ↗</a></div>
-    <div class="test"><div class="ic">GRE</div><b>GRE General</b><span>Recommended by KAUST and some NTU schools; optional elsewhere.</span><a href="https://www.ets.org/gre.html" target="_blank" rel="noopener">ets.org/gre ↗</a></div>
+    <div class="test"><div class="ic" style="background:#c8102e">IELTS</div><b>IELTS Academic</b><span>Accepted by nearly every listing. Paper or computer. Results in 3 to 13 days.</span><a href="https://ielts.org/take-a-test" target="_blank" rel="noopener">Register at ielts.org ↗</a></div>
+    <div class="test"><div class="ic" style="background:#00539b">TOEFL</div><b>TOEFL iBT</b><span>Preferred in North America. Home edition available. Results in about 6 days.</span><a href="https://www.ets.org/toefl.html" target="_blank" rel="noopener">Register at ets.org ↗</a></div>
+    <div class="test"><div class="ic" style="background:#58cc02">DET</div><b>Duolingo English Test</b><span>Online, cheaper, 1-hour test. Check each listing; acceptance varies.</span><a href="https://englishtest.duolingo.com/" target="_blank" rel="noopener">englishtest.duolingo.com ↗</a></div>
+    <div class="test"><div class="ic" style="background:#0a2b5c">PTE</div><b>PTE Academic</b><span>Computer-based, fast results. Widely accepted in Australia and the UK.</span><a href="https://www.pearsonpte.com/" target="_blank" rel="noopener">pearsonpte.com ↗</a></div>
+    <div class="test"><div class="ic" style="background:#1d4ed8">C1</div><b>Cambridge C1 Advanced</b><span>Valid for life. Accepted by many European universities including ETH.</span><a href="https://www.cambridgeenglish.org/exams-and-tests/advanced/" target="_blank" rel="noopener">cambridgeenglish.org ↗</a></div>
+    <div class="test"><div class="ic" style="background:#6d28d9">GRE</div><b>GRE General</b><span>Recommended by KAUST and some NTU schools; optional elsewhere.</span><a href="https://www.ets.org/gre.html" target="_blank" rel="noopener">ets.org/gre ↗</a></div>
   </div>
   <div class="sp"></div>
   <div class="mono" style="margin-bottom:10px">Crash courses and certificates</div>
@@ -383,19 +365,21 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;border-top:1px solid v
 
 <!-- EVENTS -->
 <section id="view-events" hidden>
-  <div class="lead"><div class="kicker">Events</div><h2>Webinars, fairs and deadline sprints</h2><p>Funder info sessions, alumni AMAs, and weekend sprints where you finish a statement with a mentor in the room. Times shown in your local time zone.</p></div>
+  <div class="lead"><div class="kicker"><svg class="i" style="width:14px;height:14px"><use href="#ic-cal"/></svg>Events</div><h2>Webinars, fairs and deadline <em>sprints</em></h2><p>Funder info sessions, alumni AMAs, and weekend sprints where you finish a statement with a mentor in the room. Times shown in your local time zone.</p></div>
   <div class="events" id="events"></div>
 </section>
 
 <!-- FUNDERS -->
 <section id="view-funders" hidden>
-  <div class="lead"><div class="kicker">For funders</div><h2>List once, reach qualified applicants everywhere</h2><p>Universities, governments, foundations and corporate donors post on one template. We verify, route and report. Applications stay on your own site.</p></div>
+  <div class="lead"><div class="kicker"><svg class="i" style="width:14px;height:14px"><use href="#ic-building"/></svg>For funders</div><h2>List once, reach qualified applicants <em>everywhere</em></h2><p>Universities, governments, foundations and corporate donors post on one template. We verify, route and report. Applications stay on your own site.</p></div>
   <div class="grid2">
-    <div class="card"><h3 style="font-size:18px;margin-bottom:12px">Your listings</h3>
-      <div class="grid4" style="grid-template-columns:1fr 1fr;margin-bottom:14px"><div class="kpi"><b>24,180</b><span>Views, 30 days</span></div><div class="kpi"><b>3,120</b><span>Saved</span></div><div class="kpi"><b>1,410</b><span>Clicked to apply</span></div><div class="kpi"><b>61%</b><span>Passed fit check</span></div></div>
-      <svg viewBox="0 0 400 110" width="100%" role="img" aria-label="Views per week, sample"><g fill="#2563eb"><rect x="10" y="60" width="28" height="40" rx="4"/><rect x="48" y="50" width="28" height="50" rx="4"/><rect x="86" y="42" width="28" height="58" rx="4"/><rect x="124" y="55" width="28" height="45" rx="4"/><rect x="162" y="35" width="28" height="65" rx="4"/><rect x="200" y="28" width="28" height="72" rx="4"/><rect x="238" y="20" width="28" height="80" rx="4"/><rect x="276" y="30" width="28" height="70" rx="4"/><rect x="314" y="14" width="28" height="86" rx="4"/><rect x="352" y="8" width="28" height="92" rx="4"/></g><line x1="0" y1="100" x2="400" y2="100" stroke="#e5e5e5"/></svg>
-      <p class="note">Sample numbers. Live data breaks down by country of origin, field and fit score.</p></div>
-    <div class="card"><h3 style="font-size:18px;margin-bottom:12px">Post a scholarship</h3>
+    <div class="card"><h3 style="font-size:20px;margin-bottom:12px">Your listings</h3>
+      <div class="grid4" style="grid-template-columns:1fr 1fr;margin-bottom:14px">
+        <div class="kpi"><b>24,180</b><span>Views, 30 days</span></div><div class="kpi"><b>3,120</b><span>Saved</span></div>
+        <div class="kpi"><b>1,410</b><span>Clicked to apply</span></div><div class="kpi"><b>61%</b><span>Passed fit check</span></div></div>
+      <svg viewBox="0 0 400 110" width="100%" role="img" aria-label="Views per week, sample"><g fill="#2563eb" fill-opacity=".9"><rect x="10" y="60" width="28" height="40" rx="4"/><rect x="48" y="50" width="28" height="50" rx="4"/><rect x="86" y="42" width="28" height="58" rx="4"/><rect x="124" y="55" width="28" height="45" rx="4"/><rect x="162" y="35" width="28" height="65" rx="4"/><rect x="200" y="28" width="28" height="72" rx="4"/><rect x="238" y="20" width="28" height="80" rx="4"/><rect x="276" y="30" width="28" height="70" rx="4"/><rect x="314" y="14" width="28" height="86" rx="4"/><rect x="352" y="8" width="28" height="92" rx="4"/></g><line x1="0" y1="100" x2="400" y2="100" stroke="#e5e7eb"/></svg>
+      <p class="note">Sample numbers. Live data breaks down by country of origin, field and fit score, so you can tune next cycle's criteria or sponsor an Academy course for the gap you see most.</p></div>
+    <div class="card"><h3 style="font-size:20px;margin-bottom:12px">Post a scholarship</h3>
       <div class="steps">
         <div class="step"><b>Fill the standard template</b><span>Level, fields, host, deadline, funding, English test, admission-first, value, who may apply.</span></div>
         <div class="step"><b>Attach the official link</b><span>Moderators verify against it before it goes live and set the "verified on" date.</span></div>
@@ -408,12 +392,12 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;border-top:1px solid v
 
 <!-- ARCHITECTURE -->
 <section id="view-arch" hidden>
-  <div class="lead"><div class="kicker">Product architecture</div><h2>One data model, four engines, two audiences</h2><p>The listing is the atom. Fit scores, courses, events, reviews and funder analytics all hang off it.</p></div>
+  <div class="lead"><div class="kicker"><svg class="i" style="width:14px;height:14px"><use href="#ic-chart"/></svg>Product architecture</div><h2>One data model, four <em>engines</em>, two audiences</h2><p>The listing is the atom. Fit scores, courses, events, reviews and funder analytics all hang off it, so one verified record powers the whole portal.</p></div>
   <div class="card arch">
     <div class="layer"><div class="nm">Surfaces</div><div class="boxes"><div class="box"><b>Web app</b><span>Discover, assess, learn</span></div><div class="box"><b>Mobile (PWA)</b><span>Alerts, saved list</span></div><div class="box"><b>Funder console</b><span>Post, verify, analytics</span></div><div class="box"><b>Public API</b><span>Partners, universities, agents</span></div><div class="box"><b>Email / WhatsApp / Telegram</b><span>Deadline and cycle alerts</span></div></div></div>
-    <div class="layer"><div class="nm">Engines</div><div class="boxes"><div class="box core"><b>Listing engine</b><span>Template, versions, archive, verification queue</span></div><div class="box core"><b>Fit engine</b><span>Scoring, ranking, gap analysis</span></div><div class="box core"><b>Academy (LMS)</b><span>Courses, quizzes, certificates, sprints</span></div><div class="box core"><b>Community</b><span>Reviews, ratings, alumni Q&amp;A, events</span></div></div></div>
-    <div class="layer"><div class="nm">Data</div><div class="boxes"><div class="box"><b>Listings</b><span>Postgres, full-text + facets</span></div><div class="box"><b>University DB</b><span>Rankings, funding, int'l share</span></div><div class="box"><b>Profiles</b><span>Encrypted, user-owned, exportable</span></div><div class="box"><b>Learning records</b><span>Verifiable certificate IDs</span></div><div class="box"><b>Analytics</b><span>Anonymised events warehouse</span></div></div></div>
-    <div class="layer"><div class="nm">Trust</div><div class="boxes"><div class="box"><b>Verification</b><span>Official page checked, dated, re-checked every 30 days</span></div><div class="box"><b>Source links only</b><span>Never host application forms</span></div><div class="box"><b>Review integrity</b><span>Only "applied" or "awarded" users review</span></div><div class="box"><b>Privacy</b><span>Fit runs on-device first; opt-in to share</span></div></div></div>
+    <div class="layer"><div class="nm">Engines</div><div class="boxes"><div class="box core"><b>Listing engine</b><span>Template, versions, archive, verification queue</span></div><div class="box core"><b>Fit engine</b><span>Scoring, ranking, gap analysis, recommendations</span></div><div class="box core"><b>Academy (LMS)</b><span>Courses, quizzes, certificates, sprints</span></div><div class="box core"><b>Community</b><span>Reviews, ratings, alumni Q&amp;A, events</span></div></div></div>
+    <div class="layer"><div class="nm">Data</div><div class="boxes"><div class="box"><b>Listings</b><span>Postgres, full-text + facets</span></div><div class="box"><b>University DB</b><span>Rankings, funding, int'l share</span></div><div class="box"><b>Profiles</b><span>Encrypted, user-owned, exportable</span></div><div class="box"><b>Learning records</b><span>Progress, verifiable certificate IDs</span></div><div class="box"><b>Analytics</b><span>Anonymised events warehouse</span></div></div></div>
+    <div class="layer"><div class="nm">Trust</div><div class="boxes"><div class="box"><b>Verification workflow</b><span>Official page checked, dated, re-checked every 30 days</span></div><div class="box"><b>Source links only</b><span>Never host application forms</span></div><div class="box"><b>Review integrity</b><span>Only "applied" or "awarded" users review</span></div><div class="box"><b>Privacy</b><span>Fit runs on-device first; opt-in to share</span></div></div></div>
     <div class="layer"><div class="nm">Revenue</div><div class="boxes"><div class="box"><b>Academy intensives</b><span>Paid courses, certificates</span></div><div class="box"><b>Funder plans</b><span>Featured listings, analytics, sponsored courses</span></div><div class="box"><b>University partners</b><span>Qualified-lead referrals</span></div><div class="box"><b>Always free</b><span>Search, fit score, alerts, fundamentals</span></div></div></div>
   </div>
   <div class="sp"></div>
@@ -426,44 +410,13 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;border-top:1px solid v
   </div>
 </section>
 
-<!-- SIGN UP -->
-<section id="view-signup" hidden>
-  <div class="signup">
-    <div>
-      <div class="lead"><div class="kicker">Your OpenAward profile</div><h2>One profile. Every deadline, every fit score, saved.</h2><p>Accounts are coming soon. Leave your email and we will open your profile the day sign-up goes live.</p></div>
-      <div class="perks">
-        <div class="perk"><div class="ic"><svg class="i"><use href="#ic-bell"/></svg></div><div><b>Deadline alerts</b><span>Email or WhatsApp 14 and 3 days before each saved deadline, and when a new cycle opens.</span></div></div>
-        <div class="perk"><div class="ic"><svg class="i"><use href="#ic-target"/></svg></div><div><b>Saved fit score</b><span>Your assessment stays put and updates as you add a test score or a paper.</span></div></div>
-        <div class="perk"><div class="ic"><svg class="i"><use href="#ic-doc"/></svg></div><div><b>Document locker</b><span>CV, statement, transcripts and referee letters, reused across applications.</span></div></div>
-        <div class="perk"><div class="ic"><svg class="i"><use href="#ic-star"/></svg></div><div><b>Certificates and reviews</b><span>Academy certificates on your profile; review the awards you applied to.</span></div></div>
-      </div>
-    </div>
-    <div class="authcard">
-      <div class="soon">Coming soon</div>
-      <svg class="mascot" width="60" height="40" viewBox="0 0 120 90"><use href="#mascot"/></svg>
-      <h3 style="font-size:20px">Create your account</h3>
-      <p style="margin:0;color:var(--muted);font-size:14px">Free forever for seekers.</p>
-      <button class="btn" type="button" disabled style="justify-content:center"><svg class="i"><use href="#ic-globe"/></svg>Continue with Google</button>
-      <button class="btn" type="button" disabled style="justify-content:center"><svg class="i"><use href="#ic-lock"/></svg>Continue with LinkedIn</button>
-      <div class="or">or</div>
-      <div><label class="l" for="su-email">Email</label><input id="su-email" type="email" placeholder="you@university.edu"></div>
-      <div><label class="l" for="su-pass">Password</label><input id="su-pass" type="password" placeholder="Available at launch" disabled></div>
-      <button class="btn primary" type="button" id="su-btn" style="justify-content:center">Join the waitlist</button>
-      <p class="note" id="su-note" hidden>You are on the list. We will email you when profiles open.</p>
-      <p style="margin:0;font-size:12px;color:var(--muted);text-align:center">Your data is yours and exportable at any time.</p>
-    </div>
-  </div>
-</section>
-
-
 <!-- ABOUT -->
 <section id="view-about" hidden>
-  <div class="greet" style="padding-bottom:12px"><svg class="mascot" width="96" height="64" viewBox="0 0 120 90"><use href="#mascot"/></svg><h1 style="font-size:clamp(28px,5vw,40px)">About OpenAward</h1><div class="tagline">Every scholarship, within reach.</div></div>
-  <div class="lead" style="margin:0 auto 28px;text-align:center"><p>OpenAward is an independent, global index of Master's and PhD funding. We exist because the information that decides whether a talented student can afford to study is scattered across hundreds of university pages, embassy notices and LinkedIn posts, and most of it goes stale the week it is written.</p></div>
-  <div class="tiles" style="grid-template-columns:repeat(3,1fr)">
-    <div class="tile" style="cursor:default;min-height:0"><span class="nm">Mission</span><span class="u" style="font-size:14px;color:var(--fg)">Make every scholarship in the world findable, comparable and winnable by any qualified student, wherever they were born.</span></div>
-    <div class="tile" style="cursor:default;min-height:0"><span class="nm">What we are</span><span class="u" style="font-size:14px;color:var(--fg)">A verified listing index, a fit engine that scores your profile, an academy that closes the gaps, and a community of applicants who tell the truth about each award.</span></div>
-    <div class="tile" style="cursor:default;min-height:0"><span class="nm">What we are not</span><span class="u" style="font-size:14px;color:var(--fg)">Not an agent, not a consultancy, not an application portal. You always apply on the funder's own site. We never charge seekers to search.</span></div>
+  <div class="lead" style="text-align:center;margin:0 auto 28px"><svg class="mascot" width="110" height="82" viewBox="0 0 120 90"><use href="#mascot"/></svg><h2>About <em>OpenAward</em></h2><p>OpenAward is an independent, global index of Master's and PhD funding. We exist because the information that decides whether a talented student can afford to study is scattered across hundreds of university pages, embassy notices and LinkedIn posts, and most of it goes stale the week it is written.</p></div>
+  <div class="about-tiles">
+    <div class="card"><b>Mission</b><p>Make every scholarship in the world findable, comparable and winnable by any qualified student, wherever they were born.</p></div>
+    <div class="card"><b>What we are</b><p>A verified listing index, a fit engine that scores your profile, an academy that closes the gaps, and a community of applicants who tell the truth about each award.</p></div>
+    <div class="card"><b>What we are not</b><p>Not an agent, not a consultancy, not an application portal. You always apply on the funder's own site. We never charge seekers to search.</p></div>
   </div>
   <div class="grid2" style="margin-bottom:16px">
     <div class="card"><div class="mono" style="margin-bottom:10px">How we work</div>
@@ -475,23 +428,50 @@ footer{color:var(--faint);font-size:12px;padding-top:28px;border-top:1px solid v
       </div></div>
     <div class="card"><div class="mono" style="margin-bottom:10px">Why it started</div>
       <p style="margin:0 0 10px;font-size:14px">OpenAward began in Kathmandu in late 2026 as a side project by <b>Niraj Bhusal</b>, a civil servant working on digital public infrastructure, who studied abroad on a scholarship himself and watched friends miss deadlines they never knew existed.</p>
-      <p style="margin:0 0 10px;font-size:14px">The first version was a spreadsheet of nine bilateral scholarships. The second was a LinkedIn list with 269 likes and a comment nobody could answer: "which of these don't need IELTS?" OpenAward is the answer to that comment, built for every student, not just one country.</p>
-      </div>
+      <p style="margin:0;font-size:14px">The first version was a spreadsheet of nine bilateral scholarships. The second was a LinkedIn list with 269 likes and a comment nobody could answer: "which of these don't need IELTS?" OpenAward is the answer to that comment, built for every student, not just one country.</p></div>
   </div>
   <div class="grid2">
-    <div class="card white"><div class="mono" style="margin-bottom:10px">How we stay free for seekers</div>
+    <div class="card"><div class="mono" style="margin-bottom:10px">How we stay free for seekers</div>
       <p style="margin:0;font-size:14px;color:var(--muted)">Search, fit score, alerts and fundamentals are free forever. Revenue comes from paid Academy intensives, funder plans (featured listings, analytics, sponsored courses) and qualified referrals to partner universities. Funders never buy a better rating or a higher position in search.</p></div>
-    <div class="card white"><div class="mono" style="margin-bottom:10px">Contact</div>
+    <div class="card"><div class="mono" style="margin-bottom:10px">Contact</div>
       <p style="margin:0 0 8px;font-size:14px">Listings, corrections and partnerships: <span style="font-weight:600;user-select:all">hello@openaward.org</span> (placeholder until launch)</p>
       <p style="margin:0 0 8px;font-size:14px">Founder: <a href="https://nirajbhusal.com.np" target="_blank" rel="noopener">nirajbhusal.com.np</a> · <a href="https://x.com/nirajbhusal" target="_blank" rel="noopener">@nirajbhusal</a></p>
       <p style="margin:0;font-size:14px">Source: <a href="https://github.com/nirajbhusal/openaward" target="_blank" rel="noopener">github.com/nirajbhusal/openaward</a></p></div>
   </div>
 </section>
 
-<footer><a href="#about" data-view="about" style="color:inherit">About OpenAward</a> · Prototype data: 11 Master's and PhD scholarships from a public November 2026 compilation, with official pages linked. Deadlines not yet re-verified on official pages. University rankings indicative (QS 2026). Ratings, reviews, course enrolments, events and funder numbers are illustrative.</footer>
-</div></main>
+<!-- SIGN UP -->
+<section id="view-signup" hidden>
+  <div class="signup">
+    <div>
+      <div class="lead"><div class="kicker"><svg class="i" style="width:14px;height:14px"><use href="#ic-user"/></svg>Your OpenAward profile</div><h2>One profile. Every deadline, every fit score, <em>saved</em>.</h2><p>Accounts are coming soon. Leave your email and we will open your profile the day sign-up goes live.</p></div>
+      <div class="perks">
+        <div class="perk"><div class="ic"><svg class="i"><use href="#ic-bell"/></svg></div><div><b>Deadline alerts</b><span>Email or WhatsApp 14 and 3 days before each saved deadline, and when a new cycle opens.</span></div></div>
+        <div class="perk"><div class="ic" style="background:#f3e8ff;color:var(--accent-2)"><svg class="i"><use href="#ic-target"/></svg></div><div><b>Saved fit score</b><span>Your assessment stays put and updates as you add a test score or a paper.</span></div></div>
+        <div class="perk"><div class="ic" style="background:var(--mint-soft);color:#047857"><svg class="i"><use href="#ic-doc"/></svg></div><div><b>Document locker</b><span>CV, statement, transcripts and referee letters, reused across applications.</span></div></div>
+        <div class="perk"><div class="ic" style="background:var(--amber-soft);color:#b45309"><svg class="i"><use href="#ic-star"/></svg></div><div><b>Certificates and reviews</b><span>Academy certificates on your profile; review the awards you applied to.</span></div></div>
+      </div>
+    </div>
+    <div class="authcard">
+      <div class="soon">Coming soon</div>
+      <svg class="mascot" width="60" height="45" viewBox="0 0 120 90"><use href="#mascot"/></svg>
+      <h3 style="font-size:22px">Create your account</h3>
+      <p style="margin:0;color:var(--muted);font-size:14px">Free forever for seekers.</p>
+      <button class="btn" type="button" disabled style="justify-content:center"><svg class="i"><use href="#ic-globe"/></svg>Continue with Google</button>
+      <button class="btn" type="button" disabled style="justify-content:center"><svg class="i"><use href="#ic-lock"/></svg>Continue with LinkedIn</button>
+      <div class="or">or</div>
+      <div><label class="l" for="su-email">Email</label><input id="su-email" type="email" placeholder="you@university.edu"></div>
+      <div><label class="l" for="su-pass">Password</label><input id="su-pass" type="password" placeholder="Available at launch" disabled></div>
+      <button class="btn primary" type="button" id="su-btn" style="justify-content:center">Join the waitlist</button>
+      <p class="note" id="su-note" hidden>You are on the list. We will email you when profiles open.</p>
+      <p style="margin:0;font-size:12px;color:var(--muted);text-align:center">By joining you agree to the terms. Your data is yours and exportable at any time.</p>
+    </div>
+  </div>
+</section>
 
+</main>
 
+<footer><div class="wrap"><a href="#about" data-view="about">About OpenAward</a> · Prototype data: 11 Master's and PhD scholarships from a public November 2026 compilation, with official pages linked. Deadlines not yet re-verified on official pages. University rankings indicative (QS 2026). Ratings, reviews, course enrolments, events and funder numbers are illustrative.</div></footer>
 
 <div class="sheet" id="sheet" aria-hidden="true"><div class="back" id="sheet-back"></div>
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="d-title"><button class="close" id="sheet-close" aria-label="Close">×</button><div id="detail"></div></div></div>
@@ -608,21 +588,21 @@ function renderStats(){
   const open=DATA.filter(d=>daysLeft(d)>=0);
   $("#st-count").textContent=open.length;$("#st-soon").textContent=open.filter(d=>daysLeft(d)<=30).length;
   $("#st-countries").textContent=new Set(DATA.map(d=>d.country)).size;
-  $("#st-uni").textContent=Object.keys(UNI).length;$("#st-courses").textContent=COURSES.length;$("#st-events").textContent=EVENTS.filter(e=>new Date(e.d)>=TODAY).length;
+  $("#st-value").textContent=(DATA.reduce((s,d)=>s+d.rating,0)/DATA.length).toFixed(1);
 }
 function renderGrid(){
   const list=filtered();
   $("#count").textContent=list.length+" of "+DATA.length+" listings";
   $("#grid").innerHTML=list.map(d=>{const u=uni(d);return `<button class="item" data-id="${d.id}">
-    <div class="flagic">${u.code}</div>
-    <div style="min-width:0"><div class="mono">${d.country} · ${d.region}${u.rank?" · QS #"+u.rank:""}</div><h3>${d.name}</h3><div class="host">${d.host}</div>
+    <div class="flagic" style="background:${u.col}">${u.code}</div>
+    <div style="min-width:0"><div class="mono" style="color:var(--accent)">${d.country} · ${d.region}${u.rank?" · QS #"+u.rank:""}</div><h3>${d.name}</h3><div class="host">${d.host}</div>
       <div class="meta">${d.levels.map(l=>`<span class="tag">${l}</span>`).join("")}<span class="tag acc">${d.funding==="Full"?"Fully funded":"Partial"}</span>${noTest(d)?'<span class="tag ok">No English test</span>':""}${d.offerFirst?'<span class="tag warn">Admission first</span>':""}<span class="stars">${stars(d.rating)}</span><span style="font-size:12px;color:var(--muted)">${d.rating} (${d.reviews})</span></div></div>
     <div class="due ${dlClass(d)}"><b>${dlLabel(d)}</b><small>${daysLeft(d)>=0?"left · ":""}${fmtDate(d.deadline)}</small></div></button>`}).join("")||`<p class="note">No listings match. Clear a filter or two.</p>`;
 }
 function openDetail(id){
   const d=DATA.find(x=>x.id===id);const u=uni(d);
   const hist=[5,4,3,2,1].map(s=>{const c=d.rv.filter(r=>r.s===s).length;return `<div class="ratebar"><span>${s} ★</span><div class="bar"><i style="width:${d.rv.length?c/d.rv.length*100:0}%"></i></div><span>${c}</span></div>`}).join("");
-  $("#detail").innerHTML=`<div style="display:flex;gap:12px;align-items:center;margin-top:24px"><div class="flagic">${u.code}</div><div><div class="mono">${d.country} · ${d.region}${u.rank?" · QS #"+u.rank:""}</div><h2 id="d-title" style="margin:2px 0 0">${d.name}</h2></div></div>
+  $("#detail").innerHTML=`<div style="display:flex;gap:12px;align-items:center;margin-top:24px"><div class="flagic" style="background:${u.col}">${u.code}</div><div><div class="mono" style="color:var(--accent)">${d.country} · ${d.region}${u.rank?" · QS #"+u.rank:""}</div><h2 id="d-title" style="margin:2px 0 0">${d.name}</h2></div></div>
     <div class="sub" style="margin-top:8px">${d.host} · ${d.levels.join(" / ")} · ${d.funding==="Full"?"Fully funded":"Partial"} · <span class="stars">${stars(d.rating)}</span> ${d.rating} from ${d.reviews} applicants</div>
     <div class="deadline-big"><b>${dlLabel(d)}</b><span>${daysLeft(d)>=0?"left. ":""}Deadline ${fmtDate(d.deadline)}. ${d.deadlineNote}.</span></div>
     <dl><dt>Who may apply</dt><dd>${d.who}</dd><dt>Fields</dt><dd>${d.fields.join(", ")}</dd><dt>Covers</dt><dd>${d.value}</dd><dt>English</dt><dd>${d.english}</dd><dt>Typical GPA</dt><dd>${d.minGpa}+ on 4.0, by past awardees</dd><dt>Admission first?</dt><dd>${d.offerFirst?"Yes. Offer or supervisor needed before the scholarship application.":"No. One application covers both."}</dd><dt>Good to know</dt><dd>${d.note}</dd><dt>Verified</dt><dd>${VERIFIED}. Deadline not yet re-checked on the official page.</dd></dl>
@@ -645,7 +625,7 @@ function renderCountries(){
   const tot=segs.reduce((s,x)=>s+x[1],0);let acc=0;const C=2*Math.PI*44;
   $("#donut").innerHTML=segs.map(([l,n,c])=>{const len=n/tot*C;const el=`<circle cx="60" cy="60" r="44" fill="none" stroke="${c}" stroke-width="16" stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-acc}" transform="rotate(-90 60 60)"/>`;acc+=len;return el}).join("")+`<text x="60" y="65" text-anchor="middle" font-weight="800" font-size="20" fill="#0f172a">${tot}</text>`;
   $("#donut-legend").innerHTML=segs.map(([l,n,c])=>`<div style="display:flex;gap:8px;align-items:center"><i style="width:10px;height:10px;border-radius:3px;background:${c};display:inline-block"></i>${l}<b style="margin-left:auto">${n}</b></div>`).join("");
-  $("#cgrid").innerHTML=COUNTRIES.map(c=>{const n=DATA.filter(d=>d.country===c.c).length;return `<button class="cc" data-c="${c.c}"><div class="hd"><div class="ic" style="width:36px;height:36px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none"><svg class="i" style="width:18px;height:18px"><use href="#ic-globe"/></svg></div><div><h3>${c.c}</h3><div class="n">${c.saves.toLocaleString()} saves · ${n} open listing${n===1?"":"s"}</div></div></div><ul>${c.u.map(([u,s])=>`<li>${u}<span>${s}</span></li>`).join("")}</ul></button>`}).join("");
+  $("#cgrid").innerHTML=COUNTRIES.map(c=>{const n=DATA.filter(d=>d.country===c.c).length;return `<button class="cc" data-c="${c.c}"><div class="hd"><div class="ic" style="width:36px;height:36px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center"><svg class="i" style="width:18px;height:18px"><use href="#ic-globe"/></svg></div><div><h3>${c.c}</h3><div class="n">${c.saves.toLocaleString()} saves · ${n} open listing${n===1?"":"s"}</div></div></div><ul>${c.u.map(([u,s])=>`<li>${u}<span>${s}</span></li>`).join("")}</ul></button>`}).join("");
 }
 
 /* rankings */
@@ -655,7 +635,7 @@ function renderRank(){
   const regionOf={"United Kingdom":"Europe","Switzerland":"Europe","Netherlands":"Europe","Singapore":"Asia","Hong Kong":"Asia","China":"Asia","Japan":"Asia","Australia":"Oceania","Saudi Arabia":"Middle East","UAE":"Middle East"};
   $("#rankchips").innerHTML=chips.map(([v,l])=>`<button class="chip" aria-pressed="${rankFilter===v}" data-rank="${v}">${l}</button>`).join("");
   const rows=Object.entries(UNI).filter(([n,u])=>!rankFilter||rankFilter===u.country||rankFilter===regionOf[u.country]||(rankFilter==="unranked"&&!u.rank)).sort((a,b)=>(a[1].rank??999)-(b[1].rank??999));
-  $("#ranktable tbody").innerHTML=rows.map(([n,u])=>{const ls=DATA.filter(d=>d.host===n);const r=ls.length?(ls.reduce((s,d)=>s+d.rating,0)/ls.length).toFixed(1):null;return `<tr><td><span class="rk">${u.rank??"–"}</span></td><td><b style="display:flex;gap:10px;align-items:center"><span class="flagic" style="width:32px;height:32px;border-radius:9px;font-size:10px">${u.code}</span>${n}</b></td><td>${u.country}</td><td>${u.fund}</td><td><span class="score"><span class="bar"><i style="width:${parseInt(u.intl)}%"></i></span>${u.intl}</span></td><td>${r?`<span class="stars">${stars(r)}</span> ${r}`:'<span style="color:var(--muted)">No reviews yet</span>'}</td><td>${ls.length?`<button class="btn sm" data-open="${ls[0].id}">View listing</button>`:'<span class="tag">Coming</span>'}</td></tr>`}).join("");
+  $("#ranktable tbody").innerHTML=rows.map(([n,u])=>{const ls=DATA.filter(d=>d.host===n);const r=ls.length?(ls.reduce((s,d)=>s+d.rating,0)/ls.length).toFixed(1):null;return `<tr><td><span class="rk">${u.rank??"–"}</span></td><td><b style="display:flex;gap:10px;align-items:center"><span class="flagic" style="width:32px;height:32px;border-radius:9px;font-size:10px;background:${u.col}">${u.code}</span>${n}</b></td><td>${u.country}</td><td>${u.fund}</td><td><span class="score"><span class="bar"><i style="width:${parseInt(u.intl)}%"></i></span>${u.intl}</span></td><td>${r?`<span class="stars">${stars(r)}</span> ${r}`:'<span style="color:var(--muted)">No reviews yet</span>'}</td><td>${ls.length?`<button class="btn sm" data-open="${ls[0].id}">View listing</button>`:'<span class="tag">Coming</span>'}</td></tr>`}).join("");
 }
 
 /* assessment */
@@ -697,7 +677,7 @@ function renderAssess(){
 
 /* academy, events */
 function renderCourses(){
-  $("#courses").innerHTML=COURSES.map((c,i)=>`<div class="course" id="c${i}"><div class="cover"><svg><use href="#${c.ic}"/></svg></div><div class="bd"><div class="top"><h3>${c.t}</h3><span class="tag ${c.lvl.includes("free")?"ok":"acc"}">${c.lvl}</span></div><p>${c.h}</p><ul class="mods">${c.m.map(m=>`<li>${m}</li>`).join("")}</ul><div class="prog"><i style="width:${c.pct}%"></i></div><div class="cert"><span class="badge">OA</span><span>${c.pct>=100?"Certificate issued: OA-"+(2026000+i*137):"OpenAward certificate on completion, verifiable ID"}</span></div><div class="cta" style="margin:4px 0 0"><button class="btn ${c.pct?"":"primary"} sm" type="button" data-enrol="${i}">${c.pct>=100?"View certificate":c.pct?"Continue ("+c.pct+"%)":"Enrol"}</button></div></div></div>`).join("");
+  $("#courses").innerHTML=COURSES.map((c,i)=>`<div class="course" id="c${i}"><div class="cover" style="background:${c.col}"><svg><use href="#${c.ic}"/></svg></div><div class="bd"><div class="top"><h3>${c.t}</h3><span class="tag ${c.lvl.includes("free")?"ok":"acc"}">${c.lvl}</span></div><p>${c.h}</p><ul class="mods">${c.m.map(m=>`<li>${m}</li>`).join("")}</ul><div class="prog"><i style="width:${c.pct}%"></i></div><div class="cert"><span class="badge">OA</span><span>${c.pct>=100?"Certificate issued: OA-"+(2026000+i*137):"OpenAward certificate on completion, verifiable ID"}</span></div><div class="cta" style="margin:4px 0 0"><button class="btn ${c.pct?"":"primary"} sm" type="button" data-enrol="${i}">${c.pct>=100?"View certificate":c.pct?"Continue ("+c.pct+"%)":"Enrol"}</button></div></div></div>`).join("");
 }
 function renderEvents(){
   $("#events").innerHTML=EVENTS.map(e=>{const dt=new Date(e.d+"T00:00:00");return `<div class="ev"><div class="d"><b>${dt.getDate()}</b><span>${dt.toLocaleDateString("en-GB",{month:"short"})}</span></div><div><h4>${e.t}</h4><p>${e.p}</p></div><div class="act" style="display:flex;gap:8px;align-items:center"><span class="tag">${e.k}</span><button class="btn sm" type="button" data-rsvp>RSVP</button></div></div>`}).join("");
@@ -706,13 +686,13 @@ function renderEvents(){
 /* views */
 const VIEWS=["discover","countries","rank","assess","academy","events","funders","arch","signup","about"];
 function switchView(v){
-  document.querySelectorAll("nav button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===v)));
+  document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===v)));
   VIEWS.forEach(x=>$("#view-"+x).hidden=(x!==v));
   if(v==="assess")renderAssess();if(v==="rank")renderRank();
   window.scrollTo({top:0});
   if(location.hash.replace("#","")!==v)history.replaceState(null,"","#"+v);
 }
-document.addEventListener("click",e=>{const b=e.target.closest("[data-view]");if(!b)return;switchView(b.dataset.view);if(b.dataset.chip){state.chip=b.dataset.chip;renderChips();renderGrid()}if(b.dataset.scroll||b.dataset.chip)setTimeout(()=>$("#catalogue").scrollIntoView({behavior:"smooth"}),30)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-view]");if(b)switchView(b.dataset.view)});
 $("#q").addEventListener("input",e=>{state.q=e.target.value;renderGrid()});
 ["level","field","region","fund","sort"].forEach(k=>$("#f-"+k).addEventListener("change",e=>{state[k]=e.target.value;renderGrid()}));
 $("#chips").addEventListener("click",e=>{const b=e.target.closest("[data-chip]");if(!b)return;state.chip=b.dataset.chip;renderChips();renderGrid()});
