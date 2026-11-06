@@ -1,24 +1,17 @@
-# OpenAward
+# Scholio
 
-Global scholarship portal prototype for Master's and PhD seekers and funders.
+Global Master's and PhD scholarship portal (prototype). Working name: Scholio (domain to be confirmed). Repository name kept as `openaward`.
 
 ## Run
 Open `index.html` in a browser, or `npx serve .`
 
-## Structure (single file for now)
-- `index.html` : markup, styles and all data/logic inline
-  - `UNI`       : university database (rank, country, flagship funding, intl share)
-  - `DATA`      : scholarship listings on the standard template
-  - `COUNTRIES` : destination cards + saves infographic
-  - `COURSES`   : Academy crash courses
-  - `EVENTS`    : events list
+## What's inside (single file)
+- Home: search with live suggestions, closing-soon strip, animated stats, path cards, "picked for you" (from the saved fit profile), catalogue with segmented filters
+- Countries, Rankings (university database), My fit (assessment, saved in localStorage)
+- Academy: Statement of Purpose Studio is a complete course (5 lessons, quiz per lesson, certificate with verifiable-style ID, PNG download). Other courses are outlines.
+- Events, Funders (+ architecture), About, Sign in (coming soon, waitlist, my certificates)
 
-## Suggested next steps in Claude Code
-1. Split data into `/data/*.json` and load with fetch.
-2. Move to Astro or Next.js; one route per section.
-3. Add a verification script that re-checks each listing's official URL and deadline.
-4. Replace the illustrative ratings/reviews with a real store before launch.
+Data constants in `index.html`: `UNI`, `DATA`, `COUNTRIES`, `EVENTS`, `COURSES`.
 
 ## Caveats
-Deadlines are from a public Nov 2026 compilation, not yet re-verified on official pages.
-Rankings indicative (QS 2026). Reviews, course enrolments, events, funder numbers are illustrative.
+Deadlines from a public Nov 2026 compilation, not yet re-verified. Rankings indicative (QS 2026). Reviews, events, funder numbers illustrative. Certificates are stored only in the visitor's browser until accounts exist.
