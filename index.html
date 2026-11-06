@@ -6,6 +6,7 @@
 <title>Scholio: every scholarship, within reach</title>
 <meta name="description" content="A global index of Master's and PhD scholarships with verified deadlines, a fit score for your profile, and short courses with certificates. Apply on the funder's own site.">
 <link rel="canonical" href="https://nirajbhusal.github.io/scholio/">
+<base href="/scholio/">
 <meta property="og:title" content="Scholio: every scholarship, within reach">
 <meta property="og:description" content="Verified Master's and PhD scholarships worldwide, a fit score for your profile, and courses that close the gaps.">
 <meta property="og:type" content="website">
@@ -911,7 +912,7 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 
 </main>
 
-<footer><div class="wrap brandfoot"><svg class="mascot" width="64" height="64" viewBox="0 0 100 100"><use href="#logo"/></svg><div class="wm">Schol<em>io</em></div><div class="tgl">Every scholarship, within reach.</div><div class="links"><a href="#about" data-view="about">About</a><a href="#score" data-view="score">Scholio Score</a><a href="#funders" data-view="funders">Funders</a><a href="https://github.com/nirajbhusal/scholio" target="_blank" rel="noopener">GitHub</a></div></div><div class="wrap"><span>Scholio is an independent index. Every listing links to its official page; "Verified" means we checked the deadline and terms there on the date shown. Found an error? <a href="https://github.com/nirajbhusal/scholio/issues" target="_blank" rel="noopener">Report it</a>.</span></div></footer>
+<footer><div class="wrap brandfoot"><svg class="mascot" width="64" height="64" viewBox="0 0 100 100"><use href="#logo"/></svg><div class="wm">Schol<em>io</em></div><div class="tgl">Every scholarship, within reach.</div><div class="links"><a href="about/" data-view="about">About</a><a href="score/" data-view="score">Scholio Score</a><a href="funders/" data-view="funders">Funders</a><a href="https://github.com/nirajbhusal/scholio" target="_blank" rel="noopener">GitHub</a></div></div><div class="wrap"><span>Scholio is an independent index. Every listing links to its official page; "Verified" means we checked the deadline and terms there on the date shown. Found an error? <a href="https://github.com/nirajbhusal/scholio/issues" target="_blank" rel="noopener">Report it</a>.</span></div></footer>
 
 <div class="sheet" id="sheet" aria-hidden="true"><div class="back" id="sheet-back"></div>
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="d-title"><button class="close" id="sheet-close" aria-label="Close">×</button><div id="detail"></div></div></div>
@@ -1107,7 +1108,7 @@ function renderAssess(){
     const [cl,ct]=competitiveness(x.d);
     out+=`<div class="res ${x.st}"><div><b>${x.d.country}: ${x.d.name}</b><div style="display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 2px"><span class="tag ${ct}">${cl}</span><span class="tag">${ROUTE[x.el.route]}</span>${x.el.bond?'<span class="tag warn">Return-home bond</span>':""}${x.d.checked?'<span class="tag ok">Verified</span>':""}</div><ul>${x.r.map(t=>`<li>${t}</li>`).join("")}</ul><div class="cta" style="margin:8px 0 0"><button class="btn sm" type="button" data-open="${x.d.id}">View</button></div></div><div class="fit">${x.el.ok?x.fit:"–"}<small>${x.el.ok?"fit · ":""}${x.d.deadline?fmtDate(x.d.deadline):"annual"}</small></div></div>`});
   $("#results").innerHTML=out||`<p class="note">No awards match this region and funding filter. Widen "Where would you go" or allow partial funding.</p>`;
-  const cp=$("#score-copy");if(cp)cp.onclick=e=>{const t=`My Scholio Score: ${score}/100 (${S.band}), ID ${S.id}, v${SCORE_V}. Checked at scholio: https://nirajbhusal.github.io/scholio/#score`;navigator.clipboard?.writeText(t).then(()=>e.currentTarget.textContent="Copied").catch(()=>{})};
+  const cp=$("#score-copy");if(cp)cp.onclick=e=>{const t=`My Scholio Score: ${score}/100 (${S.band}), ID ${S.id}, v${SCORE_V}. Checked at scholio: https://nirajbhusal.github.io/scholio/score/`;navigator.clipboard?.writeText(t).then(()=>e.currentTarget.textContent="Copied").catch(()=>{})};
 }
 
 /* ---------- courses ---------- */
@@ -1506,8 +1507,12 @@ function switchView(v){
   VIEWS.forEach(x=>{const el=$("#view-"+x);if(el)el.hidden=(x!==v)});
   if(v==="assess"){loadProfile();renderAssess();renderWizard()}if(v==="rank")renderRank();if(v==="map"){setTimeout(()=>{initMap();if(map)map.invalidateSize();renderMapList()},30)}if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();if(v==="resources")renderCV();
   window.scrollTo({top:0});
-  if(location.hash.replace("#","")!==v)history.replaceState(null,"","#"+v);
+  try{if(BASE){const want=BASE+(v==="home"?"":v+"/");if(location.pathname!==want)history.pushState({v},"",want)}
+  else if(location.hash.replace("#","")!==v)history.replaceState(null,"","#"+v)}catch(e){}
 }
+const BASE=location.pathname.startsWith("/scholio/")?"/scholio/":(location.hostname.endsWith("github.io")?"/":null);
+function routeFromURL(){if(BASE){const seg=location.pathname.slice(BASE.length).split("/").filter(Boolean)[0]||"home";return VIEWS.includes(seg)?seg:"home"}const h=location.hash.replace("#","");return VIEWS.includes(h)?h:"home"}
+window.addEventListener("popstate",()=>{const v=routeFromURL();document.querySelectorAll("nav button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===(v==="course"||v==="cert"?"academy":v==="score"?"assess":v))));VIEWS.forEach(x=>{const el=$("#view-"+x);if(el)el.hidden=(x!==v)});if(v==="assess"){loadProfile();renderAssess();renderWizard()}if(v==="rank")renderRank();if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();if(v==="resources")renderCV();if(v==="map"){setTimeout(()=>{initMap();if(map)map.invalidateSize();renderMapList()},30)}});
 document.addEventListener("click",e=>{
   const v=e.target.closest("[data-view]");if(v){e.preventDefault();switchView(v.dataset.view);return}
   const sc=e.target.closest("[data-scroll]");if(sc){switchView("home");scrollToId(sc.dataset.scroll);return}
@@ -1541,14 +1546,14 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDetail()});
 
 // suggestion hooks inside assessment link to courses
 $("#sugg").addEventListener("click",e=>{const b=e.target.closest("[data-course]");if(b){const c=COURSES.find(x=>x.t===b.dataset.course);if(c&&c.lessons)openCourse(c.id);else switchView("academy")}});
-window.addEventListener("hashchange",()=>{const h=location.hash.replace("#","");if(VIEWS.includes(h))switchView(h)});
+window.addEventListener("hashchange",()=>{if(!BASE){const h=location.hash.replace("#","");if(VIEWS.includes(h))switchView(h)}});
 
 /* greeting */
 (function(){const h=new Date().getHours();$("#greet").textContent=(h<12?"Good morning":h<17?"Good afternoon":"Good evening")+" · Master's and PhD funding, worldwide";
 const intro=$("#intro");if(intro){const done=()=>intro.classList.add("done");intro.addEventListener("animationend",e=>{if(e.animationName==="intro-fade")done()});setTimeout(done,3200);intro.addEventListener("click",done)}})();
 
 renderChips();renderStats();renderGrid();renderStrip();renderCountries();renderCourses();renderEvents();renderRank();loadProfile();renderAssess();renderForYou();renderMyCerts();
-const h0=location.hash.replace("#","");if(VIEWS.includes(h0)&&h0!=="home"&&h0!=="course"&&h0!=="cert")switchView(h0);
+const h0=routeFromURL();if(h0!=="home"&&h0!=="course"&&h0!=="cert")switchView(h0);else if(BASE&&location.hash)try{history.replaceState(null,"",BASE)}catch(e){}
 
 </script>
 
