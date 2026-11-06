@@ -1,6 +1,6 @@
 # Scholio
 
-Global Master's and PhD scholarship portal (prototype). Working name: Scholio (domain to be confirmed). Repository name kept as `openaward`.
+Global Master's and PhD scholarship portal (prototype). Working name: Scholio (domain to be confirmed). Repository: `nirajbhusal/scholio`.
 
 ## Run
 Open `index.html` in a browser, or `npx serve .`
