@@ -1,0 +1,17 @@
+name: Report a correction
+description: A deadline, amount or rule on Scholio is wrong or out of date.
+title: "Correction: "
+labels: [correction]
+body:
+  - type: input
+    id: award
+    attributes: {label: Award name}
+    validations: {required: true}
+  - type: textarea
+    id: what
+    attributes: {label: What is wrong and what it should say}
+    validations: {required: true}
+  - type: input
+    id: source
+    attributes: {label: Official page that shows the correct information}
+    validations: {required: true}

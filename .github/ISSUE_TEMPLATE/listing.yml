@@ -1,0 +1,48 @@
+name: Submit a scholarship
+description: Propose a new award for the Scholio index. A moderator verifies the official page before it goes live.
+title: "New listing: "
+labels: [listing]
+body:
+  - type: input
+    id: name
+    attributes: {label: Scholarship name}
+    validations: {required: true}
+  - type: input
+    id: host
+    attributes: {label: Host (university, government body or foundation)}
+    validations: {required: true}
+  - type: input
+    id: country
+    attributes: {label: Country of study}
+    validations: {required: true}
+  - type: dropdown
+    id: level
+    attributes: {label: Level, multiple: true, options: ["Master's", "PhD"]}
+    validations: {required: true}
+  - type: input
+    id: fields
+    attributes: {label: Fields (or "Any field")}
+  - type: input
+    id: deadline
+    attributes: {label: Deadline (YYYY-MM-DD) or typical annual window}
+    validations: {required: true}
+  - type: dropdown
+    id: funding
+    attributes: {label: Funding, options: [Full, Partial]}
+    validations: {required: true}
+  - type: textarea
+    id: value
+    attributes: {label: What it covers (stipend, tuition, travel, insurance)}
+  - type: input
+    id: english
+    attributes: {label: English test requirement}
+  - type: dropdown
+    id: offer
+    attributes: {label: Admission or supervisor needed before applying?, options: ["No", "Yes"]}
+  - type: input
+    id: who
+    attributes: {label: Who may apply (nationality, age, other limits)}
+  - type: input
+    id: url
+    attributes: {label: Official page URL}
+    validations: {required: true}

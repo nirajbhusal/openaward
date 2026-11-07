@@ -14,13 +14,17 @@ Owner: Niraj Bhusal (NB). Brand: **Scholio** (domain still to be registered). If
 - Master's and PhD only for now. Assessment is a 14-step wizard that produces the Scholio Score (v1.0, public weights, deterministic, score ID) and per-award eligibility by nationality and age. Light and dark themes via the header toggle.
 
 ## Structure (single file today, multipage next)
-`index.html` holds everything: CSS, markup for views (`#view-home`, `map`, `countries`, `rank`, `assess`, `academy`, `course`, `cert`, `resources`, `events`, `funders`, `about`, `signup`), and JS.
+`index.html` holds everything: CSS, markup for views (`#view-home`, `map`, `countries`, `rank`, `assess`, `academy`, `course`, `cert`, `resources`, `compare`, `tracker`, `locker`, `award`, `events`, `funders`, `about`, `signup`), and JS. `404.html` is a byte-for-byte copy (GitHub Pages fallback so clean paths and `/award/<id>/` deep links resolve).
 Data constants in the script: `UNI` (university DB), `DATA` (55 listings), `COUNTRIES`, `COURSES` (Academy; `sop` is a complete course with lessons+quizzes, others are outlines with `soon:true`), `GUIDES` (English test guides), `WSTEPS` (wizard questions).
-Client state in localStorage: `sc_profile`, `sc_course_<id>`, `sc_certs`, `sc_saved`, `sc_cv`.
-Map: Leaflet 1.9.4 from cdnjs with CARTO light tiles; trimmed Leaflet CSS is inlined.
+Client state in localStorage: `sc_profile`, `sc_course_<id>`, `sc_certs`, `sc_saved`, `sc_cv`, `sc_theme`, `sc_cmp` (compare, max 3), `sc_trk` (tracker: {id:{done:[],target}}), `sc_sop`, `sc_ref`, `sc_files` (locker, base64, 2 MB each).
+`data/awards.json` is an export of `DATA` (regenerate when DATA changes; `scripts/verify.mjs` reads it to fetch every official URL and flag changed pages).
+Rankings: `UNI` carries `rank` (QS 2026), `the` (THE 2025), `arwu` (ARWU 2024); bands like "101-150" are strings.
+Accounts: `SUPABASE={url,key}` in the script; empty = sign-in card hidden, "coming soon" shown. Fill both to enable magic-link sign-in.
+PWA: `manifest.webmanifest` + `sw.js` (network first, cache fallback), registered only on https.
+Map: Leaflet 1.9.4 from cdnjs; OpenStreetMap tiles (no key) with CARTO fallback after 4 tile errors and a visible notice. Trimmed Leaflet CSS is inlined.
 
 ## Submissions and feedback (no backend yet)
-Reviews, corrections, new listings and session proposals open prefilled GitHub Issues with labels `review`, `correction`, `listing`, `event`. Create those labels in the repo.
+Reviews, corrections, new listings and session proposals open prefilled GitHub Issues with labels `review`, `correction`, `listing`, `event`, `funder`. Issue forms live in `.github/ISSUE_TEMPLATE/`. Create those labels in the repo.
 
 ## QA bar
 Playwright: every view at 1366 and 390 widths, zero console errors, zero horizontal overflow, and the course flow (all quizzes to certificate) runs end to end. Keep it.

@@ -19,6 +19,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
+<script>if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{})</script>
 <style>html{color-scheme:light}body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Scholio","url":"https://nirajbhusal.github.io/scholio/","description":"Global index of Master's and PhD scholarships with verified deadlines and a fit score.","potentialAction":{"@type":"SearchAction","target":"https://nirajbhusal.github.io/scholio/#home?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 </head>
@@ -435,6 +436,19 @@ dt{font-size:12px;font-weight:600;color:var(--muted);padding-top:2px} dd{margin:
   .wnav .btn{flex:1;justify-content:center}
   footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
 }
+
+/* compare, tracker, locker */
+.cmpbar{position:sticky;top:calc(112px + env(safe-area-inset-top,0px));z-index:8;background:var(--accent-soft);border-bottom:1px solid var(--line);padding:8px 0;font-size:14px;font-weight:600;color:var(--accent)}
+.cmp td:first-child{font-weight:600;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.trk{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:10px}
+.trk .hd{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap} .trk h4{font-size:16px}
+.trk .steps2{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px}
+.trk label{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;cursor:pointer} .trk label input{width:auto}
+.trk label.done{background:var(--mint-soft);border-color:transparent}
+.trk .prog{margin-top:2px}
+.trk input[type=date]{width:auto;padding:6px 8px;font-size:13px}
+@media (max-width:700px){.cmpbar{top:0}}
+@media (max-width:700px){#res-tabs{flex-wrap:wrap} .tablewrap{overflow-x:auto;max-width:100%} #view-tracker .fsel{max-width:100%;min-width:0} #trk-add{max-width:100%;min-width:0;width:100%}}
 footer{border-top:1px solid var(--line);padding-block:18px calc(18px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:13px}
 footer .wrap{display:flex;gap:14px;flex-wrap:wrap;align-items:center} footer .wrap>span:first-of-type{flex:1;min-width:260px}
 footer .links{display:flex;gap:12px;margin-left:auto}
@@ -528,7 +542,7 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 </div>
 <div class="wrap"><div class="strip"><div class="lbl"><i></i>Closing soon</div><div class="track" id="strip"></div><button type="button" id="strip-next">Next ›</button></div></div></header>
 <nav class="tabbar" aria-label="Sections"><button data-view="home" aria-selected="true"><svg class="i"><use href="#ic-home"/></svg>Home</button><button data-scroll="catalogue"><svg class="i"><use href="#ic-search"/></svg>Awards</button><button data-view="assess" aria-selected="false"><svg class="i"><use href="#ic-target"/></svg>Score</button><button data-view="academy" aria-selected="false"><svg class="i"><use href="#ic-book"/></svg>Academy</button><button id="more-btn"><svg class="i"><use href="#ic-layers"/></svg>More</button></nav>
-<div class="moresheet" id="moresheet" hidden><div class="back" id="more-back"></div><div class="mpanel"><div class="mono" style="margin-bottom:8px">All sections</div><div class="mgrid"><button data-view="map"><svg class="i"><use href="#ic-map"/></svg>Map</button><button data-view="countries"><svg class="i"><use href="#ic-globe"/></svg>Countries</button><button data-view="rank"><svg class="i"><use href="#ic-chart"/></svg>Rankings</button><button data-view="resources"><svg class="i"><use href="#ic-doc"/></svg>Resources</button><button data-view="events"><svg class="i"><use href="#ic-cal"/></svg>Deadlines</button><button data-view="funders"><svg class="i"><use href="#ic-building"/></svg>Funders</button><button data-view="score"><svg class="i"><use href="#ic-target"/></svg>How the Score works</button><button data-view="about"><svg class="i"><use href="#ic-info"/></svg>About</button><button data-view="signup"><svg class="i"><use href="#ic-user"/></svg>Sign in</button><button id="theme-m"><svg class="i"><use href="#ic-moon"/></svg>Theme</button></div></div></div>
+<div class="moresheet" id="moresheet" hidden><div class="back" id="more-back"></div><div class="mpanel"><div class="mono" style="margin-bottom:8px">All sections</div><div class="mgrid"><button data-view="map"><svg class="i"><use href="#ic-map"/></svg>Map</button><button data-view="countries"><svg class="i"><use href="#ic-globe"/></svg>Countries</button><button data-view="rank"><svg class="i"><use href="#ic-chart"/></svg>Rankings</button><button data-view="resources"><svg class="i"><use href="#ic-doc"/></svg>Resources</button><button data-view="events"><svg class="i"><use href="#ic-cal"/></svg>Deadlines</button><button data-view="tracker"><svg class="i"><use href="#ic-check"/></svg>Tracker</button><button data-view="locker"><svg class="i"><use href="#ic-doc"/></svg>Locker</button><button data-view="compare"><svg class="i"><use href="#ic-layers"/></svg>Compare</button><button data-view="funders"><svg class="i"><use href="#ic-building"/></svg>Funders</button><button data-view="score"><svg class="i"><use href="#ic-target"/></svg>How the Score works</button><button data-view="about"><svg class="i"><use href="#ic-info"/></svg>About</button><button data-view="signup"><svg class="i"><use href="#ic-user"/></svg>Sign in</button><button id="theme-m"><svg class="i"><use href="#ic-moon"/></svg>Theme</button></div></div></div>
 
 <main class="wrap">
 
@@ -603,9 +617,16 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 <section id="view-map" hidden>
   <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-map"/></svg>Research map</div><h2>Every award, pinned to its <em>campus</em></h2><p>Zoom into a region, click a pin for the listing. Blue pins are Master's, violet are PhD, split pins are both. Pins without a basemap still work if map tiles are blocked on your network.</p></div>
   <div class="mapwrap">
-    <div id="map"><div class="mapctl"><button aria-pressed="true" data-ml="">All</button><button aria-pressed="false" data-ml="Master's">Master's</button><button aria-pressed="false" data-ml="PhD">PhD</button><button aria-pressed="false" data-ml="checked">Verified</button></div><div class="mapattr">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a></div></div>
+    <div id="map"><div class="mapctl"><button aria-pressed="true" data-ml="">All</button><button aria-pressed="false" data-ml="Master's">Master's</button><button aria-pressed="false" data-ml="PhD">PhD</button><button aria-pressed="false" data-ml="checked">Verified</button></div><div class="note" id="map-note" hidden style="position:absolute;left:10px;bottom:10px;z-index:1000;max-width:320px">Map tiles are blocked on this network; pins still work. No API key is needed.</div><div class="mapattr">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors</div></div>
     <div class="maplist" id="maplist"></div>
   </div>
+</section>
+
+
+<div class="cmpbar" id="cmpbar" hidden><div class="wrap" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><svg class="i s"><use href="#ic-layers"/></svg><span id="cmpcount"></span><button class="btn sm primary" data-view="compare">Compare</button><button class="btn sm" id="cmpclear">Clear</button></div></div>
+<section id="view-compare" hidden>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-layers"/></svg>Compare</div><h2>Side by <em>side</em></h2><p>Pick up to three awards from any listing's "Compare" button.</p></div>
+  <div class="tablewrap" id="cmptable"></div>
 </section>
 
 <!-- COUNTRIES -->
@@ -622,8 +643,8 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 <section id="view-rank" hidden>
   <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-chart"/></svg>University database</div><h2>Rankings, with the <em>funding</em> each university actually offers</h2><p>Indicative positions based on QS World University Rankings 2026, alongside the flagship scholarships we track and the Scholio applicant rating.</p></div>
   <div class="chips" style="margin-bottom:12px" id="rankchips"></div>
-  <div class="tablewrap"><table id="ranktable"><thead><tr><th>Rank</th><th>University</th><th>Country</th><th>Flagship funding</th><th>Status</th><th></th></tr></thead><tbody></tbody></table></div>
-  <p class="note" style="margin-top:12px">Positions follow QS World University Rankings 2026 as published; confirm on qs.com. Unranked rows are institutions that fund every admitted graduate student.</p>
+  <div class="tablewrap"><table id="ranktable"><thead><tr><th>QS 2026</th><th>THE 2025</th><th>ARWU 2024</th><th>University</th><th>Country</th><th>Flagship funding</th><th>Status</th><th></th></tr></thead><tbody></tbody></table></div>
+  <p class="note" style="margin-top:12px">Sources: <a href="https://www.topuniversities.com/world-university-rankings" target="_blank" rel="noopener">QS 2026</a>, <a href="https://www.timeshighereducation.com/world-university-rankings" target="_blank" rel="noopener">THE 2025</a>, <a href="https://www.shanghairanking.com/rankings/arwu/2024" target="_blank" rel="noopener">ARWU 2024</a>. Positions are transcribed from the published tables; bands such as 101-150 are how the publisher reports them. Rows without a rank are institutions that fund every admitted graduate student. Report a mismatch via GitHub.</p>
 </section>
 
 <!-- ASSESS -->
@@ -822,6 +843,28 @@ footer .links{display:flex;gap:12px;margin-left:auto}
   </div>
 </section>
 
+
+<!-- TRACKER -->
+<section id="view-tracker" hidden>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-check"/></svg>Application tracker</div><h2>Every application, every step, <em>on time</em></h2><p>Add an award, tick the steps as you go, set your own dates. Stored in this browser until accounts launch.</p></div>
+  <div class="cta" style="margin:0 0 14px"><div class="fsel"><svg class="i s"><use href="#ic-cap"/></svg><select id="trk-add" aria-label="Add award"><option value="">Add an award to track…</option></select></div></div>
+  <div id="trk-list" class="list"></div>
+</section>
+<!-- LOCKER -->
+<section id="view-locker" hidden>
+  <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-doc"/></svg>Document locker</div><h2>Your statements, references and files in <em>one place</em></h2><p>Drafts are saved as you type. Small files (under 2 MB each) are stored in this browser only; nothing is uploaded anywhere.</p></div>
+  <div class="grid2">
+    <div class="card"><div class="mono" style="margin-bottom:8px">Statement of purpose (master draft)</div><textarea id="lk-sop" rows="12" placeholder="Paste or write your statement. Use the SOP Studio in the Academy for structure."></textarea><div class="count" style="margin-top:6px"><span id="lk-sop-n"></span></div></div>
+    <div style="display:grid;gap:16px">
+      <div class="card"><div class="mono" style="margin-bottom:8px">Referees</div><textarea id="lk-ref" rows="5" placeholder="Name, role, email, what they will write about, date asked"></textarea></div>
+      <div class="card"><div class="mono" style="margin-bottom:8px">Files</div><input type="file" id="lk-file" multiple accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"><div id="lk-files" class="certlist" style="margin-top:10px"></div></div>
+      <div class="card"><div class="mono" style="margin-bottom:8px">CV</div><p style="margin:0 0 8px;font-size:14px;color:var(--muted)">Your CV lives in the designer and is saved automatically.</p><button class="btn sm" data-view="resources" data-rt="cv">Open CV designer</button></div>
+    </div>
+  </div>
+</section>
+<!-- AWARD (deep link) -->
+<section id="view-award" hidden><div id="award-page"></div></section>
+
 <!-- EVENTS -->
 <section id="view-events" hidden>
   <div class="lead"><div class="kicker"><svg class="i s"><use href="#ic-cal"/></svg>Events</div><h2>Webinars, fairs and deadline <em>sprints</em></h2><p>Every open deadline on one calendar. Community sessions (funder Q&amp;As, statement sprints) will appear here as they are scheduled.</p></div>
@@ -918,7 +961,8 @@ footer .links{display:flex;gap:12px;margin-left:auto}
       </div>
     </div>
     <div style="display:grid;gap:16px">
-      <div class="authcard">
+      <div class="authcard" id="authcard-live" hidden><h3 style="font-size:22px">Sign in</h3><label class="l" for="li-email">Email</label><input id="li-email" type="email" placeholder="you@university.edu"><button class="btn primary" type="button" id="li-btn" style="justify-content:center;margin-top:10px">Send me a sign-in link</button><p class="note" id="li-note" hidden>Check your inbox for the link.</p></div>
+      <div class="authcard" id="authcard-soon">
         <div class="soon">Coming soon</div>
         <svg class="mascot" width="56" height="56" viewBox="0 0 100 100"><use href="#logo"/></svg>
         <h3 style="font-size:22px">Create your account</h3>
@@ -930,6 +974,7 @@ footer .links{display:flex;gap:12px;margin-left:auto}
         <a class="btn" href="https://x.com/nirajbhusal" target="_blank" rel="noopener" style="justify-content:center">Follow @nirajbhusal</a>
         <p class="note">Until accounts exist, your fit profile and certificates are saved in this browser only.</p>
       </div>
+      <div class="card" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" data-view="tracker"><svg class="i s"><use href="#ic-check"/></svg>Application tracker</button><button class="btn sm" data-view="locker"><svg class="i s"><use href="#ic-doc"/></svg>Document locker</button><button class="btn sm" data-view="compare"><svg class="i s"><use href="#ic-layers"/></svg>Compare</button></div>
       <div class="card"><div class="mono" style="margin-bottom:10px">Saved awards (this browser)</div><div class="certlist" id="mysaved"></div></div>
       <div class="card"><div class="mono" style="margin-bottom:10px">My certificates (this browser)</div><div class="certlist" id="mycerts"></div></div>
     </div>
@@ -946,22 +991,22 @@ footer .links{display:flex;gap:12px;margin-left:auto}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script>
 const UNI = {
- "University of Cambridge":{rank:6,country:"United Kingdom",intl:"39%",fund:"Gates Cambridge, Cambridge Trust",code:"CAM",col:"#1d4ed8"},
- "University of Oxford":{rank:4,country:"United Kingdom",intl:"45%",fund:"Rhodes, Clarendon",code:"OXF",col:"#0f766e"},
- "Imperial College London":{rank:2,country:"United Kingdom",intl:"60%",fund:"President's PhD Scholarships",code:"ICL",col:"#0369a1"},
- "ETH Zurich":{rank:7,country:"Switzerland",intl:"41%",fund:"Excellence Scholarship (ESOP)",code:"ETH",col:"#1e40af"},
- "National University of Singapore":{rank:8,country:"Singapore",intl:"33%",fund:"NUS Research Scholarship",code:"NUS",col:"#ea580c"},
- "Nanyang Technological University":{rank:12,country:"Singapore",intl:"30%",fund:"Nanyang President's Graduate Scholarship",code:"NTU",col:"#b91c1c"},
- "University of Hong Kong":{rank:11,country:"Hong Kong",intl:"43%",fund:"HKPFS, Presidential PhD",code:"HKU",col:"#15803d"},
- "Peking University":{rank:14,country:"China",intl:"15%",fund:"Yenching Academy, CSC",code:"PKU",col:"#7f1d1d"},
- "Tsinghua University":{rank:17,country:"China",intl:"12%",fund:"Schwarzman Scholars, CSC",code:"THU",col:"#6b21a8"},
- "University of Melbourne":{rank:19,country:"Australia",intl:"46%",fund:"Graduate Research Scholarships",code:"UOM",col:"#1e3a8a"},
- "University of Sydney":{rank:25,country:"Australia",intl:"47%",fund:"RTP Scholarship",code:"USYD",col:"#9a3412"},
- "University of Tokyo":{rank:36,country:"Japan",intl:"14%",fund:"MEXT, ADB-JSP",code:"UT",col:"#0e7490"},
- "Okinawa Institute of Science and Technology":{rank:null,country:"Japan",intl:"80%",fund:"OIST PhD Scholarship (all students)",code:"OIST",col:"#0891b2"},
- "KAUST":{rank:null,country:"Saudi Arabia",intl:"90%",fund:"KAUST Fellowship (all students)",code:"KAUST",col:"#065f46"},
- "MBZUAI":{rank:null,country:"UAE",intl:"85%",fund:"Graduate Scholarship (all students)",code:"MBZ",col:"#7c3aed"},
- "University of Groningen":{rank:139,country:"Netherlands",intl:"28%",fund:"Erasmus Mundus, Eric Bleumink Fund",code:"RUG",col:"#be123c"}
+ "University of Cambridge":{the:5,arwu:4,rank:6,country:"United Kingdom",intl:"39%",fund:"Gates Cambridge, Cambridge Trust",code:"CAM",col:"#1d4ed8"},
+ "University of Oxford":{the:1,arwu:6,rank:4,country:"United Kingdom",intl:"45%",fund:"Rhodes, Clarendon",code:"OXF",col:"#0f766e"},
+ "Imperial College London":{the:9,arwu:25,rank:2,country:"United Kingdom",intl:"60%",fund:"President's PhD Scholarships",code:"ICL",col:"#0369a1"},
+ "ETH Zurich":{the:11,arwu:22,rank:7,country:"Switzerland",intl:"41%",fund:"Excellence Scholarship (ESOP)",code:"ETH",col:"#1e40af"},
+ "National University of Singapore":{the:17,arwu:"51-100",rank:8,country:"Singapore",intl:"33%",fund:"NUS Research Scholarship",code:"NUS",col:"#ea580c"},
+ "Nanyang Technological University":{the:30,arwu:"101-150",rank:12,country:"Singapore",intl:"30%",fund:"Nanyang President's Graduate Scholarship",code:"NTU",col:"#b91c1c"},
+ "University of Hong Kong":{the:35,arwu:"101-150",rank:11,country:"Hong Kong",intl:"43%",fund:"HKPFS, Presidential PhD",code:"HKU",col:"#15803d"},
+ "Peking University":{the:13,arwu:34,rank:14,country:"China",intl:"15%",fund:"Yenching Academy, CSC",code:"PKU",col:"#7f1d1d"},
+ "Tsinghua University":{the:12,arwu:22,rank:17,country:"China",intl:"12%",fund:"Schwarzman Scholars, CSC",code:"THU",col:"#6b21a8"},
+ "University of Melbourne":{the:39,arwu:37,rank:19,country:"Australia",intl:"46%",fund:"Graduate Research Scholarships",code:"UOM",col:"#1e3a8a"},
+ "University of Sydney":{the:61,arwu:"51-100",rank:25,country:"Australia",intl:"47%",fund:"RTP Scholarship",code:"USYD",col:"#9a3412"},
+ "University of Tokyo":{the:28,arwu:27,rank:36,country:"Japan",intl:"14%",fund:"MEXT, ADB-JSP",code:"UT",col:"#0e7490"},
+ "Okinawa Institute of Science and Technology":{the:null,arwu:null,rank:null,country:"Japan",intl:"80%",fund:"OIST PhD Scholarship (all students)",code:"OIST",col:"#0891b2"},
+ "KAUST":{the:null,arwu:"101-150",rank:null,country:"Saudi Arabia",intl:"90%",fund:"KAUST Fellowship (all students)",code:"KAUST",col:"#065f46"},
+ "MBZUAI":{the:null,arwu:null,rank:null,country:"UAE",intl:"85%",fund:"Graduate Scholarship (all students)",code:"MBZ",col:"#7c3aed"},
+ "University of Groningen":{the:"101-150",arwu:"101-150",rank:139,country:"Netherlands",intl:"28%",fund:"Erasmus Mundus, Eric Bleumink Fund",code:"RUG",col:"#be123c"}
 };
 const DATA = [
  {id:"oist",elig:{cit:"any",route:"direct"},lat:26.465,lng:127.831,checked:"2026-11-06",country:"Japan",region:"Asia",name:"OIST PhD Scholarship",host:"Okinawa Institute of Science and Technology",levels:["PhD"],fields:["Science","Engineering & Tech","AI & Computing"],deadline:"2026-11-15",deadlineNote:"Admissions Workshop 2027 round; interviews 18 Jan to 7 Feb 2027; enrol May 2027, Sept 2027 or Jan 2028. Application fee JPY 5,000",funding:"Full",who:"All nationalities",value:"Tuition waived, stipend about JPY 2.4M/yr, relocation, housing support",english:"TOEFL iBT or IELTS only if your degree was not taught in English; no minimum score",minEng:0,offerFirst:false,minGpa:3.3,research:2,apply:"https://admissions.oist.jp/",note:"Rotation-based first year, no supervisor needed before applying."},
@@ -1096,11 +1141,11 @@ function openDetail(id){
     <div class="sub" style="margin-top:8px">${d.host} · ${d.levels.join(" / ")} · ${d.funding==="Full"?"Fully funded":"Partial"}</div>
     <div class="deadline-big">${d.deadline?`<b>${dlLabel(d)}</b><span>${daysLeft(d)>=0?"left. ":""}Deadline ${fmtDate(d.deadline)}. ${d.deadlineNote}.</span>`:`<b style="font-size:20px">Typical window</b><span>${d.window}. Exact dates are set each cycle; check the official page.</span>`}</div>
     <dl><dt>Who may apply</dt><dd>${d.who}</dd><dt>Fields</dt><dd>${d.fields.join(", ")}</dd><dt>Covers</dt><dd>${d.value}</dd><dt>English</dt><dd>${d.english}</dd><dt>Indicative GPA</dt><dd>${d.minGpa}+ on 4.0 (our estimate of a competitive profile, not an official cut-off)</dd><dt>Admission first?</dt><dd>${d.offerFirst?"Yes. Offer or supervisor needed before the scholarship application.":"No. One application covers both."}</dd><dt>Good to know</dt><dd>${d.note}</dd><dt>Checked</dt><dd>${d.checked?"Deadline and terms checked on the official page on "+fmtDate(d.checked)+".":"Not yet verified on the official page; confirm the deadline and terms there before applying."} <a href="https://github.com/nirajbhusal/scholio/issues/new?title=Correction:%20"+encodeURIComponent(d.name)+"&labels=correction" target="_blank" rel="noopener">Report a correction</a></dd></dl>
-    <div class="cta"><a class="btn primary" href="${d.apply}" target="_blank" rel="noopener">Official page ↗</a><button class="btn" type="button" id="d-check">Check my fit</button><button class="btn" type="button" id="d-save"><svg class="i s"><use href="#ic-star"/></svg>${isSaved(d.id)?"Saved":"Save"}</button><button class="btn" type="button" id="d-ics"><svg class="i s"><use href="#ic-cal"/></svg>Add deadline to calendar</button></div>
+    <div class="cta"><a class="btn primary" href="${d.apply}" target="_blank" rel="noopener">Official page ↗</a><button class="btn" type="button" id="d-link" title="Copy a link to this award"><svg class="i s"><use href="#ic-share"/></svg>Link</button><button class="btn" type="button" id="d-check">Check my fit</button><button class="btn" type="button" id="d-cmp"><svg class="i s"><use href="#ic-layers"/></svg>${cmpHas(d.id)?"In compare":"Compare"}</button><button class="btn" type="button" id="d-save"><svg class="i s"><use href="#ic-star"/></svg>${isSaved(d.id)?"Saved":"Save"}</button><button class="btn" type="button" data-track="${d.id}"><svg class="i s"><use href="#ic-check"/></svg>${trkGet()[d.id]?"Tracking ✓":"Track"}</button><button class="btn" type="button" id="d-ics"><svg class="i s"><use href="#ic-cal"/></svg>Add deadline to calendar</button></div>
     <h3 style="font-size:18px;margin:8px 0 10px">Applicant reviews</h3><p class="note">No reviews yet. If you applied to or were awarded this scholarship, share what you learned. Reviews are published after a check that they come from real applicants.</p><div class="cta" style="margin-top:10px"><a class="btn sm" href="https://github.com/nirajbhusal/scholio/issues/new?title=Review:%20${encodeURIComponent(d.name)}&labels=review&body=${encodeURIComponent("Applied / awarded (year):\n\nWhat helped most:\n\nWhat I wish I had known:\n\nRating out of 5:")}" target="_blank" rel="noopener">Write a review ↗</a></div>`;
   $("#sheet").classList.add("open");$("#sheet").setAttribute("aria-hidden","false");
-  $("#d-check").onclick=()=>{closeDetail();switchView("assess")};
-  $("#d-save").onclick=e=>{toggleSave(d.id);e.currentTarget.innerHTML=`<svg class="i s"><use href="#ic-star"/></svg>${isSaved(d.id)?"Saved":"Save"}`;renderMyCerts()};$("#d-ics").onclick=()=>downloadICS(d);if(!d.deadline)$("#d-ics").hidden=true;
+  $("#d-check").onclick=()=>{closeDetail();switchView("assess")};$("#d-link").onclick=e=>{const url="https://nirajbhusal.github.io/scholio/award/"+d.id+"/";navigator.clipboard?.writeText(url).then(()=>e.currentTarget.textContent="Copied").catch(()=>{})};
+  $("#d-save").onclick=e=>{toggleSave(d.id);e.currentTarget.innerHTML=`<svg class="i s"><use href="#ic-star"/></svg>${isSaved(d.id)?"Saved":"Save"}`;renderMyCerts()};$("#d-ics").onclick=()=>downloadICS(d);$("#d-cmp").onclick=e=>{cmpToggle(d.id);e.currentTarget.innerHTML=`<svg class="i s"><use href="#ic-layers"/></svg>${cmpHas(d.id)?"In compare":"Compare"}`;renderCmpBar()};if(!d.deadline)$("#d-ics").hidden=true;
 }
 function closeDetail(){$("#sheet").classList.remove("open");$("#sheet").setAttribute("aria-hidden","true")}
 
@@ -1118,11 +1163,11 @@ function renderCountries(){
 /* rankings */
 let rankFilter="";
 function renderRank(){
-  const chips=[["","All"],["United Kingdom","UK"],["Asia","Asia"],["Europe","Europe"],["Oceania","Oceania"],["Middle East","Middle East"],["unranked","All-funded, unranked"]];
+  const chips=[["","All"],["United Kingdom","UK"],["Asia","Asia"],["Europe","Europe"],["Oceania","Oceania"],["Middle East","Middle East"],["unranked","All-funded, unranked"],["top20","Top 20 in all three"]];
   const regionOf={"United Kingdom":"Europe","Switzerland":"Europe","Netherlands":"Europe","Singapore":"Asia","Hong Kong":"Asia","China":"Asia","Japan":"Asia","Australia":"Oceania","Saudi Arabia":"Middle East","UAE":"Middle East"};
   $("#rankchips").innerHTML=chips.map(([v,l])=>`<button class="chip" aria-pressed="${rankFilter===v}" data-rank="${v}">${l}</button>`).join("");
-  const rows=Object.entries(UNI).filter(([n,u])=>!rankFilter||rankFilter===u.country||rankFilter===regionOf[u.country]||(rankFilter==="unranked"&&!u.rank)).sort((a,b)=>(a[1].rank??999)-(b[1].rank??999));
-  $("#ranktable tbody").innerHTML=rows.map(([n,u])=>{const ls=DATA.filter(d=>d.host===n);return `<tr><td><span class="rk">${u.rank??"–"}</span></td><td><b style="display:flex;gap:10px;align-items:center"><span class="flagic" style="width:32px;height:32px;border-radius:9px;font-size:10px;background:${u.col}">${u.code}</span>${n}</b></td><td>${u.country}</td><td>${u.fund}</td><td>${ls.length?(ls[0].checked?`<span class="tag ok">Verified</span>`:`<span class="tag">Listed</span>`):`<span class="tag">Tracking</span>`}</td><td>${ls.length?`<button class="btn sm" data-open="${ls[0].id}">View listing</button>`:'<span class="tag">Coming</span>'}</td></tr>`}).join("");
+  const rows=Object.entries(UNI).filter(([n,u])=>!rankFilter||rankFilter===u.country||rankFilter===regionOf[u.country]||(rankFilter==="unranked"&&!u.rank)||(rankFilter==="top20"&&u.rank<=20&&typeof u.the==="number"&&u.the<=20&&typeof u.arwu==="number"&&u.arwu<=20)).sort((a,b)=>(a[1].rank??999)-(b[1].rank??999));
+  $("#ranktable tbody").innerHTML=rows.map(([n,u])=>{const ls=DATA.filter(d=>d.host===n);return `<tr><td><span class="rk">${u.rank??"–"}</span></td><td><span class="rk" style="background:var(--surface-2);color:var(--fg)">${u.the??"–"}</span></td><td><span class="rk" style="background:var(--surface-2);color:var(--fg)">${u.arwu??"–"}</span></td><td><b style="display:flex;gap:10px;align-items:center"><span class="flagic" style="width:32px;height:32px;border-radius:9px;font-size:10px;background:${u.col}">${u.code}</span>${n}</b></td><td>${u.country}</td><td>${u.fund}</td><td>${ls.length?(ls[0].checked?`<span class="tag ok">Verified</span>`:`<span class="tag">Listed</span>`):`<span class="tag">Tracking</span>`}</td><td>${ls.length?`<button class="btn sm" data-open="${ls[0].id}">View listing</button>`:'<span class="tag">Coming</span>'}</td></tr>`}).join("");
 }
 
 /* assessment */
@@ -1385,7 +1430,9 @@ function renderMapList(){const rows=mapRows().sort((a,b)=>a.country.localeCompar
 function initMap(){
   if(map||!window.L)return;
   map=L.map("map",{zoomControl:false,worldCopyJump:true,attributionControl:false}).setView([25,40],2);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:18}).addTo(map);
+  const osm=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,crossOrigin:true});let fails=0;
+  osm.on("tileerror",()=>{fails++;if(fails===4){map.removeLayer(osm);L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:18}).addTo(map);$("#map-note").hidden=false}});
+  osm.addTo(map);
   mapLayer=L.layerGroup().addTo(map);drawPins();
   $("#map").addEventListener("click",e=>{const b=e.target.closest("[data-ml]");if(!b)return;mapFilter=b.dataset.ml;document.querySelectorAll("[data-ml]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));drawPins();renderMapList()});
   $("#maplist").addEventListener("click",e=>{const b=e.target.closest("[data-fly]");if(!b)return;const d=DATA.find(x=>x.id===b.dataset.fly);map.flyTo([d.lat,d.lng],6,{duration:.8});document.querySelectorAll("#maplist button").forEach(x=>x.classList.toggle("on",x===b));const m=mapMarkers.find(m=>m.id===d.id);if(m)m.marker.openTooltip()});
@@ -1551,23 +1598,75 @@ function applyTheme(t){document.documentElement.setAttribute("data-theme",t);$("
 (function(){const saved=store.get("sc_theme",null);applyTheme(saved||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"))})();
 document.addEventListener("click",e=>{if(e.target.closest("#more-btn")){$("#moresheet").hidden=false;return}if(e.target.closest("#more-back")){$("#moresheet").hidden=true;return}if(e.target.closest("#theme")||e.target.closest("#theme-m"))applyTheme(document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark")});
 
+
+/* ---------- compare ---------- */
+const cmpGet=()=>store.get("sc_cmp",[]);const cmpHas=id=>cmpGet().includes(id);
+function cmpToggle(id){let a=cmpGet();if(a.includes(id))a=a.filter(x=>x!==id);else{if(a.length>=3)a.shift();a.push(id)}store.set("sc_cmp",a)}
+function renderCmpBar(){const a=cmpGet();$("#cmpbar").hidden=!a.length;$("#cmpcount").textContent=a.length+" selected"+(a.length<3?" (up to 3)":"");}
+function renderCompare(){const a=cmpGet().map(id=>DATA.find(d=>d.id===id)).filter(Boolean);
+  if(!a.length){$("#cmptable").innerHTML=`<p class="note">Nothing selected yet. Open an award and press Compare.</p>`;return}
+  const rows=[["Host",d=>d.host],["Country",d=>d.country+" · "+d.region],["Level",d=>d.levels.join(" / ")],["Fields",d=>d.fields.join(", ")],["Funding",d=>d.funding==="Full"?"Full":"Partial"],["Covers",d=>d.value],["Deadline",d=>d.deadline?fmtDate(d.deadline)+" ("+dlLabel(d)+")":d.window],["English",d=>d.english],["Admission first",d=>d.offerFirst?"Yes":"No"],["Route",d=>ROUTE[(d.elig||{}).route||"direct"]],["Bond",d=>(d.elig||{}).bond?"Return-home commitment":"None"],["Who may apply",d=>d.who],["Competitiveness",d=>competitiveness(d)[0]],["Verified",d=>d.checked?fmtDate(d.checked):"Not yet"]];
+  $("#cmptable").innerHTML=`<table class="cmp"><thead><tr><th></th>${a.map(d=>`<th>${d.name}<br><button class="btn sm" data-open="${d.id}" style="margin-top:6px">Open</button></th>`).join("")}</tr></thead><tbody>${rows.map(([l,f])=>`<tr><td>${l}</td>${a.map(d=>`<td>${f(d)}</td>`).join("")}</tr>`).join("")}</tbody></table>`}
+
+/* ---------- tracker ---------- */
+const TSTEPS=["Read the official page","Shortlist and save","Contact supervisor / referees","Transcripts ready","English test booked or done","Statement final","References submitted","Application submitted","Interview / result"];
+function trkGet(){return store.get("sc_trk",{})}
+function renderTracker(){const t=trkGet();$("#trk-add").innerHTML=`<option value="">Add an award to track…</option>`+DATA.filter(d=>!t[d.id]).sort((a,b)=>a.name.localeCompare(b.name)).map(d=>`<option value="${d.id}">${d.name} (${d.country})</option>`).join("");
+  const ids=Object.keys(t);$("#trk-list").innerHTML=ids.length?ids.map(id=>{const d=DATA.find(x=>x.id===id);if(!d)return"";const r=t[id];const done=r.done.length;const pct=Math.round(done/TSTEPS.length*100);
+   return `<div class="trk" data-trk="${id}"><div class="hd"><div><h4>${d.name}</h4><small style="color:var(--muted)">${d.host} · ${d.deadline?"Deadline "+fmtDate(d.deadline)+" · "+dlLabel(d)+" left":d.window}</small></div><div style="display:flex;gap:8px;align-items:center"><label style="border:0;padding:0;font-size:12px;color:var(--muted)">My target date <input type="date" data-date="${id}" value="${r.target||""}"></label><button class="btn sm" data-open="${id}">Open</button><button class="btn sm" data-trk-rm="${id}">Remove</button></div></div><div class="prog"><i style="width:${pct}%"></i></div><div class="steps2">${TSTEPS.map((st,i)=>`<label class="${r.done.includes(i)?"done":""}"><input type="checkbox" data-step="${id}:${i}" ${r.done.includes(i)?"checked":""}>${st}</label>`).join("")}</div></div>`}).join(""):`<p class="note">Nothing tracked yet. Pick an award above, or use "Track" on any listing.</p>`}
+document.addEventListener("change",e=>{
+  if(e.target.id==="trk-add"&&e.target.value){const t=trkGet();t[e.target.value]={done:[],target:""};store.set("sc_trk",t);renderTracker();return}
+  const st=e.target.closest("[data-step]");if(st){const [id,i]=st.dataset.step.split(":");const t=trkGet();const a=t[id].done;const n=+i;st.checked?(!a.includes(n)&&a.push(n)):t[id].done=a.filter(x=>x!==n);store.set("sc_trk",t);renderTracker();return}
+  const dt=e.target.closest("[data-date]");if(dt){const t=trkGet();t[dt.dataset.date].target=dt.value;store.set("sc_trk",t);return}
+  if(e.target.id==="lk-file"){[...e.target.files].forEach(f=>{if(f.size>2*1024*1024){alert("Over 2 MB: "+f.name);return}const rd=new FileReader();rd.onload=()=>{const L=store.get("sc_files",[]);L.push({n:f.name,t:f.type,s:f.size,d:rd.result,at:new Date().toISOString().slice(0,10)});try{store.set("sc_files",L)}catch(x){}renderLocker()};rd.readAsDataURL(f)});e.target.value="";return}
+});
+/* ---------- locker ---------- */
+function renderLocker(){$("#lk-sop").value=store.get("sc_sop","");$("#lk-ref").value=store.get("sc_ref","");$("#lk-sop-n").textContent=($("#lk-sop").value.trim().split(/\s+/).filter(Boolean).length)+" words";
+  const L=store.get("sc_files",[]);$("#lk-files").innerHTML=L.length?L.map((f,i)=>`<div class="c"><svg class="i" style="color:var(--accent)"><use href="#ic-doc"/></svg><div><b>${f.n}</b><br><span style="color:var(--muted)">${Math.round(f.s/1024)} KB · ${f.at}</span></div><div style="display:flex;gap:6px"><a class="btn sm" href="${f.d}" download="${f.n}">Download</a><button class="btn sm" data-file-rm="${i}">Remove</button></div></div>`).join(""):`<p class="note">No files yet.</p>`}
+document.addEventListener("input",e=>{if(e.target.id==="lk-sop"){store.set("sc_sop",e.target.value);$("#lk-sop-n").textContent=(e.target.value.trim().split(/\s+/).filter(Boolean).length)+" words"}if(e.target.id==="lk-ref")store.set("sc_ref",e.target.value)});
+/* ---------- award deep link page ---------- */
+function renderAwardPage(id){const d=DATA.find(x=>x.id===id);if(!d){$("#award-page").innerHTML=`<p class="note">Award not found.</p>`;return}
+  const u=uni(d);const el=eligCheck(d,store.get("sc_profile",{nat:"XX",want:d.levels[0]}));const [cl,ct]=competitiveness(d);
+  document.title=d.name+" · Scholio";
+  $("#award-page").innerHTML=`<div class="cta" style="margin:0 0 14px"><button class="btn sm" data-view="home"><svg class="i s"><use href="#ic-back"/></svg>All awards</button></div>
+  <div class="hero" style="padding:28px 32px"><div class="lead"><div class="kicker">${d.country} · ${d.region}${u.rank?" · QS #"+u.rank:""}</div><h2 style="font-size:clamp(26px,3.6vw,38px)">${d.name}</h2><p>${d.host} · ${d.levels.join(" / ")} · ${d.funding==="Full"?"Fully funded":"Partial funding"}</p>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px"><span class="tag ${ct}">${cl}</span><span class="tag">${ROUTE[el.route]}</span>${el.bond?'<span class="tag warn">Return-home bond</span>':""}${d.checked?'<span class="tag ok">Verified '+fmtDate(d.checked)+'</span>':'<span class="tag">Confirm on official page</span>'}</div>
+  <div class="ctas"><a class="btn primary" href="${d.apply}" target="_blank" rel="noopener">Official page ↗</a><button class="btn" data-open="${d.id}">Details, save, compare</button><button class="btn" data-view="assess">Check my Scholio Score</button></div></div>
+  <div class="card"><div class="deadline-big" style="margin:0">${d.deadline?`<b>${dlLabel(d)}</b><span>${daysLeft(d)>=0?"left. ":""}Deadline ${fmtDate(d.deadline)}. ${d.deadlineNote}.</span>`:`<b style="font-size:20px">Typical window</b><span>${d.window}.</span>`}</div><dl style="margin-top:14px"><dt>Who may apply</dt><dd>${d.who}</dd><dt>Covers</dt><dd>${d.value}</dd><dt>English</dt><dd>${d.english}</dd><dt>Good to know</dt><dd>${d.note}</dd></dl></div></div>`}
+document.addEventListener("click",e=>{
+  if(e.target.closest("#cmpclear")){store.set("sc_cmp",[]);renderCmpBar();if(!$("#view-compare").hidden)renderCompare();return}
+  const rm=e.target.closest("[data-trk-rm]");if(rm){const t=trkGet();delete t[rm.dataset.trkRm];store.set("sc_trk",t);renderTracker();return}
+  const fr=e.target.closest("[data-file-rm]");if(fr){const L=store.get("sc_files",[]);L.splice(+fr.dataset.fileRm,1);store.set("sc_files",L);renderLocker();return}
+  const tk=e.target.closest("[data-track]");if(tk){const t=trkGet();if(!t[tk.dataset.track])t[tk.dataset.track]={done:[],target:""};store.set("sc_trk",t);tk.textContent="Tracking ✓";return}
+  if(e.target.closest("#li-btn")){const em=$("#li-email").value.trim();if(!em){$("#li-email").focus();return}signInMagic(em).then(ok=>{if(ok)$("#li-note").hidden=false});return}
+  const rt=e.target.closest("[data-view='resources'][data-rt]");if(rt){setTimeout(()=>showRes(rt.dataset.rt),50)}
+});
+
+
+/* ---------- accounts (Supabase scaffold; off until keys are set) ---------- */
+const SUPABASE={url:"",key:""};/* set both to enable sign-in; see CLAUDE.md */
+function accountsEnabled(){return !!(SUPABASE.url&&SUPABASE.key)}
+async function supa(path,opts={}){const r=await fetch(SUPABASE.url+path,{...opts,headers:{apikey:SUPABASE.key,"Content-Type":"application/json",...(opts.headers||{})}});return r.json()}
+async function signInMagic(email){if(!accountsEnabled())return false;await supa("/auth/v1/magiclink",{method:"POST",body:JSON.stringify({email})});return true}
+(function(){if(!accountsEnabled())return;const c=$("#authcard-live");if(c)c.hidden=false;const s=$("#authcard-soon");if(s)s.hidden=true})();
+
 /* ---------- events ---------- */
 function renderEvents(){const dated=DATA.filter(d=>d.deadline&&daysLeft(d)>=0).sort((a,b)=>daysLeft(a)-daysLeft(b));const win=DATA.filter(d=>!d.deadline);$("#events").innerHTML=dated.map(d=>{const dt=new Date(d.deadline+"T00:00:00");return `<div class="ev"><div class="d"><b>${dt.getDate()}</b><span>${dt.toLocaleDateString("en-GB",{month:"short"})}</span></div><div><h4>${d.name}</h4><p>${d.host}, ${d.country} · ${d.deadlineNote}</p></div><div class="act" style="display:flex;gap:8px;align-items:center"><span class="tag ${dlClass(d)}">${dlLabel(d)} left</span><button class="btn sm" type="button" data-ics="${d.id}" title="Add to calendar"><svg class="i s"><use href="#ic-cal"/></svg></button><button class="btn sm" type="button" data-open="${d.id}">Open</button></div></div>`}).join("")+`<div class="mono" style="margin:18px 0 8px">Annual windows (exact dates set each cycle)</div>`+win.map(d=>`<div class="ev"><div class="d"><b style="font-size:14px">${d.window.match(/January|February|March|April|May|June|July|August|September|October|November|December/)?.[0]?.slice(0,3)||"–"}</b><span>opens</span></div><div><h4>${d.name}</h4><p>${d.host}, ${d.country} · ${d.window}</p></div><div class="act"><button class="btn sm" type="button" data-open="${d.id}">Open</button></div></div>`).join("")}
 
 /* ---------- views ---------- */
-const VIEWS=["home","map","countries","resources","score","rank","assess","academy","course","cert","events","funders","about","signup"];
+const VIEWS=["home","map","countries","resources","score","compare","tracker","locker","award","rank","assess","academy","course","cert","events","funders","about","signup"];
 function switchView(v){
   const navV=v==="course"||v==="cert"?"academy":v==="score"?"assess":v;
   document.querySelectorAll("nav button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===navV)));const ms=$("#moresheet");if(ms)ms.hidden=true;
   VIEWS.forEach(x=>{const el=$("#view-"+x);if(el)el.hidden=(x!==v)});
-  if(v==="assess"){loadProfile();renderAssess();renderWizard()}if(v==="rank")renderRank();if(v==="map"){setTimeout(()=>{initMap();if(map)map.invalidateSize();renderMapList()},30)}if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();if(v==="resources")renderCV();
+  if(v==="assess"){loadProfile();renderAssess();renderWizard()}if(v==="rank")renderRank();if(v==="map"){setTimeout(()=>{initMap();if(map)map.invalidateSize();renderMapList()},30)}if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();if(v==="resources")renderCV();if(v==="compare")renderCompare();if(v==="award"&&window.__award)renderAwardPage(window.__award);if(v==="tracker")renderTracker();if(v==="locker")renderLocker();
   window.scrollTo({top:0});
-  try{if(BASE){const want=BASE+(v==="home"?"":v+"/");if(location.pathname!==want)history.pushState({v},"",want)}
+  try{if(BASE){const want=BASE+(v==="home"?"":v==="award"&&window.__award?"award/"+window.__award+"/":v+"/");if(location.pathname!==want)history.pushState({v},"",want)}
   else if(location.hash.replace("#","")!==v)history.replaceState(null,"","#"+v)}catch(e){}
 }
 const BASE=location.pathname.startsWith("/scholio/")?"/scholio/":(location.hostname.endsWith("github.io")?"/":null);
-function routeFromURL(){if(BASE){const seg=location.pathname.slice(BASE.length).split("/").filter(Boolean)[0]||"home";return VIEWS.includes(seg)?seg:"home"}const h=location.hash.replace("#","");return VIEWS.includes(h)?h:"home"}
-window.addEventListener("popstate",()=>{const v=routeFromURL();document.querySelectorAll("nav button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===(v==="course"||v==="cert"?"academy":v==="score"?"assess":v))));VIEWS.forEach(x=>{const el=$("#view-"+x);if(el)el.hidden=(x!==v)});if(v==="assess"){loadProfile();renderAssess();renderWizard()}if(v==="rank")renderRank();if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();if(v==="resources")renderCV();if(v==="map"){setTimeout(()=>{initMap();if(map)map.invalidateSize();renderMapList()},30)}});
+function routeFromURL(){if(BASE){const parts=location.pathname.slice(BASE.length).split("/").filter(Boolean);const seg=parts[0]||"home";if(seg==="award"&&parts[1]){window.__award=parts[1];return"award"}return VIEWS.includes(seg)?seg:"home"}const h=location.hash.replace("#","");return VIEWS.includes(h)?h:"home"}
+window.addEventListener("popstate",()=>{const v=routeFromURL();document.querySelectorAll("nav button[data-view]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===(v==="course"||v==="cert"?"academy":v==="score"?"assess":v))));VIEWS.forEach(x=>{const el=$("#view-"+x);if(el)el.hidden=(x!==v)});if(v==="assess"){loadProfile();renderAssess();renderWizard()}if(v==="rank")renderRank();if(v==="academy")renderCourses();if(v==="home")renderForYou();if(v==="signup")renderMyCerts();if(v==="resources")renderCV();if(v==="compare")renderCompare();if(v==="award"&&window.__award)renderAwardPage(window.__award);if(v==="tracker")renderTracker();if(v==="locker")renderLocker();if(v==="map"){setTimeout(()=>{initMap();if(map)map.invalidateSize();renderMapList()},30)}});
 document.addEventListener("click",e=>{
   const v=e.target.closest("[data-view]");if(v){e.preventDefault();switchView(v.dataset.view);return}
   const sc=e.target.closest("[data-scroll]");if(sc){switchView("home");scrollToId(sc.dataset.scroll);return}
@@ -1607,7 +1706,7 @@ window.addEventListener("hashchange",()=>{if(!BASE){const h=location.hash.replac
 (function(){const h=new Date().getHours();$("#greet").textContent=(h<12?"Good morning":h<17?"Good afternoon":"Good evening")+" · Master's and PhD funding, worldwide";
 const intro=$("#intro");if(intro){const done=()=>intro.classList.add("done");intro.addEventListener("animationend",e=>{if(e.animationName==="intro-fade")done()});setTimeout(done,3200);intro.addEventListener("click",done)}})();
 
-renderChips();renderStats();renderGrid();renderStrip();renderCountries();renderCourses();renderEvents();renderRank();loadProfile();renderAssess();renderForYou();renderMyCerts();
+renderChips();renderStats();renderGrid();renderStrip();renderCmpBar();renderCountries();renderCourses();renderEvents();renderRank();loadProfile();renderAssess();renderForYou();renderMyCerts();
 const h0=routeFromURL();if(h0!=="home"&&h0!=="course"&&h0!=="cert")switchView(h0);else if(BASE&&location.hash)try{history.replaceState(null,"",BASE)}catch(e){}
 
 </script>
