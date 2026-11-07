@@ -15,7 +15,7 @@ Owner: Niraj Bhusal (NB). Brand: **Scholio** (domain still to be registered). If
 
 ## Structure (single file today, multipage next)
 `index.html` holds everything: CSS, markup for views (`#view-home`, `map`, `countries`, `rank`, `assess`, `academy`, `course`, `cert`, `resources`, `events`, `funders`, `about`, `signup`), and JS.
-Data constants in the script: `UNI` (university DB), `DATA` (41 listings), `COUNTRIES`, `COURSES` (Academy; `sop` is a complete course with lessons+quizzes, others are outlines with `soon:true`), `GUIDES` (English test guides), `WSTEPS` (wizard questions).
+Data constants in the script: `UNI` (university DB), `DATA` (55 listings), `COUNTRIES`, `COURSES` (Academy; `sop` is a complete course with lessons+quizzes, others are outlines with `soon:true`), `GUIDES` (English test guides), `WSTEPS` (wizard questions).
 Client state in localStorage: `sc_profile`, `sc_course_<id>`, `sc_certs`, `sc_saved`, `sc_cv`.
 Map: Leaflet 1.9.4 from cdnjs with CARTO light tiles; trimmed Leaflet CSS is inlined.
 
